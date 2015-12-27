@@ -34,11 +34,11 @@
 		android:layout_height="wrap_content"
 		android:text="@string/news_title"/>
 
-	<WebView
+	<!--WebView
 		android:id="@+id/contactUs_WebView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/main_news_description"
-		/>
+		/-->
 
 </RelativeLayout>

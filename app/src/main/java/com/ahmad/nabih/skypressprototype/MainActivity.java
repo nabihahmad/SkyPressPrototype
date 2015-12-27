@@ -58,14 +58,14 @@ public class MainActivity extends AppCompatActivity
 		drawer.setDrawerListener(toggle);
 		toggle.syncState();
 
-		FloatingActionButton newsFab = (FloatingActionButton) findViewById(R.id.contactUs_fab);
-		newsFab.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-						.setAction("Action", null).show();
-			}
-		});
+//		FloatingActionButton newsFab = (FloatingActionButton) findViewById(R.id.contactUs_fab);
+//		newsFab.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View view) {
+//				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//						.setAction("Action", null).show();
+//			}
+//		});
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);

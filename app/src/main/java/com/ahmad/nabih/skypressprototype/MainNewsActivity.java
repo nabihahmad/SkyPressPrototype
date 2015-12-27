@@ -57,7 +57,7 @@ public class MainNewsActivity extends AppCompatActivity
 			mainNewsDescriptionTextView.setText(mainNewsDescription);
 		}
 
-		WebView webView = (WebView) findViewById(R.id.contactUs_WebView);
+//		WebView webView = (WebView) findViewById(R.id.contactUs_WebView);
 //		webView.setInitialScale(1);
 //		webView.setWebChromeClient(new WebChromeClient());
 //		webView.getSettings().setAllowFileAccess(true);
@@ -74,7 +74,7 @@ public class MainNewsActivity extends AppCompatActivity
 //
 //		Log.e(SimpleBillsConstants.SIMPLE_BILLS, width + "-" + height);
 
-		webView.loadData("<iframe src=\"http://www.google.com\"></iframe>", "text/html", "utf-8");
+//		webView.loadData("<iframe src=\"http://www.google.com\"></iframe>", "text/html", "utf-8");
 	}
 
 	@Override
