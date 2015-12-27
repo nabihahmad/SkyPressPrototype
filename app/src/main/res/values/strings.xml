@@ -1,0 +1,24 @@
+<resources>
+	<string name="app_name">وكالة سكاي برس</string>
+	<string name="action_settings">إعدادات</string>
+	<string name="action_refresh">تحديث</string>
+	<string name="news_title">العناوين الرئيسية</string>
+	<string name="title_activity_settings">لإعدادات</string>
+
+	<string name="navigation_drawer_open">فتح</string>
+	<string name="navigation_drawer_close">إغلاق</string>
+	<string name="loading">الرجاء الانتظار...</string>
+	<string name="general_exception">لقد حصل خطأ ومدير التطبيق قد أنذر. الرجاء المحاولة مرة أخرى.</string>
+	<string name="no_data">المعلومات المطلوبة غير متوفرة حالياً. الرجاء المحاولة مرة أخرى.</string>
+
+	<string name="latest_label">آخر الأخبار</string>
+	<string name="local_label">محلي</string>
+	<string name="arab_international_label">عربية ودولية</string>
+	<string name="economic_label">مال وأعمال</string>
+	<string name="analytic_label">مقالات وتقارير</string>
+	<string name="sport_label">الأخبار الرياضية</string>
+	<string name="art_label">ثقافة وفنون</string>
+	<string name="varied_label">منوعة</string>
+	<string name="videosite_label">مكتبة الفيديو</string>
+	<string name="title_activity_main_news">تفاصيل الخبر</string>
+</resources>

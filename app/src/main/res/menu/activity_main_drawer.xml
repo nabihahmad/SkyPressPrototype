@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<group android:checkableBehavior="single">
+		<!--item
+			android:id="@+id/nav_camara"
+			android:icon="@android:drawable/ic_menu_camera"
+			android:title="Import"/-->
+		<item
+			android:id="@+id/nav_local"
+			android:title="@string/local_label"/>
+		<item
+			android:id="@+id/nav_international"
+			android:title="@string/arab_international_label"/>
+		<item
+			android:id="@+id/nav_economic"
+			android:title="@string/economic_label"/>
+		<item
+			android:id="@+id/nav_analytic"
+			android:title="@string/analytic_label"/>
+		<item
+			android:id="@+id/nav_sport"
+			android:title="@string/sport_label"/>
+		<item
+			android:id="@+id/nav_art"
+			android:title="@string/art_label"/>
+		<item
+			android:id="@+id/nav_varied"
+			android:title="@string/varied_label"/>
+		<item
+			android:id="@+id/nav_videosite"
+			android:title="@string/videosite_label"/>
+	</group>
+
+	<!--itemandroid:title="Communicate">
+		<menu>
+			<item
+				android:id="@+id/nav_share"
+				android:icon="@android:drawable/ic_menu_share"
+				android:title="Share"/>
+			<item
+				android:id="@+id/nav_send"
+				android:icon="@android:drawable/ic_menu_send"
+				android:title="Send"/>
+		</menu>
+	</item-->
+
+</menu>
