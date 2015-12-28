@@ -7,17 +7,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
+import android.text.Spannable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 	private List<String> latestNewsImgURLs = new ArrayList<String>();
 	Activity activity;
 	private ProgressDialog progressDialog;
+	private static final Spannable.Factory spannableFactory = Spannable.Factory.getInstance();
 
 	public NewsListingPopulator (Activity activity, String strURL, String strLabel){
 		this.activity = activity;
@@ -69,13 +72,20 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
 			List<String> listOfTitles = new ArrayList<String>();
 			List<String> listOfImgURLs = new ArrayList<String>();
+			String strNewsTicker = " [img src=logo_news_ticker/]  ";
 			for (int i = 0; result != null && i < result.size(); i++) {
 				HashMap<String, String> tmpMap = result.get(i);
-				if (tmpMap.containsKey("title") && tmpMap.get("title") != null)
+				if (tmpMap.containsKey("title") && tmpMap.get("title") != null) {
 					listOfTitles.add(tmpMap.get("title"));
+					strNewsTicker += tmpMap.get("title") + "  [img src=logo_news_ticker/]  ";
+				}
 				if (tmpMap.containsKey("imgURL") && tmpMap.get("imgURL") != null)
 					listOfImgURLs.add(tmpMap.get("imgURL"));
 			}
+			@SuppressLint("WrongViewCast")
+			TextViewWithImages newsTickerTextView = (TextViewWithImages) activity.findViewById(R.id.news_ticker);
+			newsTickerTextView.setSelected(true);
+			newsTickerTextView.setText(strNewsTicker, TextView.BufferType.SPANNABLE);
 
 			TextView latestNewsTextView = (TextView) activity.findViewById(R.id.latest_news_TextView);
 			latestNewsTextView.setText(listOfTitles.get(0));
@@ -114,6 +124,18 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				public void onItemClick(AdapterView<?> parent, View titleClicked, int position, long id) {
 				}
 			});
+
+//			Snackbar.make(activity.findViewById(R.id.news_listing), MainActivity.GENERAL_EXCEPTION, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			builder.setMessage(MainActivity.GENERAL_EXCEPTION);
+			builder.setCancelable(true);
+			AlertDialog alert = builder.create();
+			alert.show();
+
+			activity.findViewById(R.id.latest_news_layout).setVisibility(View.GONE);
+			activity.findViewById(R.id.news_title).setVisibility(View.GONE);
+			activity.findViewById(R.id.news_ticker).setVisibility(View.GONE);
 		}
 	}
 
