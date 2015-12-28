@@ -36,6 +36,27 @@ public class MainNewsActivity extends AppCompatActivity
 		drawer.setDrawerListener(toggle);
 		toggle.syncState();
 
+		FloatingActionButton contactUsFAB = (FloatingActionButton) findViewById(R.id.contactUs_fab);
+		contactUsFAB.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent contactUsIntent = new Intent(view.getContext(), ContactUsActivity.class);
+				startActivity(contactUsIntent);
+			}
+		});
+
+		FloatingActionButton shareFAB = (FloatingActionButton) findViewById(R.id.share_fab);
+		shareFAB.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent share = new Intent(Intent.ACTION_SEND);
+				share.setType("text/plain");
+				share.putExtra(Intent.EXTRA_SUBJECT, view.getResources().getString(R.string.app_name_abbr) + " " + view.getResources().getString(R.string.share_on_social_media_subject));
+				share.putExtra(Intent.EXTRA_TEXT, view.getResources().getString(R.string.app_name_abbr) + " " + view.getResources().getString(R.string.share_on_social_media_body) + " " + getIntent().getStringExtra("mainNewsTitle"));
+				startActivity(Intent.createChooser(share, view.getResources().getString(R.string.share_on_social_media_label)));
+			}
+		});
+
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 
@@ -56,25 +77,6 @@ public class MainNewsActivity extends AppCompatActivity
 			mainNewsDescriptionTextView.setFilters(new InputFilter[] { new InputFilter.LengthFilter(mainNewsDescription.length()) });
 			mainNewsDescriptionTextView.setText(mainNewsDescription);
 		}
-
-//		WebView webView = (WebView) findViewById(R.id.contactUs_WebView);
-//		webView.setInitialScale(1);
-//		webView.setWebChromeClient(new WebChromeClient());
-//		webView.getSettings().setAllowFileAccess(true);
-//		webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-//		webView.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND);
-//		webView.setWebViewClient(new WebViewClient());
-//		webView.getSettings().setJavaScriptEnabled(true);
-//		webView.getSettings().setLoadWithOverviewMode(true);
-//		webView.getSettings().setUseWideViewPort(true);
-//		DisplayMetrics displaymetrics = new DisplayMetrics();
-//		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-//		int height = displaymetrics.heightPixels;
-//		int width = displaymetrics.widthPixels;
-//
-//		Log.e(SimpleBillsConstants.SIMPLE_BILLS, width + "-" + height);
-
-//		webView.loadData("<iframe src=\"http://www.google.com\"></iframe>", "text/html", "utf-8");
 	}
 
 	@Override
@@ -90,7 +92,7 @@ public class MainNewsActivity extends AppCompatActivity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main_news, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 

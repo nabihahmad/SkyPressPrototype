@@ -1,9 +1,11 @@
 <resources>
 	<string name="app_name">وكالة سكاي برس</string>
+	<string name="app_name_abbr">سكاي برس</string>
 	<string name="action_settings">إعدادات</string>
 	<string name="action_refresh">تحديث</string>
 	<string name="news_title">العناوين الرئيسية</string>
 	<string name="title_activity_settings">لإعدادات</string>
+	<string name="title_activity_main_news">تفاصيل الخبر</string>
 
 	<string name="navigation_drawer_open">فتح</string>
 	<string name="navigation_drawer_close">إغلاق</string>
@@ -20,5 +22,9 @@
 	<string name="art_label">ثقافة وفنون</string>
 	<string name="varied_label">منوعة</string>
 	<string name="videosite_label">مكتبة الفيديو</string>
-	<string name="title_activity_main_news">تفاصيل الخبر</string>
+	<string name="communicate_label">للتواصل</string>
+	<string name="contactUs_label">اتصل بنا</string>
+	<string name="share_on_social_media_label">شارك على وسائل التواصل الاجتماعي</string>
+	<string name="share_on_social_media_subject"></string>
+	<string name="share_on_social_media_body"></string>
 </resources>

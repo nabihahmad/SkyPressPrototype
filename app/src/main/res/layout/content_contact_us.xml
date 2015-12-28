@@ -10,28 +10,20 @@
 	android:paddingTop="@dimen/activity_vertical_margin"
 	android:paddingBottom="@dimen/activity_vertical_margin"
 	app:layout_behavior="@string/appbar_scrolling_view_behavior"
-	tools:showIn="@layout/app_bar_main_news"
-	tools:context="com.ahmad.nabih.skypressprototype.MainNewsActivity">
+	tools:showIn="@layout/app_bar_contact_us"
+	tools:context="com.ahmad.nabih.skypressprototype.ContactUsActivity">
 
 	<TextView
-		android:id="@+id/main_news_title"
+		android:id="@+id/contactUs_title"
 		android:textSize="14pt"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/title_activity_main_news"/>
+		android:text="@string/contactUs_label"/>
 
-	<TextView
-		android:id="@+id/main_news_date"
-		android:layout_below="@+id/main_news_title"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
-
-	<TextView
-		android:id="@+id/main_news_description"
-		android:textSize="10pt"
-		android:layout_below="@+id/main_news_date"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/news_title"/>
+	<WebView
+		android:id="@+id/contactUs_WebView"
+		android:layout_below="@+id/contactUs_title"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
 
 </RelativeLayout>

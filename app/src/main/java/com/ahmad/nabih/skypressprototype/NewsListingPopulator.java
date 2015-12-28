@@ -10,11 +10,15 @@ import java.util.List;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,6 +28,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMap<String, String>>> {
 	private String strURL = "http://skypressiq.net/localnews.xml";
 	private String strLabel = null;
+	private List<String> latestNewsImgURLs = new ArrayList<String>();
 	Activity activity;
 	private ProgressDialog progressDialog;
 
@@ -33,7 +38,12 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		this.strLabel = strLabel;
 	}
 
+	public List<String> getLatestNewsImgURLs() {
+		return latestNewsImgURLs;
+	}
+
 	protected void onPreExecute() {
+		super.onPreExecute();
 		progressDialog = new ProgressDialog(this.activity);
 		progressDialog.setMessage(MainActivity.LOADING);
 		progressDialog.show();
@@ -50,19 +60,29 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 	}
 
 	protected void onPostExecute(final List<HashMap<String, String>> result) {
+		super.onPostExecute(result);
 		progressDialog.dismiss();
 		TextView newsTitle = (TextView) activity.findViewById(R.id.news_title);
 		newsTitle.setText(strLabel);
 
 		if (result != null && result.size() > 0) {
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
-
 			List<String> listOfTitles = new ArrayList<String>();
+			List<String> listOfImgURLs = new ArrayList<String>();
 			for (int i = 0; result != null && i < result.size(); i++) {
 				HashMap<String, String> tmpMap = result.get(i);
 				if (tmpMap.containsKey("title") && tmpMap.get("title") != null)
 					listOfTitles.add(tmpMap.get("title"));
+				if (tmpMap.containsKey("imgURL") && tmpMap.get("imgURL") != null)
+					listOfImgURLs.add(tmpMap.get("imgURL"));
 			}
+
+			TextView latestNewsTextView = (TextView) activity.findViewById(R.id.latest_news_TextView);
+			latestNewsTextView.setText(listOfTitles.get(0));
+
+			ImageView imageView = (ImageView) activity.findViewById(R.id.latest_news_ImageView);
+			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView);
+			newsImagesFetcher.execute("http://skypressiq.net/uploads/posts/2015-12/1451228958_nb-129574-635634868083750280.jpg");
 
 			list.setAdapter(new ArrayAdapter(activity, android.R.layout.simple_list_item_1, listOfTitles));
 
@@ -140,6 +160,14 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				String name = myParser.getName();
 				switch (event) {
 					case XmlPullParser.START_TAG:
+						if (name.equals("enclosure")) {
+							for (int i = 0 ; i < myParser.getAttributeCount(); i++) {
+								String tmpAttrName = myParser.getAttributeName(i);
+								if (tmpAttrName != null && tmpAttrName.equalsIgnoreCase("url")) {
+									tmpMap.put("imgURL", myParser.getAttributeValue(i));
+								}
+							}
+						}
 						break;
 					case XmlPullParser.TEXT:
 						text = myParser.getText();
