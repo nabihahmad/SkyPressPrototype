@@ -97,7 +97,31 @@ public class ContactUsActivity extends AppCompatActivity
 	public boolean onNavigationItemSelected(MenuItem item) {
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
-
+		if (id == R.id.nav_local) {
+			finish();
+//			refreshNews(MainActivity.URL_LOCAL, getResources().getString(R.string.local_label));
+		} else if (id == R.id.nav_international) {
+			finish();
+//			refreshNews(MainActivity.URL_ARAB_INTERNATIONAL, getResources().getString(R.string.arab_international_label));
+		} else if (id == R.id.nav_economic) {
+			finish();
+//			refreshNews(URL_ECONOMIC, getResources().getString(R.string.economic_label));
+		} else if (id == R.id.nav_analytic) {
+			finish();
+//			refreshNews(URL_ANALYTIC, getResources().getString(R.string.analytic_label));
+		} else if (id == R.id.nav_sport) {
+			finish();
+//			refreshNews(URL_SPORT, getResources().getString(R.string.sport_label));
+		} else if (id == R.id.nav_art) {
+			finish();
+//			refreshNews(URL_ART, getResources().getString(R.string.art_label));
+		} else if (id == R.id.nav_varied) {
+			finish();
+//			refreshNews(URL_VARIED, getResources().getString(R.string.varied_label));
+		} else if (id == R.id.nav_videosite) {
+			finish();
+//			refreshNews(URL_VIDEOSITE, getResources().getString(R.string.videosite_label));
+		}
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;

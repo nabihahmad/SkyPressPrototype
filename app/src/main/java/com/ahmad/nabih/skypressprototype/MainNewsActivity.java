@@ -145,9 +145,4 @@ public class MainNewsActivity extends AppCompatActivity
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
 	}
-
-//	private void refreshNews(String strURL, String strLabel) {
-//		NewsListingPopulator newsListingPopulator = new NewsListingPopulator(this, strURL, strLabel);
-//		newsListingPopulator.execute();
-//	}
 }
