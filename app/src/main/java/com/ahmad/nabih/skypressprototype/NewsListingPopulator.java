@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.text.Spannable;
@@ -70,7 +71,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 
 		if (result != null && result.size() > 0) {
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
-			List<String> listOfTitles = new ArrayList<String>();
+			ArrayList<String> listOfTitles = new ArrayList<String>();
 			List<String> listOfImgURLs = new ArrayList<String>();
 			String strNewsTicker = " [img src=logo_news_ticker/]  ";
 			for (int i = 0; result != null && i < result.size(); i++) {
@@ -94,7 +95,10 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView);
 			newsImagesFetcher.execute("http://skypressiq.net/uploads/posts/2015-12/1451228958_nb-129574-635634868083750280.jpg");
 
-			list.setAdapter(new ArrayAdapter(activity, android.R.layout.simple_list_item_1, listOfTitles));
+			CustomAdapter customAdapter = new CustomAdapter(activity,listOfTitles);
+			list.setAdapter(customAdapter);
+
+//			list.setAdapter(new ArrayAdapter(activity, android.R.layout.simple_list_item_1, listOfTitles));
 
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
