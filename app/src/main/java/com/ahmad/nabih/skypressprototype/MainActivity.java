@@ -15,14 +15,14 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
-	private static String URL_LOCAL = "http://skypressiq.net/localnews.xml";
-	private static String URL_ARAB_INTERNATIONAL = "http://skypressiq.net/arnews.xml";
-	private static String URL_ECONOMIC = "http://skypressiq.net/economicnews.xml";
-	private static String URL_ANALYTIC = "http://skypressiq.net/analytic.xml";
-	private static String URL_SPORT = "http://skypressiq.net/sportnews.xml";
-	private static String URL_ART = "http://skypressiq.net/artnews.xml";
-	private static String URL_VARIED = "http://skypressiq.net/variednews.xml";
-	private static String URL_VIDEOSITE = "http://skypressiq.net/videosite.xml";
+	public static String URL_LOCAL = "http://skypressiq.net/localnews.xml";
+	public static String URL_ARAB_INTERNATIONAL = "http://skypressiq.net/arnews.xml";
+	public static String URL_ECONOMIC = "http://skypressiq.net/economicnews.xml";
+	public static String URL_ANALYTIC = "http://skypressiq.net/analytic.xml";
+	public static String URL_SPORT = "http://skypressiq.net/sportnews.xml";
+	public static String URL_ART = "http://skypressiq.net/artnews.xml";
+	public static String URL_VARIED = "http://skypressiq.net/variednews.xml";
+	public static String URL_VIDEOSITE = "http://skypressiq.net/videosite.xml";
 	public static String GENERAL_EXCEPTION = null;
 	public static String LOADING = null;
 	public static String NO_DATA = null;
@@ -56,7 +56,13 @@ public class MainActivity extends AppCompatActivity
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 
-		refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+		Bundle b = getIntent().getExtras();
+		if(b != null){
+			String navLbl = b.getString("navLbl");
+			String url = b.getString("URL");
+			refreshNews(url, navLbl);
+		}else
+			refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
 	}
 
 	@Override

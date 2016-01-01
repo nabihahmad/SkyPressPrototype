@@ -115,32 +115,36 @@ public class MainNewsActivity extends AppCompatActivity
 	@Override
 	public boolean onNavigationItemSelected(MenuItem item) {
 		// Handle navigation view item clicks here.
+		Intent mainActivity = new Intent(MainNewsActivity.this, MainActivity.class);
+		Bundle parameters = new Bundle();
 		int id = item.getItemId();
 		if (id == R.id.nav_local) {
-			finish();
-//			refreshNews(MainActivity.URL_LOCAL, getResources().getString(R.string.local_label));
+			parameters.putString("navLbl", getResources().getString(R.string.local_label));
+			parameters.putString("URL", MainActivity.URL_LOCAL);
 		} else if (id == R.id.nav_international) {
-			finish();
-//			refreshNews(MainActivity.URL_ARAB_INTERNATIONAL, getResources().getString(R.string.arab_international_label));
+			parameters.putString("navLbl", getResources().getString(R.string.arab_international_label));
+			parameters.putString("URL", MainActivity.URL_ARAB_INTERNATIONAL);
 		} else if (id == R.id.nav_economic) {
-			finish();
-//			refreshNews(URL_ECONOMIC, getResources().getString(R.string.economic_label));
+			parameters.putString("navLbl", getResources().getString(R.string.economic_label));
+			parameters.putString("URL", MainActivity.URL_ECONOMIC);
 		} else if (id == R.id.nav_analytic) {
-			finish();
-//			refreshNews(URL_ANALYTIC, getResources().getString(R.string.analytic_label));
+			parameters.putString("navLbl", getResources().getString(R.string.analytic_label));
+			parameters.putString("URL", MainActivity.URL_ANALYTIC);
 		} else if (id == R.id.nav_sport) {
-			finish();
-//			refreshNews(URL_SPORT, getResources().getString(R.string.sport_label));
+			parameters.putString("navLbl", getResources().getString(R.string.sport_label));
+			parameters.putString("URL", MainActivity.URL_SPORT);
 		} else if (id == R.id.nav_art) {
-			finish();
-//			refreshNews(URL_ART, getResources().getString(R.string.art_label));
+			parameters.putString("navLbl", getResources().getString(R.string.art_label));
+			parameters.putString("URL", MainActivity.URL_ART);
 		} else if (id == R.id.nav_varied) {
-			finish();
-//			refreshNews(URL_VARIED, getResources().getString(R.string.varied_label));
+			parameters.putString("navLbl", getResources().getString(R.string.varied_label));
+			parameters.putString("URL", MainActivity.URL_VARIED);
 		} else if (id == R.id.nav_videosite) {
-			finish();
-//			refreshNews(URL_VIDEOSITE, getResources().getString(R.string.videosite_label));
+			parameters.putString("navLbl", getResources().getString(R.string.videosite_label));
+			parameters.putString("URL", MainActivity.URL_VIDEOSITE);
 		}
+		mainActivity.putExtras(parameters);
+		startActivity(mainActivity);
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
