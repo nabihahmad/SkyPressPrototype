@@ -27,4 +27,14 @@
 	<string name="share_on_social_media_label">شارك على وسائل التواصل الاجتماعي</string>
 	<string name="share_on_social_media_subject"></string>
 	<string name="share_on_social_media_body"></string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Settings for Notifications -->
+	<string name="pref_header_notifications">الإشعارات</string>
+
+	<string name="pref_title_new_message_notifications">تفعيل الإشعارات للخبر العاجل</string>
+
+	<string name="pref_title_ringtone">نغمة الإشعار</string>
+	<string name="pref_ringtone_silent">صامت</string>
 </resources>
