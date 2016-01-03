@@ -124,6 +124,11 @@ public class ContactUsActivity extends AppCompatActivity
 		} else if (id == R.id.nav_videosite) {
 			parameters.putString("navLbl", getResources().getString(R.string.videosite_label));
 			parameters.putString("URL", MainActivity.URL_VIDEOSITE);
+		} else if (id == R.id.nav_contactUs) {
+			Intent intent = getIntent();
+			finish();
+			startActivity(intent);
+			return true;
 		}
 		mainActivity.putExtras(parameters);
 		startActivity(mainActivity);

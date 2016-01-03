@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="news_title_sizes_array_values">
+		<item>12</item>
+		<item>14</item>
+		<item>16</item>
+		<item>20</item>
+	</string-array>
+	<string-array name="news_description_sizes_array_values">
+		<item>10</item>
+		<item>12</item>
+		<item>14</item>
+		<item>18</item>
+	</string-array>
+	<string-array name="news_text_sizes_array">
+		<item>@string/small</item>
+		<item>@string/medium</item>
+		<item>@string/large</item>
+		<item>@string/xlarge</item>
+	</string-array>
+</resources>

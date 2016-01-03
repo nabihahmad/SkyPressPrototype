@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<ListPreference
+		android:key="pref_news_title_text_size"
+		android:title="@string/pref_news_title_text_size"
+		android:defaultValue="14"
+		android:entryValues="@array/news_title_sizes_array_values"
+		android:entries="@array/news_text_sizes_array"/>
+
+	<ListPreference
+		android:key="pref_news_description_text_size"
+		android:title="@string/pref_news_description_text_size"
+		android:defaultValue="10"
+		android:entryValues="@array/news_description_sizes_array_values"
+		android:entries="@array/news_text_sizes_array"/>
+</PreferenceScreen>

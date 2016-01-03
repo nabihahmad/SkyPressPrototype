@@ -29,20 +29,150 @@
 		android:focusableInTouchMode="true"
 		android:background="@color/colorPrimaryDark"/>
 
-	<FrameLayout
+	<ViewFlipper
+		android:id="@+id/latest_news_view_flipper"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/news_ticker"
+		android:layout_marginTop="@dimen/activity_vertical_margin">
+		<FrameLayout
+			android:id="@+id/latest_news_layout_0"
+			android:layout_width="fill_parent"
+			android:layoutDirection="rtl"
+			android:layout_height="wrap_content">
+			<ImageView
+				android:id="@+id/latest_news_ImageView_0"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithImages
+				android:id="@+id/latest_news_TextView_0"
+				android:layout_gravity="bottom"
+				android:textSize="20dp"
+				android:textColor="@android:color/white"
+				android:background="@color/blackOpacity"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+		</FrameLayout>
+		<FrameLayout
+			android:id="@+id/latest_news_layout_1"
+			android:layout_width="fill_parent"
+			android:layoutDirection="rtl"
+			android:layout_height="wrap_content">
+			<ImageView
+				android:id="@+id/latest_news_ImageView_1"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithImages
+				android:id="@+id/latest_news_TextView_1"
+				android:layout_gravity="bottom"
+				android:textSize="20dp"
+				android:textColor="@android:color/white"
+				android:background="@color/blackOpacity"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+		</FrameLayout>
+		<FrameLayout
+			android:id="@+id/latest_news_layout_2"
+			android:layout_width="fill_parent"
+			android:layoutDirection="rtl"
+			android:layout_height="wrap_content">
+			<ImageView
+				android:id="@+id/latest_news_ImageView_2"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithImages
+				android:id="@+id/latest_news_TextView_2"
+				android:layout_gravity="bottom"
+				android:textSize="20dp"
+				android:textColor="@android:color/white"
+				android:background="@color/blackOpacity"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+		</FrameLayout>
+		<FrameLayout
+			android:id="@+id/latest_news_layout_3"
+			android:layout_width="fill_parent"
+			android:layoutDirection="rtl"
+			android:layout_height="wrap_content">
+			<ImageView
+				android:id="@+id/latest_news_ImageView_3"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithImages
+				android:id="@+id/latest_news_TextView_3"
+				android:layout_gravity="bottom"
+				android:textSize="20dp"
+				android:textColor="@android:color/white"
+				android:background="@color/blackOpacity"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+		</FrameLayout>
+	</ViewFlipper>
+
+	<!--FrameLayout
 		android:id="@+id/latest_news_layout"
 		android:layout_width="fill_parent"
 		android:layoutDirection="rtl"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/news_ticker"
 		android:layout_marginTop="@dimen/activity_vertical_margin">
+		<ViewSwitcher
+			android:id="@+id/latest_news_view_switcher"
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent"
+			android:inAnimation="@android:anim/fade_in"
+			android:outAnimation="@android:anim/fade_out">
+			<ImageView
+				android:id="@+id/latest_news_ImageView"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"/>
+			<ImageView
+				android:id="@+id/latest_news_ImageView1"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"/>
+		</ViewSwitcher>
+		<ViewSwitcher
+			android:id="@+id/latest_news_text_view_switcher"
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent"
+			android:inAnimation="@android:anim/fade_in"
+			android:outAnimation="@android:anim/fade_out">
+			<com.ahmad.nabih.skypressprototype.TextViewWithImages
+				android:id="@+id/latest_news_TextView"
+				android:layout_gravity="bottom"
+				android:textSize="20dp"
+				android:textColor="@android:color/white"
+				android:background="@color/blackOpacity"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithImages
+				android:id="@+id/latest_news_TextView1"
+				android:layout_gravity="bottom"
+				android:textSize="20dp"
+				android:textColor="@android:color/white"
+				android:background="@color/blackOpacity"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
+		</ViewSwitcher>
 		<ImageView
 			android:id="@+id/latest_news_ImageView"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:scaleType="fitXY"
 			android:adjustViewBounds="true"/>
-		<TextView
+		<com.ahmad.nabih.skypressprototype.TextViewWithImages
 			android:id="@+id/latest_news_TextView"
 			android:layout_gravity="bottom"
 			android:textSize="20dp"
@@ -50,11 +180,11 @@
 			android:background="@color/blackOpacity"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
-	</FrameLayout>
+	</FrameLayout-->
 
 	<TextView
 		android:id="@+id/news_title"
-		android:layout_below="@+id/latest_news_layout"
+		android:layout_below="@+id/latest_news_view_flipper"
 		android:textSize="10pt"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"

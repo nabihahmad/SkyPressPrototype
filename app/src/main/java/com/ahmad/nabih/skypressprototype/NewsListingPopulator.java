@@ -88,12 +88,41 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			newsTickerTextView.setSelected(true);
 			newsTickerTextView.setText(strNewsTicker, TextView.BufferType.SPANNABLE);
 
-			TextView latestNewsTextView = (TextView) activity.findViewById(R.id.latest_news_TextView);
-			latestNewsTextView.setText(listOfTitles.get(0));
+			@SuppressLint("WrongViewCast")
+			TextViewWithImages latestNewsTextView = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_0);
+			latestNewsTextView.setText("[img src=logo_news_ticker/] " + listOfTitles.get(0));
 
-			ImageView imageView = (ImageView) activity.findViewById(R.id.latest_news_ImageView);
+			@SuppressLint("WrongViewCast")
+			TextViewWithImages latestNewsTextView1 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_1);
+			latestNewsTextView1.setText("[img src=logo_news_ticker/] " + listOfTitles.get(1));
+
+			@SuppressLint("WrongViewCast")
+			TextViewWithImages latestNewsTextView2 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_2);
+			latestNewsTextView2.setText("[img src=logo_news_ticker/] " + listOfTitles.get(2));
+
+			@SuppressLint("WrongViewCast")
+			TextViewWithImages latestNewsTextView3 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_3);
+			latestNewsTextView3.setText("[img src=logo_news_ticker/] " + listOfTitles.get(3));
+
+			ImageView imageView = (ImageView) activity.findViewById(R.id.latest_news_ImageView_0);
 			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView);
-			newsImagesFetcher.execute("http://skypressiq.net/uploads/posts/2015-12/1451228958_nb-129574-635634868083750280.jpg");
+			// TODO: check if the replace is required after the URLs are fixed by Sky Press
+			newsImagesFetcher.execute(listOfImgURLs.get(0).replace("/posts/", "/uploads/posts/"));
+
+			ImageView imageView1 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_1);
+			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(imageView1);
+			// TODO: check if the replace is required after the URLs are fixed by Sky Press
+			newsImagesFetcher1.execute(listOfImgURLs.get(1).replace("/posts/","/uploads/posts/"));
+
+			ImageView imageView2 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_2);
+			NewsImagesFetcher newsImagesFetcher2 = new NewsImagesFetcher(imageView2);
+			// TODO: check if the replace is required after the URLs are fixed by Sky Press
+			newsImagesFetcher2.execute(listOfImgURLs.get(2).replace("/posts/","/uploads/posts/"));
+
+			ImageView imageView3 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_3);
+			NewsImagesFetcher newsImagesFetcher3 = new NewsImagesFetcher(imageView3);
+			// TODO: check if the replace is required after the URLs are fixed by Sky Press
+			newsImagesFetcher3.execute(listOfImgURLs.get(3).replace("/posts/","/uploads/posts/"));
 
 			CustomAdapter customAdapter = new CustomAdapter(activity,listOfTitles);
 			list.setAdapter(customAdapter);
@@ -137,7 +166,8 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			AlertDialog alert = builder.create();
 			alert.show();
 
-			activity.findViewById(R.id.latest_news_layout).setVisibility(View.GONE);
+//			activity.findViewById(R.id.latest_news_layout).setVisibility(View.GONE);
+			activity.findViewById(R.id.latest_news_view_flipper).setVisibility(View.GONE);
 			activity.findViewById(R.id.news_title).setVisibility(View.GONE);
 			activity.findViewById(R.id.news_ticker).setVisibility(View.GONE);
 		}

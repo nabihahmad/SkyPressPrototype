@@ -1,8 +1,13 @@
 package com.ahmad.nabih.skypressprototype;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.view.DragEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +17,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ViewFlipper;
+import android.widget.ViewSwitcher;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +53,48 @@ public class MainActivity extends AppCompatActivity
 		drawer.setDrawerListener(toggle);
 		toggle.syncState();
 
+		// TODO: TEST CODE FOR HIDING IMAGE
+//		@SuppressLint("WrongViewCast")
+//		TextViewWithImages latestNewsTextView = (TextViewWithImages) findViewById(R.id.latest_news_TextView);
+//		latestNewsTextView.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View view) {
+//				FrameLayout frameLayout = (FrameLayout) findViewById(R.id.latest_news_layout);
+//				frameLayout.animate()
+//						.translationY(0)
+//						.alpha(0.0f)
+//						.setListener(new AnimatorListenerAdapter() {
+//							@Override
+//							public void onAnimationEnd(Animator animation) {
+//								super.onAnimationEnd(animation);
+//							}
+//						});
+//				frameLayout.setVisibility(View.GONE);
+//			}
+//		});
+
+//		ViewSwitcher imageViewSwitcher = (ViewSwitcher) findViewById(R.id.latest_news_view_switcher);
+//		ViewSwitcher textViewSwitcher = (ViewSwitcher) findViewById(R.id.latest_news_text_view_switcher);
+
+//		imageViewSwitcher.setOnTouchListener(new OnSwipeTouchListener(this, imageViewSwitcher, textViewSwitcher));
+
+		ViewFlipper newsViewFlipper = (ViewFlipper) findViewById(R.id.latest_news_view_flipper);
+		newsViewFlipper.setOnTouchListener(new OnSwipeTouchListener(this, newsViewFlipper));
+
+//		setOnClick(imageViewSwitcher, textViewSwitcher);
+
+//		((ViewSwitcher) findViewById(R.id.latest_news_view_switcher)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				ViewSwitcher switcher = (ViewSwitcher) v;
+//				if (switcher.getDisplayedChild() == 0) {
+//					switcher.showNext();
+//				} else {
+//					switcher.showPrevious();
+//				}
+//			}
+//		});
+
 		FloatingActionButton contactUsFAB = (FloatingActionButton) findViewById(R.id.contactUs_fab);
 		contactUsFAB.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -63,6 +114,22 @@ public class MainActivity extends AppCompatActivity
 			refreshNews(url, navLbl);
 		}else
 			refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+	}
+
+	private void setOnClick(final ViewSwitcher imageViewSwitcher, final ViewSwitcher textViewSwitcher){
+		imageViewSwitcher.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ViewSwitcher switcher = (ViewSwitcher) v;
+				if (switcher.getDisplayedChild() == 0) {
+					switcher.showNext();
+					textViewSwitcher.showNext();
+				} else {
+					switcher.showPrevious();
+					textViewSwitcher.showPrevious();
+				}
+			}
+		});
 	}
 
 	@Override

@@ -7,4 +7,9 @@
 		android:title="@string/pref_header_notifications"
 		android:icon="@drawable/ic_notifications_black_24dp"/>
 
+	<header
+		android:fragment="com.ahmad.nabih.skypressprototype.SettingsActivity$DisplayPreferenceFragment"
+		android:title="@string/pref_header_display"
+		android:icon="@drawable/text_24"/>
+
 </preference-headers>

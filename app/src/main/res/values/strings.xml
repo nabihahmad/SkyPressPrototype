@@ -30,6 +30,16 @@
 
     <!-- Strings related to Settings -->
 
+	<!-- Settings for Text Size -->
+	<string name="pref_header_display">الأحجام والخطوط</string>
+
+	<string name="pref_news_title_text_size">حجم عناوين الخبر</string>
+	<string name="pref_news_description_text_size">حجم تفاصيل الخبر</string>
+	<string name="small">صغير</string>
+	<string name="medium">متوسط</string>
+	<string name="large">كبير</string>
+	<string name="xlarge">ضخم</string>
+
     <!-- Settings for Notifications -->
 	<string name="pref_header_notifications">الإشعارات</string>
 

@@ -1,10 +1,13 @@
 package com.ahmad.nabih.skypressprototype;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.text.InputFilter;
+import android.util.TypedValue;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -60,11 +63,14 @@ public class MainNewsActivity extends AppCompatActivity
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
 		String mainNewsTitle = getIntent().getStringExtra("mainNewsTitle");
 		if (mainNewsTitle != null) {
 			TextView mainNewsTitleTextView = (TextView) findViewById(R.id.main_news_title);
-			mainNewsTitleTextView.setFilters(new InputFilter[] { new InputFilter.LengthFilter(mainNewsTitle.length()) });
+			mainNewsTitleTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mainNewsTitle.length())});
 			mainNewsTitleTextView.setText(mainNewsTitle);
+			mainNewsTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PT, Float.parseFloat(sharedPref.getString("pref_news_title_text_size", "12")));
 		}
 		String mainNewsDate = getIntent().getStringExtra("mainNewsDate");
 		if (mainNewsDate != null) {
@@ -76,6 +82,7 @@ public class MainNewsActivity extends AppCompatActivity
 			TextView mainNewsDescriptionTextView = (TextView) findViewById(R.id.main_news_description);
 			mainNewsDescriptionTextView.setFilters(new InputFilter[] { new InputFilter.LengthFilter(mainNewsDescription.length()) });
 			mainNewsDescriptionTextView.setText(mainNewsDescription);
+			mainNewsDescriptionTextView.setTextSize(TypedValue.COMPLEX_UNIT_PT, Float.parseFloat(sharedPref.getString("pref_news_description_text_size", "10")));
 		}
 	}
 
@@ -142,6 +149,10 @@ public class MainNewsActivity extends AppCompatActivity
 		} else if (id == R.id.nav_videosite) {
 			parameters.putString("navLbl", getResources().getString(R.string.videosite_label));
 			parameters.putString("URL", MainActivity.URL_VIDEOSITE);
+		} else if (id == R.id.nav_contactUs) {
+			Intent contactUsIntent = new Intent(this, ContactUsActivity.class);
+			startActivity(contactUsIntent);
+			return true;
 		}
 		mainActivity.putExtras(parameters);
 		startActivity(mainActivity);
