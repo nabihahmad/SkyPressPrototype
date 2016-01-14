@@ -27,14 +27,16 @@
 		android:maxLines="1"
 		android:focusable="true"
 		android:focusableInTouchMode="true"
-		android:background="@color/colorPrimaryDark"/>
+		android:background="@color/colorPrimaryDark"
+		android:visibility="gone"/>
 
 	<ViewFlipper
 		android:id="@+id/latest_news_view_flipper"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/news_ticker"
-		android:layout_marginTop="@dimen/activity_vertical_margin">
+		android:layout_marginTop="@dimen/activity_vertical_margin"
+		android:visibility="gone">
 		<FrameLayout
 			android:id="@+id/latest_news_layout_0"
 			android:layout_width="fill_parent"
@@ -54,6 +56,20 @@
 				android:background="@color/blackOpacity"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/right_arrow_0"
+				android:src="@drawable/right_arrow"
+				android:layout_gravity="center_vertical|right"
+				android:alpha="0.3"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/left_arrow_0"
+				android:src="@drawable/left_arrow"
+				android:layout_gravity="center_vertical|left"
+				android:alpha="0.3"/>
 		</FrameLayout>
 		<FrameLayout
 			android:id="@+id/latest_news_layout_1"
@@ -74,6 +90,20 @@
 				android:background="@color/blackOpacity"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/right_arrow_1"
+				android:src="@drawable/right_arrow"
+				android:layout_gravity="center_vertical|right"
+				android:alpha="0.3"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/left_arrow_1"
+				android:src="@drawable/left_arrow"
+				android:layout_gravity="center_vertical|left"
+				android:alpha="0.3"/>
 		</FrameLayout>
 		<FrameLayout
 			android:id="@+id/latest_news_layout_2"
@@ -94,6 +124,20 @@
 				android:background="@color/blackOpacity"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/right_arrow_2"
+				android:src="@drawable/right_arrow"
+				android:layout_gravity="center_vertical|right"
+				android:alpha="0.3"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/left_arrow_2"
+				android:src="@drawable/left_arrow"
+				android:layout_gravity="center_vertical|left"
+				android:alpha="0.3"/>
 		</FrameLayout>
 		<FrameLayout
 			android:id="@+id/latest_news_layout_3"
@@ -114,6 +158,20 @@
 				android:background="@color/blackOpacity"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/right_arrow_3"
+				android:src="@drawable/right_arrow"
+				android:layout_gravity="center_vertical|right"
+				android:alpha="0.3"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/left_arrow_3"
+				android:src="@drawable/left_arrow"
+				android:layout_gravity="center_vertical|left"
+				android:alpha="0.3"/>
 		</FrameLayout>
 	</ViewFlipper>
 
@@ -188,7 +246,8 @@
 		android:textSize="10pt"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/news_title"/>
+		android:text="@string/news_title"
+		android:visibility="gone"/>
 
 	<ListView
 		android:id="@+id/news_listing"

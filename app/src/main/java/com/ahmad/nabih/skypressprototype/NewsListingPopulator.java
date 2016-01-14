@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -146,6 +147,11 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 					activity.startActivity(intent);
 				}
 			});
+
+			newsTickerTextView.setVisibility(View.VISIBLE);
+			newsTitle.setVisibility(View.VISIBLE);
+			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
+			viewFlipper.setVisibility(View.VISIBLE);
 		} else {
 			List<String> tmpList = new ArrayList<String>();
 			tmpList.add(MainActivity.GENERAL_EXCEPTION);
@@ -165,11 +171,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			builder.setCancelable(true);
 			AlertDialog alert = builder.create();
 			alert.show();
-
-//			activity.findViewById(R.id.latest_news_layout).setVisibility(View.GONE);
-			activity.findViewById(R.id.latest_news_view_flipper).setVisibility(View.GONE);
-			activity.findViewById(R.id.news_title).setVisibility(View.GONE);
-			activity.findViewById(R.id.news_ticker).setVisibility(View.GONE);
 		}
 	}
 

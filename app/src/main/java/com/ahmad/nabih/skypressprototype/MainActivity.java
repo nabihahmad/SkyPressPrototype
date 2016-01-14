@@ -78,8 +78,64 @@ public class MainActivity extends AppCompatActivity
 
 //		imageViewSwitcher.setOnTouchListener(new OnSwipeTouchListener(this, imageViewSwitcher, textViewSwitcher));
 
-		ViewFlipper newsViewFlipper = (ViewFlipper) findViewById(R.id.latest_news_view_flipper);
+		final ViewFlipper newsViewFlipper = (ViewFlipper) findViewById(R.id.latest_news_view_flipper);
 		newsViewFlipper.setOnTouchListener(new OnSwipeTouchListener(this, newsViewFlipper));
+
+		((ImageView) findViewById(R.id.right_arrow_0)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				newsViewFlipper.showPrevious();
+			}
+		});
+
+		((ImageView) findViewById(R.id.right_arrow_1)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				newsViewFlipper.showPrevious();
+			}
+		});
+
+		((ImageView) findViewById(R.id.right_arrow_2)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				newsViewFlipper.showPrevious();
+			}
+		});
+
+		((ImageView) findViewById(R.id.right_arrow_3)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				newsViewFlipper.showPrevious();
+			}
+		});
+
+		((ImageView) findViewById(R.id.left_arrow_0)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				newsViewFlipper.showNext();
+			}
+		});
+
+		((ImageView) findViewById(R.id.left_arrow_1)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				newsViewFlipper.showNext();
+			}
+		});
+
+		((ImageView) findViewById(R.id.left_arrow_2)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				newsViewFlipper.showNext();
+			}
+		});
+
+		((ImageView) findViewById(R.id.left_arrow_3)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				newsViewFlipper.showNext();
+			}
+		});
 
 //		setOnClick(imageViewSwitcher, textViewSwitcher);
 
