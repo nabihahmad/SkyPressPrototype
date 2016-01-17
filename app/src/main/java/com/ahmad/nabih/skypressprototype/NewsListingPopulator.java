@@ -61,6 +61,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 //		} catch (InterruptedException e) {
 //			e.printStackTrace();
 //		}
+		Log.e("URL", strURL);
 		return runRSSThread(strURL);
 	}
 

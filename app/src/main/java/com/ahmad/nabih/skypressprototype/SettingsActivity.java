@@ -13,11 +13,13 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
@@ -191,6 +193,26 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 			// updated to reflect the new value, per the Android Design
 			// guidelines.
 			bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+
+			SwitchPreference notificationSwitch = (SwitchPreference) findPreference("notifications_new_message");
+
+			if (notificationSwitch != null) {
+				notificationSwitch.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+					@TargetApi(Build.VERSION_CODES.M)
+					@Override
+					public boolean onPreferenceChange(Preference preference, Object isNotificationOnObject) {
+						if(((SwitchPreference) preference).isChecked() != (Boolean) isNotificationOnObject) {
+							boolean isVibrateOn = (Boolean) isNotificationOnObject;
+							if (isVibrateOn) {
+								ParseUtils.registerParse(preference.getContext());
+							} else {
+								ParseUtils.unRegisterParse(preference.getContext());
+							}
+						}
+						return true;
+					}
+				});
+			}
 		}
 
 		@Override

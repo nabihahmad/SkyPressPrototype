@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.TypefaceSpan;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.SubMenu;
 import android.view.View;
@@ -26,6 +27,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 import android.widget.ViewSwitcher;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -199,14 +205,35 @@ public class MainActivity extends AppCompatActivity
 			mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 			menuItem.setTitle(mNewTitle);
 		}
-
-		Bundle b = getIntent().getExtras();
-		if(b != null){
-			String navLbl = b.getString("navLbl");
-			String url = b.getString("URL");
-			refreshNews(url, navLbl);
-		}else
-			refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+		String parseDataStr = getIntent().getStringExtra("com.parse.Data");
+		if(parseDataStr != null && !parseDataStr.equals("")){
+			try {
+				refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+				Intent intent = new Intent(this, MainNewsActivity.class);
+				JSONObject parseDataJSON = new JSONObject(parseDataStr);
+				String mainNewsTitle = parseDataJSON.has("title") ? parseDataJSON.getString("title") : "";
+				if (mainNewsTitle != null)
+					intent.putExtra("mainNewsTitle", mainNewsTitle);
+				String mainNewsDate = parseDataJSON.has("pubDate") ? parseDataJSON.getString("pubDate") : "";
+				if (mainNewsDate != null)
+					intent.putExtra("mainNewsDate", mainNewsDate);
+				String mainNewsDescription = parseDataJSON.has("description") ? parseDataJSON.getString("description") : "";
+				if (mainNewsDescription != null)
+					intent.putExtra("mainNewsDescription", mainNewsDescription);
+				this.startActivity(intent);
+			} catch (JSONException e) {
+				Log.e("Parse Data JSON Exc", e.toString());
+				//refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+			}
+		}else{
+			Bundle b = getIntent().getExtras();
+			if(b != null){
+				String navLbl = b.getString("navLbl");
+				String url = b.getString("URL");
+				refreshNews(url, navLbl);
+			}else
+				refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+		}
 	}
 
 //	private void setOnClick(final ViewSwitcher imageViewSwitcher, final ViewSwitcher textViewSwitcher){
