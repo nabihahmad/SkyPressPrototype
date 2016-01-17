@@ -13,19 +13,19 @@
 	tools:showIn="@layout/app_bar_main_news"
 	tools:context="com.ahmad.nabih.skypressprototype.MainNewsActivity">
 
-	<TextView
+	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 		android:id="@+id/main_news_title"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/title_activity_main_news"/>
 
-	<TextView
+	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 		android:id="@+id/main_news_date"
 		android:layout_below="@+id/main_news_title"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"/>
 
-	<TextView
+	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 		android:id="@+id/main_news_description"
 		android:layout_below="@+id/main_news_date"
 		android:layout_width="wrap_content"

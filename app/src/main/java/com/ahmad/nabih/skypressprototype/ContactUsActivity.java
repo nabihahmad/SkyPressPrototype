@@ -2,10 +2,14 @@ package com.ahmad.nabih.skypressprototype;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.Display;
+import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,9 +27,15 @@ public class ContactUsActivity extends AppCompatActivity
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Typeface font = Typeface.createFromAsset(getAssets(), "fonts/DroidKufi_Regular.ttf");
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_contact_us);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		SpannableString spannableString = new SpannableString(toolbar.getTitle());
+		spannableString.setSpan(new CustomTypefaceSpan("", font), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		toolbar.setTitle(spannableString);
 		setSupportActionBar(toolbar);
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -59,6 +69,24 @@ public class ContactUsActivity extends AppCompatActivity
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
+		Menu menu = navigationView.getMenu();
+		for (int i=0;i<menu.size();i++) {
+			MenuItem menuItem = menu.getItem(i);
+			//for applying a font to subMenu ...
+			SubMenu subMenu = menuItem.getSubMenu();
+			if (subMenu!=null && subMenu.size() >0 ) {
+				for (int j=0; j <subMenu.size();j++) {
+					MenuItem subMenuItem = subMenu.getItem(j);
+					SpannableString mNewTitle = new SpannableString(subMenuItem.getTitle());
+					mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+					subMenuItem.setTitle(mNewTitle);
+				}
+			}
+			//the method we have create in activity
+			SpannableString mNewTitle = new SpannableString(menuItem.getTitle());
+			mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+			menuItem.setTitle(mNewTitle);
+		}
 	}
 
 	@Override

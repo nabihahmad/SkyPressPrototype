@@ -13,7 +13,7 @@
 	tools:showIn="@layout/app_bar_contact_us"
 	tools:context="com.ahmad.nabih.skypressprototype.ContactUsActivity">
 
-	<TextView
+	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 		android:id="@+id/contactUs_title"
 		android:textSize="14pt"
 		android:layout_width="wrap_content"

@@ -1,13 +1,17 @@
 package com.ahmad.nabih.skypressprototype;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.view.DragEvent;
+import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -41,10 +45,15 @@ public class MainActivity extends AppCompatActivity
 		LOADING = getResources().getString(R.string.loading);
 		GENERAL_EXCEPTION = getResources().getString(R.string.general_exception);
 		NO_DATA = getResources().getString(R.string.no_data);
+		Typeface font = Typeface.createFromAsset(getAssets(), "fonts/DroidKufi_Regular.ttf");
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		SpannableString spannableString = new SpannableString(toolbar.getTitle());
+		spannableString.setSpan(new CustomTypefaceSpan("", font), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		toolbar.setTitle(spannableString);
 		setSupportActionBar(toolbar);
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -81,61 +90,61 @@ public class MainActivity extends AppCompatActivity
 		final ViewFlipper newsViewFlipper = (ViewFlipper) findViewById(R.id.latest_news_view_flipper);
 		newsViewFlipper.setOnTouchListener(new OnSwipeTouchListener(this, newsViewFlipper));
 
-		((ImageView) findViewById(R.id.right_arrow_0)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				newsViewFlipper.showPrevious();
-			}
-		});
-
-		((ImageView) findViewById(R.id.right_arrow_1)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				newsViewFlipper.showPrevious();
-			}
-		});
-
-		((ImageView) findViewById(R.id.right_arrow_2)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				newsViewFlipper.showPrevious();
-			}
-		});
-
-		((ImageView) findViewById(R.id.right_arrow_3)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				newsViewFlipper.showPrevious();
-			}
-		});
-
-		((ImageView) findViewById(R.id.left_arrow_0)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				newsViewFlipper.showNext();
-			}
-		});
-
-		((ImageView) findViewById(R.id.left_arrow_1)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				newsViewFlipper.showNext();
-			}
-		});
-
-		((ImageView) findViewById(R.id.left_arrow_2)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				newsViewFlipper.showNext();
-			}
-		});
-
-		((ImageView) findViewById(R.id.left_arrow_3)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				newsViewFlipper.showNext();
-			}
-		});
+//		((ImageView) findViewById(R.id.right_arrow_0)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				newsViewFlipper.showPrevious();
+//			}
+//		});
+//
+//		((ImageView) findViewById(R.id.right_arrow_1)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				newsViewFlipper.showPrevious();
+//			}
+//		});
+//
+//		((ImageView) findViewById(R.id.right_arrow_2)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				newsViewFlipper.showPrevious();
+//			}
+//		});
+//
+//		((ImageView) findViewById(R.id.right_arrow_3)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				newsViewFlipper.showPrevious();
+//			}
+//		});
+//
+//		((ImageView) findViewById(R.id.left_arrow_0)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				newsViewFlipper.showNext();
+//			}
+//		});
+//
+//		((ImageView) findViewById(R.id.left_arrow_1)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				newsViewFlipper.showNext();
+//			}
+//		});
+//
+//		((ImageView) findViewById(R.id.left_arrow_2)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				newsViewFlipper.showNext();
+//			}
+//		});
+//
+//		((ImageView) findViewById(R.id.left_arrow_3)).setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				newsViewFlipper.showNext();
+//			}
+//		});
 
 //		setOnClick(imageViewSwitcher, textViewSwitcher);
 
@@ -162,6 +171,24 @@ public class MainActivity extends AppCompatActivity
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
+		Menu menu = navigationView.getMenu();
+		for (int i=0;i<menu.size();i++) {
+			MenuItem menuItem = menu.getItem(i);
+			//for applying a font to subMenu ...
+			SubMenu subMenu = menuItem.getSubMenu();
+			if (subMenu!=null && subMenu.size() >0 ) {
+				for (int j=0; j <subMenu.size();j++) {
+					MenuItem subMenuItem = subMenu.getItem(j);
+					SpannableString mNewTitle = new SpannableString(subMenuItem.getTitle());
+					mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+					subMenuItem.setTitle(mNewTitle);
+				}
+			}
+			//the method we have create in activity
+			SpannableString mNewTitle = new SpannableString(menuItem.getTitle());
+			mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+			menuItem.setTitle(mNewTitle);
+		}
 
 		Bundle b = getIntent().getExtras();
 		if(b != null){
