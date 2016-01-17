@@ -92,18 +92,86 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			@SuppressLint("WrongViewCast")
 			TextViewWithImages latestNewsTextView = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_0);
 			latestNewsTextView.setText("[img src=logo_news_ticker/] " + listOfTitles.get(0));
+			latestNewsTextView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(activity, MainNewsActivity.class);
+					HashMap<String, String> tmpMap = result.get(0);
+					String mainNewsTitle = tmpMap.get("title");
+					if (mainNewsTitle != null)
+						intent.putExtra("mainNewsTitle", mainNewsTitle);
+					String mainNewsDate = tmpMap.get("pubDate");
+					if (mainNewsDate != null)
+						intent.putExtra("mainNewsDate", mainNewsDate);
+					String mainNewsDescription = tmpMap.get("description");
+					if (mainNewsDescription != null)
+						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					activity.startActivity(intent);
+				}
+			});
 
 			@SuppressLint("WrongViewCast")
 			TextViewWithImages latestNewsTextView1 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_1);
 			latestNewsTextView1.setText("[img src=logo_news_ticker/] " + listOfTitles.get(1));
+			latestNewsTextView1.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(activity, MainNewsActivity.class);
+					HashMap<String, String> tmpMap = result.get(1);
+					String mainNewsTitle = tmpMap.get("title");
+					if (mainNewsTitle != null)
+						intent.putExtra("mainNewsTitle", mainNewsTitle);
+					String mainNewsDate = tmpMap.get("pubDate");
+					if (mainNewsDate != null)
+						intent.putExtra("mainNewsDate", mainNewsDate);
+					String mainNewsDescription = tmpMap.get("description");
+					if (mainNewsDescription != null)
+						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					activity.startActivity(intent);
+				}
+			});
 
 			@SuppressLint("WrongViewCast")
 			TextViewWithImages latestNewsTextView2 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_2);
 			latestNewsTextView2.setText("[img src=logo_news_ticker/] " + listOfTitles.get(2));
+			latestNewsTextView2.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(activity, MainNewsActivity.class);
+					HashMap<String, String> tmpMap = result.get(2);
+					String mainNewsTitle = tmpMap.get("title");
+					if (mainNewsTitle != null)
+						intent.putExtra("mainNewsTitle", mainNewsTitle);
+					String mainNewsDate = tmpMap.get("pubDate");
+					if (mainNewsDate != null)
+						intent.putExtra("mainNewsDate", mainNewsDate);
+					String mainNewsDescription = tmpMap.get("description");
+					if (mainNewsDescription != null)
+						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					activity.startActivity(intent);
+				}
+			});
 
 			@SuppressLint("WrongViewCast")
 			TextViewWithImages latestNewsTextView3 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_3);
 			latestNewsTextView3.setText("[img src=logo_news_ticker/] " + listOfTitles.get(3));
+			latestNewsTextView3.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(activity, MainNewsActivity.class);
+					HashMap<String, String> tmpMap = result.get(3);
+					String mainNewsTitle = tmpMap.get("title");
+					if (mainNewsTitle != null)
+						intent.putExtra("mainNewsTitle", mainNewsTitle);
+					String mainNewsDate = tmpMap.get("pubDate");
+					if (mainNewsDate != null)
+						intent.putExtra("mainNewsDate", mainNewsDate);
+					String mainNewsDescription = tmpMap.get("description");
+					if (mainNewsDescription != null)
+						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					activity.startActivity(intent);
+				}
+			});
 
 			ImageView imageView = (ImageView) activity.findViewById(R.id.latest_news_ImageView_0);
 			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView);

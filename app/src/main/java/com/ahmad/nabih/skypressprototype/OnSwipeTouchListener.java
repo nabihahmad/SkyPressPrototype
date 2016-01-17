@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ViewFlipper;
 import android.widget.ViewSwitcher;
 
@@ -15,11 +17,21 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 //	private ViewSwitcher textViewSwitcher;
 	private ViewFlipper viewFlipper;
 	private final GestureDetector gestureDetector;
+	private Animation slideInRightAnimation;
+	private Animation slideOutLeftAnimation;
+	private Animation slideInLeftAnimation;
+	private Animation slideOutRightAnimation;
 
-	public OnSwipeTouchListener(Context context, ViewFlipper viewFlipper) {
+	public OnSwipeTouchListener(Context context, ViewFlipper viewFlipper, Animation slideInRightAnimation,
+								Animation slideOutLeftAnimation, Animation slideInLeftAnimation,
+								Animation slideOutRightAnimation) {
 //	public OnSwipeTouchListener(Context context, ViewSwitcher imageViewSwitcher, ViewSwitcher textViewSwitcher) {
 		gestureDetector = new GestureDetector(context, new GestureListener());
 		this.viewFlipper = viewFlipper;
+		this.slideInRightAnimation = slideInRightAnimation;
+		this.slideOutLeftAnimation = slideOutLeftAnimation;
+		this.slideInLeftAnimation = slideInLeftAnimation;
+		this.slideOutRightAnimation = slideOutRightAnimation;
 //		this.imageViewSwitcher = imageViewSwitcher;
 //		this.textViewSwitcher = textViewSwitcher;
 	}
@@ -34,7 +46,10 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 //		}
 //		imageViewSwitcher.showPrevious();
 //		textViewSwitcher.showPrevious();
+		this.viewFlipper.setInAnimation(slideInRightAnimation);
+		this.viewFlipper.setOutAnimation(slideOutLeftAnimation);
 		this.viewFlipper.showPrevious();
+		this.viewFlipper.stopFlipping();
 	}
 
 	public void onSwipeRight() {
@@ -47,7 +62,10 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 //		}
 //		imageViewSwitcher.showNext();
 //		textViewSwitcher.showNext();
+		this.viewFlipper.setInAnimation(slideInLeftAnimation);
+		this.viewFlipper.setOutAnimation(slideOutRightAnimation);
 		this.viewFlipper.showNext();
+		this.viewFlipper.stopFlipping();
 	}
 
 	public boolean onTouch(View v, MotionEvent event) {

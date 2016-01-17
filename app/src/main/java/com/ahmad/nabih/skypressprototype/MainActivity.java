@@ -1,6 +1,5 @@
 package com.ahmad.nabih.skypressprototype;
 
-
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -21,6 +20,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
@@ -88,7 +89,16 @@ public class MainActivity extends AppCompatActivity
 //		imageViewSwitcher.setOnTouchListener(new OnSwipeTouchListener(this, imageViewSwitcher, textViewSwitcher));
 
 		final ViewFlipper newsViewFlipper = (ViewFlipper) findViewById(R.id.latest_news_view_flipper);
-		newsViewFlipper.setOnTouchListener(new OnSwipeTouchListener(this, newsViewFlipper));
+		Animation slideInRightAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
+		Animation slideOutLeftAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_out_left);
+		Animation slideInLeftAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
+		Animation slideOutRightAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
+		newsViewFlipper.setOnTouchListener(new OnSwipeTouchListener(this, newsViewFlipper, slideInRightAnimation,
+				slideOutLeftAnimation, slideInLeftAnimation, slideOutRightAnimation));
+		newsViewFlipper.setInAnimation(slideInRightAnimation);
+		newsViewFlipper.setOutAnimation(slideOutLeftAnimation);
+		newsViewFlipper.setAutoStart(true);
+		newsViewFlipper.setFlipInterval(5000);
 
 //		((ImageView) findViewById(R.id.right_arrow_0)).setOnClickListener(new View.OnClickListener() {
 //			@Override
@@ -199,21 +209,21 @@ public class MainActivity extends AppCompatActivity
 			refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
 	}
 
-	private void setOnClick(final ViewSwitcher imageViewSwitcher, final ViewSwitcher textViewSwitcher){
-		imageViewSwitcher.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				ViewSwitcher switcher = (ViewSwitcher) v;
-				if (switcher.getDisplayedChild() == 0) {
-					switcher.showNext();
-					textViewSwitcher.showNext();
-				} else {
-					switcher.showPrevious();
-					textViewSwitcher.showPrevious();
-				}
-			}
-		});
-	}
+//	private void setOnClick(final ViewSwitcher imageViewSwitcher, final ViewSwitcher textViewSwitcher){
+//		imageViewSwitcher.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				ViewSwitcher switcher = (ViewSwitcher) v;
+//				if (switcher.getDisplayedChild() == 0) {
+//					switcher.showNext();
+//					textViewSwitcher.showNext();
+//				} else {
+//					switcher.showPrevious();
+//					textViewSwitcher.showPrevious();
+//				}
+//			}
+//		});
+//	}
 
 	@Override
 	public void onBackPressed() {
