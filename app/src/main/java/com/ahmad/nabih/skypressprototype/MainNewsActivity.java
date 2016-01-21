@@ -1,46 +1,48 @@
 package com.ahmad.nabih.skypressprototype;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
-import android.text.InputFilter;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.util.TypedValue;
-import android.view.SubMenu;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
+import android.view.SubMenu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.google.android.youtube.player.YouTubePlayerView;
 
 public class MainNewsActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Typeface font = Typeface.createFromAsset(getAssets(), "fonts/DroidKufi_Regular.ttf");
+		Typeface boldFont = Typeface.createFromAsset(getAssets(), MainActivity.BOLD_FONT);
+		Typeface regularFont = Typeface.createFromAsset(getAssets(), MainActivity.REGULAR_FONT);
+		String mainNewsTitle = getIntent().getStringExtra("mainNewsTitle");
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_news);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
-		SpannableString spannableString = new SpannableString(toolbar.getTitle());
-		spannableString.setSpan(new CustomTypefaceSpan("", font), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		SpannableString spannableString = new SpannableString(mainNewsTitle);
+		spannableString.setSpan(new CustomTypefaceSpan("", boldFont), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		toolbar.setTitle(spannableString);
 		setSupportActionBar(toolbar);
 
@@ -82,19 +84,18 @@ public class MainNewsActivity extends AppCompatActivity
 				for (int j=0; j <subMenu.size();j++) {
 					MenuItem subMenuItem = subMenu.getItem(j);
 					SpannableString mNewTitle = new SpannableString(subMenuItem.getTitle());
-					mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+					mNewTitle.setSpan(new CustomTypefaceSpan("", regularFont), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 					subMenuItem.setTitle(mNewTitle);
 				}
 			}
 			//the method we have create in activity
 			SpannableString mNewTitle = new SpannableString(menuItem.getTitle());
-			mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+			mNewTitle.setSpan(new CustomTypefaceSpan("", regularFont), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 			menuItem.setTitle(mNewTitle);
 		}
 
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-		String mainNewsTitle = getIntent().getStringExtra("mainNewsTitle");
 		if (mainNewsTitle != null) {
 			TextView mainNewsTitleTextView = (TextView) findViewById(R.id.main_news_title);
 			mainNewsTitleTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mainNewsTitle.length())});
@@ -106,13 +107,28 @@ public class MainNewsActivity extends AppCompatActivity
 			TextView mainNewsDateTextView = (TextView) findViewById(R.id.main_news_date);
 			mainNewsDateTextView.setText(mainNewsDate);
 		}
-		String mainNewsDescription = getIntent().getStringExtra("mainNewsDescription");
-		if (mainNewsDescription != null) {
-			TextView mainNewsDescriptionTextView = (TextView) findViewById(R.id.main_news_description);
-			mainNewsDescriptionTextView.setFilters(new InputFilter[] { new InputFilter.LengthFilter(mainNewsDescription.length()) });
-			mainNewsDescriptionTextView.setText(mainNewsDescription);
-			mainNewsDescriptionTextView.setTextSize(TypedValue.COMPLEX_UNIT_PT, Float.parseFloat(sharedPref.getString("pref_news_description_text_size", "10")));
+		String mainNewsFull = getIntent().getStringExtra("mainNewsFull");
+		if (mainNewsFull != null) {
+			TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
+			mainNewsFullTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mainNewsFull.length())});
+			mainNewsFullTextView.setText(mainNewsFull);
+			mainNewsFullTextView.setTextSize(TypedValue.COMPLEX_UNIT_PT, Float.parseFloat(sharedPref.getString("pref_news_full_text_size", "10")));
+		} else {
+			TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
+			mainNewsFullTextView.setVisibility(View.GONE);
 		}
+		String mainNewsVideo = getIntent().getStringExtra("mainNewsVideo");
+		if (mainNewsVideo != null) {
+			ImageView youTubeThumbnailImageView = (ImageView) findViewById(R.id.video_thumbnail);
+			youTubeThumbnailImageView.setVisibility(View.VISIBLE);
+			youTubeThumbnailImageView.setImageResource(R.drawable.default_logo_image);
+		}
+	}
+
+	public void playYouTubeVideo (View v) {
+		Intent intent = new Intent(this, PlayerActivity.class);
+		intent.putExtra("youTubeID", getIntent().getStringExtra("mainNewsVideo"));
+		this.startActivity(intent);
 	}
 
 	@Override

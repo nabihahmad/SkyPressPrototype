@@ -1,26 +1,16 @@
 package com.ahmad.nabih.skypressprototype;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
 import android.text.Spannable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +18,13 @@ import android.widget.ViewFlipper;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMap<String, String>>> {
 	private String strURL = "http://skypressiq.net/localnews.xml";
@@ -56,11 +53,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 
 	@Override
 	protected List<HashMap<String, String>> doInBackground(String... params) {
-//		try {
-//			Thread.sleep((long) 2000.0);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
 		Log.e("URL", strURL);
 		return runRSSThread(strURL);
 	}
@@ -75,6 +67,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
 			ArrayList<String> listOfTitles = new ArrayList<String>();
 			List<String> listOfImgURLs = new ArrayList<String>();
+			List<String> listOfVideoIDs = new ArrayList<String>();
 			String strNewsTicker = " [img src=logo_news_ticker/]  ";
 			for (int i = 0; result != null && i < result.size(); i++) {
 				HashMap<String, String> tmpMap = result.get(i);
@@ -84,6 +77,8 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				}
 				if (tmpMap.containsKey("imgURL") && tmpMap.get("imgURL") != null)
 					listOfImgURLs.add(tmpMap.get("imgURL"));
+				if (tmpMap.containsKey("video") && tmpMap.get("video") != null)
+					listOfVideoIDs.add(tmpMap.get("video"));
 			}
 			@SuppressLint("WrongViewCast")
 			TextViewWithImages newsTickerTextView = (TextViewWithImages) activity.findViewById(R.id.news_ticker);
@@ -104,9 +99,12 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 					String mainNewsDate = tmpMap.get("pubDate");
 					if (mainNewsDate != null)
 						intent.putExtra("mainNewsDate", mainNewsDate);
-					String mainNewsDescription = tmpMap.get("description");
-					if (mainNewsDescription != null)
-						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					String mainNewsFull = tmpMap.get("full");
+					if (mainNewsFull != null)
+						intent.putExtra("mainNewsFull", mainNewsFull);
+					String mainNewsVideo = tmpMap.get("video");
+					if (mainNewsVideo != null)
+						intent.putExtra("mainNewsVideo", mainNewsVideo);
 					activity.startActivity(intent);
 				}
 			});
@@ -125,9 +123,12 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 					String mainNewsDate = tmpMap.get("pubDate");
 					if (mainNewsDate != null)
 						intent.putExtra("mainNewsDate", mainNewsDate);
-					String mainNewsDescription = tmpMap.get("description");
-					if (mainNewsDescription != null)
-						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					String mainNewsFull = tmpMap.get("full");
+					if (mainNewsFull != null)
+						intent.putExtra("mainNewsFull", mainNewsFull);
+					String mainNewsVideo = tmpMap.get("video");
+					if (mainNewsVideo != null)
+						intent.putExtra("mainNewsVideo", mainNewsVideo);
 					activity.startActivity(intent);
 				}
 			});
@@ -146,9 +147,12 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 					String mainNewsDate = tmpMap.get("pubDate");
 					if (mainNewsDate != null)
 						intent.putExtra("mainNewsDate", mainNewsDate);
-					String mainNewsDescription = tmpMap.get("description");
-					if (mainNewsDescription != null)
-						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					String mainNewsFull = tmpMap.get("full");
+					if (mainNewsFull != null)
+						intent.putExtra("mainNewsFull", mainNewsFull);
+					String mainNewsVideo = tmpMap.get("video");
+					if (mainNewsVideo != null)
+						intent.putExtra("mainNewsVideo", mainNewsVideo);
 					activity.startActivity(intent);
 				}
 			});
@@ -167,9 +171,12 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 					String mainNewsDate = tmpMap.get("pubDate");
 					if (mainNewsDate != null)
 						intent.putExtra("mainNewsDate", mainNewsDate);
-					String mainNewsDescription = tmpMap.get("description");
-					if (mainNewsDescription != null)
-						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					String mainNewsFull = tmpMap.get("full");
+					if (mainNewsFull != null)
+						intent.putExtra("mainNewsFull", mainNewsFull);
+					String mainNewsVideo = tmpMap.get("video");
+					if (mainNewsVideo != null)
+						intent.putExtra("mainNewsVideo", mainNewsVideo);
 					activity.startActivity(intent);
 				}
 			});
@@ -197,8 +204,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			CustomAdapter customAdapter = new CustomAdapter(activity,listOfTitles);
 			list.setAdapter(customAdapter);
 
-//			list.setAdapter(new ArrayAdapter(activity, android.R.layout.simple_list_item_1, listOfTitles));
-
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View titleClicked, int position, long id) {
@@ -210,9 +215,12 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 					String mainNewsDate = tmpMap.get("pubDate");
 					if (mainNewsDate != null)
 						intent.putExtra("mainNewsDate", mainNewsDate);
-					String mainNewsDescription = tmpMap.get("description");
-					if (mainNewsDescription != null)
-						intent.putExtra("mainNewsDescription", mainNewsDescription);
+					String mainNewsFull = tmpMap.get("full");
+					if (mainNewsFull != null)
+						intent.putExtra("mainNewsFull", mainNewsFull);
+					String mainNewsVideo = tmpMap.get("video");
+					if (mainNewsVideo != null)
+						intent.putExtra("mainNewsVideo", mainNewsVideo);
 					activity.startActivity(intent);
 				}
 			});
@@ -232,8 +240,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				public void onItemClick(AdapterView<?> parent, View titleClicked, int position, long id) {
 				}
 			});
-
-//			Snackbar.make(activity.findViewById(R.id.news_listing), MainActivity.GENERAL_EXCEPTION, Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.setMessage(MainActivity.GENERAL_EXCEPTION);
@@ -299,13 +305,9 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 						text = myParser.getText();
 						break;
 					case XmlPullParser.END_TAG:
-						if (name.equals("title")) {
-							tmpMap.put(name, text);
-						} else if (name.equals("link")) {
-							tmpMap.put(name, text);
-						} else if (name.equals("description")) {
-							tmpMap.put(name, text);
-						} else if (name.equals("pubDate")) {
+						if (name.equalsIgnoreCase("title") || name.equalsIgnoreCase("link") || name.equalsIgnoreCase("full")
+								|| name.equalsIgnoreCase("description") || name.equalsIgnoreCase("pubDate")
+								|| name.equalsIgnoreCase("video")) {
 							tmpMap.put(name, text);
 						} else if (name.equals("item")) {
 							listOfNews.add(tmpMap);

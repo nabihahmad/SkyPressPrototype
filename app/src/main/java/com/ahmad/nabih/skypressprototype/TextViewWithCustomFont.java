@@ -8,14 +8,16 @@ import android.util.AttributeSet;
 public class TextViewWithCustomFont extends AppCompatTextView {
 	public TextViewWithCustomFont(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/DroidKufi_Regular.ttf"));
+		this.setTypeface(Typeface.createFromAsset(context.getAssets(), MainActivity.REGULAR_FONT));
 	}
 
 	public TextViewWithCustomFont(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		this.setTypeface(Typeface.createFromAsset(context.getAssets(), MainActivity.REGULAR_FONT));
 	}
 
 	public TextViewWithCustomFont(Context context) {
 		super(context);
+		this.setTypeface(Typeface.createFromAsset(context.getAssets(), MainActivity.REGULAR_FONT));
 	}
 }

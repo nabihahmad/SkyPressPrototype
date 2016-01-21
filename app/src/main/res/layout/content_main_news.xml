@@ -26,10 +26,17 @@
 		android:layout_height="wrap_content"/>
 
 	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-		android:id="@+id/main_news_description"
+		android:id="@+id/main_news_full"
 		android:layout_below="@+id/main_news_date"
 		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
+
+	<ImageView
+		android:id="@+id/video_thumbnail"
+		android:layout_below="@+id/main_news_full"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/news_title"/>
+		android:visibility="gone"
+		android:onClick="playYouTubeVideo"/>
 
 </RelativeLayout>

@@ -2,9 +2,12 @@ package com.ahmad.nabih.skypressprototype;
 
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -18,10 +21,18 @@ import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.util.LayoutDirection;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -47,11 +58,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */
 	private void setupActionBar() {
+		Typeface boldFont = Typeface.createFromAsset(getAssets(), MainActivity.BOLD_FONT);
 		ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null) {
 			// Show the Up button in the action bar.
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
+		SpannableString spannableString = new SpannableString(actionBar.getTitle());
+		spannableString.setSpan(new CustomTypefaceSpan("", boldFont), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		actionBar.setTitle(spannableString);
 	}
 
 	@Override

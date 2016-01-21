@@ -4,7 +4,7 @@
 	<string name="action_settings">إعدادات</string>
 	<string name="action_refresh">تحديث</string>
 	<string name="news_title">العناوين الرئيسية</string>
-	<string name="title_activity_settings">لإعدادات</string>
+	<string name="title_activity_settings">الإعدادات</string>
 	<string name="title_activity_main_news">تفاصيل الخبر</string>
 
 	<string name="navigation_drawer_open">فتح</string>

@@ -2,15 +2,12 @@ package com.ahmad.nabih.skypressprototype;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.TypefaceSpan;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -23,15 +20,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
-import android.widget.ViewSwitcher;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,20 +39,23 @@ public class MainActivity extends AppCompatActivity
 	public static String GENERAL_EXCEPTION = null;
 	public static String LOADING = null;
 	public static String NO_DATA = null;
+	public static String REGULAR_FONT = "fonts/DroidKufi_Regular.ttf";
+	public static String BOLD_FONT = "fonts/DroidKufi_Bold.ttf";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		LOADING = getResources().getString(R.string.loading);
 		GENERAL_EXCEPTION = getResources().getString(R.string.general_exception);
 		NO_DATA = getResources().getString(R.string.no_data);
-		Typeface font = Typeface.createFromAsset(getAssets(), "fonts/DroidKufi_Regular.ttf");
+		Typeface boldFont = Typeface.createFromAsset(getAssets(), BOLD_FONT);
+		Typeface regularFont = Typeface.createFromAsset(getAssets(), REGULAR_FONT);
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		SpannableString spannableString = new SpannableString(toolbar.getTitle());
-		spannableString.setSpan(new CustomTypefaceSpan("", font), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		spannableString.setSpan(new CustomTypefaceSpan("", boldFont), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		toolbar.setTitle(spannableString);
 		setSupportActionBar(toolbar);
 
@@ -68,31 +64,6 @@ public class MainActivity extends AppCompatActivity
 				this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 		drawer.setDrawerListener(toggle);
 		toggle.syncState();
-
-		// TODO: TEST CODE FOR HIDING IMAGE
-//		@SuppressLint("WrongViewCast")
-//		TextViewWithImages latestNewsTextView = (TextViewWithImages) findViewById(R.id.latest_news_TextView);
-//		latestNewsTextView.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View view) {
-//				FrameLayout frameLayout = (FrameLayout) findViewById(R.id.latest_news_layout);
-//				frameLayout.animate()
-//						.translationY(0)
-//						.alpha(0.0f)
-//						.setListener(new AnimatorListenerAdapter() {
-//							@Override
-//							public void onAnimationEnd(Animator animation) {
-//								super.onAnimationEnd(animation);
-//							}
-//						});
-//				frameLayout.setVisibility(View.GONE);
-//			}
-//		});
-
-//		ViewSwitcher imageViewSwitcher = (ViewSwitcher) findViewById(R.id.latest_news_view_switcher);
-//		ViewSwitcher textViewSwitcher = (ViewSwitcher) findViewById(R.id.latest_news_text_view_switcher);
-
-//		imageViewSwitcher.setOnTouchListener(new OnSwipeTouchListener(this, imageViewSwitcher, textViewSwitcher));
 
 		final ViewFlipper newsViewFlipper = (ViewFlipper) findViewById(R.id.latest_news_view_flipper);
 		Animation slideInRightAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
@@ -105,76 +76,6 @@ public class MainActivity extends AppCompatActivity
 		newsViewFlipper.setOutAnimation(slideOutLeftAnimation);
 		newsViewFlipper.setAutoStart(true);
 		newsViewFlipper.setFlipInterval(5000);
-
-//		((ImageView) findViewById(R.id.right_arrow_0)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				newsViewFlipper.showPrevious();
-//			}
-//		});
-//
-//		((ImageView) findViewById(R.id.right_arrow_1)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				newsViewFlipper.showPrevious();
-//			}
-//		});
-//
-//		((ImageView) findViewById(R.id.right_arrow_2)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				newsViewFlipper.showPrevious();
-//			}
-//		});
-//
-//		((ImageView) findViewById(R.id.right_arrow_3)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				newsViewFlipper.showPrevious();
-//			}
-//		});
-//
-//		((ImageView) findViewById(R.id.left_arrow_0)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				newsViewFlipper.showNext();
-//			}
-//		});
-//
-//		((ImageView) findViewById(R.id.left_arrow_1)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				newsViewFlipper.showNext();
-//			}
-//		});
-//
-//		((ImageView) findViewById(R.id.left_arrow_2)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				newsViewFlipper.showNext();
-//			}
-//		});
-//
-//		((ImageView) findViewById(R.id.left_arrow_3)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				newsViewFlipper.showNext();
-//			}
-//		});
-
-//		setOnClick(imageViewSwitcher, textViewSwitcher);
-
-//		((ViewSwitcher) findViewById(R.id.latest_news_view_switcher)).setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				ViewSwitcher switcher = (ViewSwitcher) v;
-//				if (switcher.getDisplayedChild() == 0) {
-//					switcher.showNext();
-//				} else {
-//					switcher.showPrevious();
-//				}
-//			}
-//		});
 
 		FloatingActionButton contactUsFAB = (FloatingActionButton) findViewById(R.id.contactUs_fab);
 		contactUsFAB.setOnClickListener(new View.OnClickListener() {
@@ -196,13 +97,13 @@ public class MainActivity extends AppCompatActivity
 				for (int j=0; j <subMenu.size();j++) {
 					MenuItem subMenuItem = subMenu.getItem(j);
 					SpannableString mNewTitle = new SpannableString(subMenuItem.getTitle());
-					mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+					mNewTitle.setSpan(new CustomTypefaceSpan("", regularFont), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 					subMenuItem.setTitle(mNewTitle);
 				}
 			}
 			//the method we have create in activity
 			SpannableString mNewTitle = new SpannableString(menuItem.getTitle());
-			mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+			mNewTitle.setSpan(new CustomTypefaceSpan("", regularFont), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 			menuItem.setTitle(mNewTitle);
 		}
 		String parseDataStr = getIntent().getStringExtra("com.parse.Data");
@@ -235,22 +136,6 @@ public class MainActivity extends AppCompatActivity
 				refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
 		}
 	}
-
-//	private void setOnClick(final ViewSwitcher imageViewSwitcher, final ViewSwitcher textViewSwitcher){
-//		imageViewSwitcher.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				ViewSwitcher switcher = (ViewSwitcher) v;
-//				if (switcher.getDisplayedChild() == 0) {
-//					switcher.showNext();
-//					textViewSwitcher.showNext();
-//				} else {
-//					switcher.showPrevious();
-//					textViewSwitcher.showPrevious();
-//				}
-//			}
-//		});
-//	}
 
 	@Override
 	public void onBackPressed() {
@@ -316,7 +201,22 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	private void refreshNews(String strURL, String strLabel) {
+		resetCarouselImages();
 		NewsListingPopulator newsListingPopulator = new NewsListingPopulator(this, strURL, strLabel);
 		newsListingPopulator.execute();
+	}
+
+	private void resetCarouselImages() {
+		ImageView imageView0 = (ImageView) this.findViewById(R.id.latest_news_ImageView_0);
+		imageView0.setImageResource(R.drawable.default_logo_image);
+
+		ImageView imageView1 = (ImageView) this.findViewById(R.id.latest_news_ImageView_1);
+		imageView1.setImageResource(R.drawable.default_logo_image);
+
+		ImageView imageView2 = (ImageView) this.findViewById(R.id.latest_news_ImageView_2);
+		imageView2.setImageResource(R.drawable.default_logo_image);
+
+		ImageView imageView3 = (ImageView) this.findViewById(R.id.latest_news_ImageView_3);
+		imageView3.setImageResource(R.drawable.default_logo_image);
 	}
 }

@@ -1,25 +1,19 @@
 package com.ahmad.nabih.skypressprototype;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.view.Display;
-import android.view.SubMenu;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowManager;
+import android.view.SubMenu;
 import android.webkit.WebView;
 
 public class ContactUsActivity extends AppCompatActivity
@@ -45,26 +39,10 @@ public class ContactUsActivity extends AppCompatActivity
 		toggle.syncState();
 
 		WebView webView = (WebView) findViewById(R.id.contactUs_WebView);
-//		webView.setInitialScale(1);
-//		webView.setWebChromeClient(new WebChromeClient());
-//		webView.getSettings().setAllowFileAccess(true);
-//		webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-//		webView.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND);
-//		webView.setWebViewClient(new WebViewClient());
-//		webView.getSettings().setJavaScriptEnabled(true);
-//		webView.getSettings().setLoadWithOverviewMode(true);
-//		webView.getSettings().setUseWideViewPort(true);
-//		DisplayMetrics displaymetrics = new DisplayMetrics();
-//		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-//		int height = displaymetrics.heightPixels;
-//		int width = displaymetrics.widthPixels;
-//
-//		Log.e(SimpleBillsConstants.SIMPLE_BILLS, width + "-" + height);
 
 		webView.getSettings().setLoadWithOverviewMode(true);
 		webView.getSettings().setUseWideViewPort(true);
 		webView.setInitialScale(1);
-//		webView.loadData("<iframe src=\"http://www.skypressiq.net\"></iframe>", "text/html", "utf-8");
 		webView.loadUrl("http://skypressiq.net/sendme.html");
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
