@@ -28,27 +28,17 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
-	public static String URL_LOCAL = "http://skypressiq.net/localnews.xml";
-	public static String URL_ARAB_INTERNATIONAL = "http://skypressiq.net/arnews.xml";
-	public static String URL_ECONOMIC = "http://skypressiq.net/economicnews.xml";
-	public static String URL_ANALYTIC = "http://skypressiq.net/analytic.xml";
-	public static String URL_SPORT = "http://skypressiq.net/sportnews.xml";
-	public static String URL_ART = "http://skypressiq.net/artnews.xml";
-	public static String URL_VARIED = "http://skypressiq.net/variednews.xml";
-	public static String URL_VIDEOSITE = "http://skypressiq.net/videosite.xml";
 	public static String GENERAL_EXCEPTION = null;
 	public static String LOADING = null;
 	public static String NO_DATA = null;
-	public static String REGULAR_FONT = "fonts/DroidKufi_Regular.ttf";
-	public static String BOLD_FONT = "fonts/DroidKufi_Bold.ttf";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		LOADING = getResources().getString(R.string.loading);
 		GENERAL_EXCEPTION = getResources().getString(R.string.general_exception);
 		NO_DATA = getResources().getString(R.string.no_data);
-		Typeface boldFont = Typeface.createFromAsset(getAssets(), BOLD_FONT);
-		Typeface regularFont = Typeface.createFromAsset(getAssets(), REGULAR_FONT);
+		Typeface boldFont = Typeface.createFromAsset(getAssets(), AppConfig.BOLD_FONT);
+		Typeface regularFont = Typeface.createFromAsset(getAssets(), AppConfig.REGULAR_FONT);
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -109,8 +99,9 @@ public class MainActivity extends AppCompatActivity
 		String parseDataStr = getIntent().getStringExtra("com.parse.Data");
 		if(parseDataStr != null && !parseDataStr.equals("")){
 			try {
-				refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label));
 				Intent intent = new Intent(this, MainNewsActivity.class);
+				// TODO: fix the params to read full, video, images, category, as well as imageURL
 				JSONObject parseDataJSON = new JSONObject(parseDataStr);
 				String mainNewsTitle = parseDataJSON.has("title") ? parseDataJSON.getString("title") : "";
 				if (mainNewsTitle != null)
@@ -133,7 +124,7 @@ public class MainActivity extends AppCompatActivity
 				String url = b.getString("URL");
 				refreshNews(url, navLbl);
 			}else
-				refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label));
 		}
 	}
 
@@ -176,21 +167,21 @@ public class MainActivity extends AppCompatActivity
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 		if (id == R.id.nav_local) {
-			refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
+			refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label));
 		} else if (id == R.id.nav_international) {
-			refreshNews(URL_ARAB_INTERNATIONAL, getResources().getString(R.string.arab_international_label));
+			refreshNews(AppConfig.URL_ARAB_INTERNATIONAL, getResources().getString(R.string.arab_international_label));
 		} else if (id == R.id.nav_economic) {
-			refreshNews(URL_ECONOMIC, getResources().getString(R.string.economic_label));
+			refreshNews(AppConfig.URL_ECONOMIC, getResources().getString(R.string.economic_label));
 		} else if (id == R.id.nav_analytic) {
-			refreshNews(URL_ANALYTIC, getResources().getString(R.string.analytic_label));
+			refreshNews(AppConfig.URL_ANALYTIC, getResources().getString(R.string.analytic_label));
 		} else if (id == R.id.nav_sport) {
-			refreshNews(URL_SPORT, getResources().getString(R.string.sport_label));
+			refreshNews(AppConfig.URL_SPORT, getResources().getString(R.string.sport_label));
 		} else if (id == R.id.nav_art) {
-			refreshNews(URL_ART, getResources().getString(R.string.art_label));
+			refreshNews(AppConfig.URL_ART, getResources().getString(R.string.art_label));
 		} else if (id == R.id.nav_varied) {
-			refreshNews(URL_VARIED, getResources().getString(R.string.varied_label));
+			refreshNews(AppConfig.URL_VARIED, getResources().getString(R.string.varied_label));
 		} else if (id == R.id.nav_videosite) {
-			refreshNews(URL_VIDEOSITE, getResources().getString(R.string.videosite_label));
+			refreshNews(AppConfig.URL_VIDEOSITE, getResources().getString(R.string.videosite_label));
 		} else if (id == R.id.nav_contactUs) {
 			Intent contactUsIntent = new Intent(this, ContactUsActivity.class);
 			startActivity(contactUsIntent);

@@ -26,22 +26,24 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.youtube.player.YouTubePlayerView;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainNewsActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Typeface boldFont = Typeface.createFromAsset(getAssets(), MainActivity.BOLD_FONT);
-		Typeface regularFont = Typeface.createFromAsset(getAssets(), MainActivity.REGULAR_FONT);
-		String mainNewsTitle = getIntent().getStringExtra("mainNewsTitle");
+		Typeface boldFont = Typeface.createFromAsset(getAssets(), AppConfig.BOLD_FONT);
+		Typeface regularFont = Typeface.createFromAsset(getAssets(), AppConfig.REGULAR_FONT);
+		String mainNewsCategory = getIntent().getStringExtra("mainNewsCategory");
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_news);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
-		SpannableString spannableString = new SpannableString(mainNewsTitle);
+		SpannableString spannableString = new SpannableString(mainNewsCategory != null ? mainNewsCategory : toolbar.getTitle());
 		spannableString.setSpan(new CustomTypefaceSpan("", boldFont), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		toolbar.setTitle(spannableString);
 		setSupportActionBar(toolbar);
@@ -96,6 +98,7 @@ public class MainNewsActivity extends AppCompatActivity
 
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
+		String mainNewsTitle = getIntent().getStringExtra("mainNewsTitle");
 		if (mainNewsTitle != null) {
 			TextView mainNewsTitleTextView = (TextView) findViewById(R.id.main_news_title);
 			mainNewsTitleTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mainNewsTitle.length())});
@@ -104,8 +107,16 @@ public class MainNewsActivity extends AppCompatActivity
 		}
 		String mainNewsDate = getIntent().getStringExtra("mainNewsDate");
 		if (mainNewsDate != null) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE', 'dd MMM yyyy HH:mm:ss '+0000'");
+			String strMainNewsDate = mainNewsDate;
+			try {
+				Date dMainNewsDate = simpleDateFormat.parse(mainNewsDate);
+				simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:SS");
+				strMainNewsDate = simpleDateFormat.format(dMainNewsDate);
+			} catch (ParseException e) {
+			}
 			TextView mainNewsDateTextView = (TextView) findViewById(R.id.main_news_date);
-			mainNewsDateTextView.setText(mainNewsDate);
+			mainNewsDateTextView.setText(strMainNewsDate);
 		}
 		String mainNewsFull = getIntent().getStringExtra("mainNewsFull");
 		if (mainNewsFull != null) {
@@ -122,6 +133,13 @@ public class MainNewsActivity extends AppCompatActivity
 			ImageView youTubeThumbnailImageView = (ImageView) findViewById(R.id.video_thumbnail);
 			youTubeThumbnailImageView.setVisibility(View.VISIBLE);
 			youTubeThumbnailImageView.setImageResource(R.drawable.default_logo_image);
+		}
+		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL");
+		if (mainNewsImageURL != null) {
+			ImageView mainNewsImage = (ImageView) findViewById(R.id.main_news_image);
+			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage);
+			// TODO: check if the replace is required after the URLs are fixed by Sky Press
+			newsImagesFetcher1.execute(mainNewsImageURL.replace("/posts/", "/uploads/posts/"));
 		}
 	}
 
@@ -173,28 +191,28 @@ public class MainNewsActivity extends AppCompatActivity
 		int id = item.getItemId();
 		if (id == R.id.nav_local) {
 			parameters.putString("navLbl", getResources().getString(R.string.local_label));
-			parameters.putString("URL", MainActivity.URL_LOCAL);
+			parameters.putString("URL", AppConfig.URL_LOCAL);
 		} else if (id == R.id.nav_international) {
 			parameters.putString("navLbl", getResources().getString(R.string.arab_international_label));
-			parameters.putString("URL", MainActivity.URL_ARAB_INTERNATIONAL);
+			parameters.putString("URL", AppConfig.URL_ARAB_INTERNATIONAL);
 		} else if (id == R.id.nav_economic) {
 			parameters.putString("navLbl", getResources().getString(R.string.economic_label));
-			parameters.putString("URL", MainActivity.URL_ECONOMIC);
+			parameters.putString("URL", AppConfig.URL_ECONOMIC);
 		} else if (id == R.id.nav_analytic) {
 			parameters.putString("navLbl", getResources().getString(R.string.analytic_label));
-			parameters.putString("URL", MainActivity.URL_ANALYTIC);
+			parameters.putString("URL", AppConfig.URL_ANALYTIC);
 		} else if (id == R.id.nav_sport) {
 			parameters.putString("navLbl", getResources().getString(R.string.sport_label));
-			parameters.putString("URL", MainActivity.URL_SPORT);
+			parameters.putString("URL", AppConfig.URL_SPORT);
 		} else if (id == R.id.nav_art) {
 			parameters.putString("navLbl", getResources().getString(R.string.art_label));
-			parameters.putString("URL", MainActivity.URL_ART);
+			parameters.putString("URL", AppConfig.URL_ART);
 		} else if (id == R.id.nav_varied) {
 			parameters.putString("navLbl", getResources().getString(R.string.varied_label));
-			parameters.putString("URL", MainActivity.URL_VARIED);
+			parameters.putString("URL", AppConfig.URL_VARIED);
 		} else if (id == R.id.nav_videosite) {
 			parameters.putString("navLbl", getResources().getString(R.string.videosite_label));
-			parameters.putString("URL", MainActivity.URL_VIDEOSITE);
+			parameters.putString("URL", AppConfig.URL_VIDEOSITE);
 		} else if (id == R.id.nav_contactUs) {
 			Intent contactUsIntent = new Intent(this, ContactUsActivity.class);
 			startActivity(contactUsIntent);

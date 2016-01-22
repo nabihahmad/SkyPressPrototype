@@ -109,28 +109,28 @@ public class ContactUsActivity extends AppCompatActivity
 		int id = item.getItemId();
 		if (id == R.id.nav_local) {
 			parameters.putString("navLbl", getResources().getString(R.string.local_label));
-			parameters.putString("URL", MainActivity.URL_LOCAL);
+			parameters.putString("URL", AppConfig.URL_LOCAL);
 		} else if (id == R.id.nav_international) {
 			parameters.putString("navLbl", getResources().getString(R.string.arab_international_label));
-			parameters.putString("URL", MainActivity.URL_ARAB_INTERNATIONAL);
+			parameters.putString("URL", AppConfig.URL_ARAB_INTERNATIONAL);
 		} else if (id == R.id.nav_economic) {
 			parameters.putString("navLbl", getResources().getString(R.string.economic_label));
-			parameters.putString("URL", MainActivity.URL_ECONOMIC);
+			parameters.putString("URL", AppConfig.URL_ECONOMIC);
 		} else if (id == R.id.nav_analytic) {
 			parameters.putString("navLbl", getResources().getString(R.string.analytic_label));
-			parameters.putString("URL", MainActivity.URL_ANALYTIC);
+			parameters.putString("URL", AppConfig.URL_ANALYTIC);
 		} else if (id == R.id.nav_sport) {
 			parameters.putString("navLbl", getResources().getString(R.string.sport_label));
-			parameters.putString("URL", MainActivity.URL_SPORT);
+			parameters.putString("URL", AppConfig.URL_SPORT);
 		} else if (id == R.id.nav_art) {
 			parameters.putString("navLbl", getResources().getString(R.string.art_label));
-			parameters.putString("URL", MainActivity.URL_ART);
+			parameters.putString("URL", AppConfig.URL_ART);
 		} else if (id == R.id.nav_varied) {
 			parameters.putString("navLbl", getResources().getString(R.string.varied_label));
-			parameters.putString("URL", MainActivity.URL_VARIED);
+			parameters.putString("URL", AppConfig.URL_VARIED);
 		} else if (id == R.id.nav_videosite) {
 			parameters.putString("navLbl", getResources().getString(R.string.videosite_label));
-			parameters.putString("URL", MainActivity.URL_VIDEOSITE);
+			parameters.putString("URL", AppConfig.URL_VIDEOSITE);
 		} else if (id == R.id.nav_contactUs) {
 			Intent intent = getIntent();
 			finish();

@@ -1,6 +1,12 @@
 package com.ahmad.nabih.skypressprototype;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,13 +17,13 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class CustomAdapter extends BaseAdapter {
-	ArrayList<String> result = new ArrayList();
+	List<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
 	Context context;
 //	ArrayList<Bitmap> imageId = new ArrayList();
 	private static LayoutInflater inflater = null;
 
 //	public CustomAdapter(Activity mainActivity, ArrayList<String> prgmNameList, ArrayList<Bitmap> prgmImages) {
-	public CustomAdapter(Activity mainActivity, ArrayList<String> prgmNameList) {
+	public CustomAdapter(Activity mainActivity, List<HashMap<String, String>> prgmNameList) {
 		result = prgmNameList;
 		context = mainActivity;
 //		imageId = prgmImages;
@@ -52,7 +58,35 @@ public class CustomAdapter extends BaseAdapter {
 		rowView = inflater.inflate(R.layout.custom_news_list_view, null);
 		holder.tv = (TextView) rowView.findViewById(R.id.custom_view_text);
 //		holder.img = (ImageView) rowView.findViewById(R.id.Image);
-		holder.tv.setText(result.get(position));
+		HashMap<String, String> tmpMap = result.get(position);
+		holder.tv.setText(tmpMap.get("title"));
+
+		String strPubDate = tmpMap.get("pubDate");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE', 'dd MMM yyyy HH:mm:ss '+0000'");
+		String strMainNewsDate = "";
+		String strMainNewsTime = "";
+		try {
+			Date dMainNewsDate = simpleDateFormat.parse(strPubDate);
+			simpleDateFormat = new SimpleDateFormat("HH:mm");
+			strMainNewsTime = simpleDateFormat.format(dMainNewsDate);
+
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
+					0, 0, 0);
+			if (calendar.getTime().after(dMainNewsDate)) {
+				simpleDateFormat = new SimpleDateFormat("dd/MM");
+				strMainNewsDate = simpleDateFormat.format(dMainNewsDate);
+			}
+
+		} catch (ParseException e) {
+		}
+		if (!strMainNewsDate.isEmpty()) {
+			holder.tv = (TextView) rowView.findViewById(R.id.custom_view_date);
+			holder.tv.setText(strMainNewsDate);
+		}
+
+		holder.tv = (TextView) rowView.findViewById(R.id.custom_view_time);
+		holder.tv.setText(strMainNewsTime);
 
 //		if (imageId.get(position) != null)
 //			holder.img.setImageBitmap(imageId.get(position));

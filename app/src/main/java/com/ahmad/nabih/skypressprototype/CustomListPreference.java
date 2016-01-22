@@ -35,7 +35,7 @@ public class CustomListPreference extends ListPreference {
 						View grandChildView = ((RelativeLayout) childView).getChildAt(i);
 						if (AppCompatTextView.class.isInstance(grandChildView)) {
 							((AppCompatTextView) grandChildView).setText("NABIIIIIIIIIIIH");
-							((AppCompatTextView) grandChildView).setTypeface(Typeface.createFromAsset(getContext().getAssets(), MainActivity.REGULAR_FONT));
+							((AppCompatTextView) grandChildView).setTypeface(Typeface.createFromAsset(getContext().getAssets(), AppConfig.REGULAR_FONT));
 						}
 					}
 				}

@@ -58,7 +58,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */
 	private void setupActionBar() {
-		Typeface boldFont = Typeface.createFromAsset(getAssets(), MainActivity.BOLD_FONT);
+		Typeface boldFont = Typeface.createFromAsset(getAssets(), AppConfig.BOLD_FONT);
 		ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null) {
 			// Show the Up button in the action bar.

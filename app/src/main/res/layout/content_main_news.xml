@@ -19,24 +19,44 @@
 		android:layout_height="wrap_content"
 		android:text="@string/title_activity_main_news"/>
 
-	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-		android:id="@+id/main_news_date"
-		android:layout_below="@+id/main_news_title"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
+	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/main_news_title"
+				android:fadingEdgeLength="0dp"
+				android:fillViewport="true"
+				android:overScrollMode="never"
+				android:scrollbars="none">
 
-	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-		android:id="@+id/main_news_full"
-		android:layout_below="@+id/main_news_date"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
+		<RelativeLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
 
-	<ImageView
-		android:id="@+id/video_thumbnail"
-		android:layout_below="@+id/main_news_full"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:visibility="gone"
-		android:onClick="playYouTubeVideo"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:id="@+id/main_news_date"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
 
+			<ImageView
+				android:id="@+id/main_news_image"
+				android:layout_below="@+id/main_news_date"
+				android:src="@drawable/default_logo_image"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"/>
+
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:id="@+id/main_news_full"
+				android:layout_below="@+id/main_news_image"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
+
+			<ImageView
+				android:id="@+id/video_thumbnail"
+				android:layout_below="@+id/main_news_full"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:visibility="gone"
+				android:onClick="playYouTubeVideo"/>
+		</RelativeLayout>
+	</ScrollView>
 </RelativeLayout>
