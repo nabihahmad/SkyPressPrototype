@@ -18,7 +18,7 @@
 		android:id="@+id/news_ticker_layout"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:visibility="visible"
+		android:visibility="gone"
 		android:background="@color/colorPrimaryDark">
 
 		<TextClock
@@ -184,8 +184,18 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/news_title"
-				android:layout_marginTop="8sp">
-			</com.ahmad.nabih.skypressprototype.NonScrollableListView>
+				android:layout_marginTop="8sp"/>
+
+			<ImageView
+				android:layout_below="@+id/news_listing"
+				android:id="@+id/no_connectivity_image"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
+				android:src="@drawable/alert_icon"
+				android:visibility="gone"/>
+
 		</RelativeLayout>
 	</ScrollView>
 </RelativeLayout>

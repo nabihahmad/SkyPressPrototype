@@ -40,6 +40,7 @@
 				android:layout_marginTop="10dp"/>
 
 			<ImageView
+				android:layout_alignParentTop="true"
 				android:id="@+id/main_news_image"
 				android:layout_below="@+id/main_news_date"
 				android:src="@drawable/default_logo_image"

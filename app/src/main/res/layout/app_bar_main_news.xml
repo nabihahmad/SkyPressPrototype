@@ -42,7 +42,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|start"
 		android:layout_margin="@dimen/fab_margin"
-		android:src="@drawable/twitter_32"
+		android:src="@drawable/sharethis_icon"
 		app:backgroundTint="@color/colorPrimaryDark"/>
 	
 </android.support.design.widget.CoordinatorLayout>
