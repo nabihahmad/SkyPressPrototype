@@ -80,8 +80,8 @@
 						android:layout_width="fill_parent"
 						android:layout_height="fill_parent"
 						android:adjustViewBounds="true"
-						android:src="@drawable/default_logo_image"
-						android:scaleType="fitXY"
+						android:src="@drawable/camera_icon"
+						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
 					<com.ahmad.nabih.skypressprototype.TextViewWithImages
@@ -105,8 +105,8 @@
 						android:layout_width="fill_parent"
 						android:layout_height="fill_parent"
 						android:adjustViewBounds="true"
-						android:src="@drawable/default_logo_image"
-						android:scaleType="fitXY"
+						android:src="@drawable/camera_icon"
+						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
 					<com.ahmad.nabih.skypressprototype.TextViewWithImages
@@ -130,8 +130,8 @@
 						android:layout_width="fill_parent"
 						android:layout_height="fill_parent"
 						android:adjustViewBounds="true"
-						android:src="@drawable/default_logo_image"
-						android:scaleType="fitXY"
+						android:src="@drawable/camera_icon"
+						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
 					<com.ahmad.nabih.skypressprototype.TextViewWithImages
@@ -155,8 +155,8 @@
 						android:layout_width="fill_parent"
 						android:layout_height="fill_parent"
 						android:adjustViewBounds="true"
-						android:src="@drawable/default_logo_image"
-						android:scaleType="fitXY"
+						android:src="@drawable/camera_icon"
+						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
 					<com.ahmad.nabih.skypressprototype.TextViewWithImages

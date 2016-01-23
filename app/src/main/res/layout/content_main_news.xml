@@ -43,10 +43,10 @@
 				android:layout_alignParentTop="true"
 				android:id="@+id/main_news_image"
 				android:layout_below="@+id/main_news_date"
-				android:src="@drawable/default_logo_image"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:scaleType="fitXY"
+				android:src="@drawable/camera_icon"
+				android:layout_centerHorizontal="true"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
 				android:adjustViewBounds="true"/>
 
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
@@ -62,8 +62,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:visibility="gone"
+				android:layout_centerHorizontal="true"
 				android:onClick="playYouTubeVideo"
-				android:layout_marginBottom="60dp"/>
+				android:layout_marginBottom="60dp"
+				android:src="@drawable/youtube_icon"/>
 		</RelativeLayout>
 	</ScrollView>
 </RelativeLayout>

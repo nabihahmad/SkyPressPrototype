@@ -6,7 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.io.InputStream;
 
@@ -42,5 +44,8 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 		super.onPostExecute(result);
 //		progressDialog.dismiss();
 		imageView.setImageBitmap(result);
+//		imageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+//				RelativeLayout.LayoutParams.MATCH_PARENT));
+//		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 	}
 }

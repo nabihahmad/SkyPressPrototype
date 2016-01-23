@@ -14,16 +14,20 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -132,7 +136,7 @@ public class MainNewsActivity extends AppCompatActivity
 		if (mainNewsVideo != null) {
 			ImageView youTubeThumbnailImageView = (ImageView) findViewById(R.id.video_thumbnail);
 			youTubeThumbnailImageView.setVisibility(View.VISIBLE);
-			youTubeThumbnailImageView.setImageResource(R.drawable.default_logo_image);
+			youTubeThumbnailImageView.setImageResource(R.drawable.youtube_icon);
 		}
 		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL");
 		if (mainNewsImageURL != null) {
@@ -141,6 +145,7 @@ public class MainNewsActivity extends AppCompatActivity
 			// TODO: check if the replace is required after the URLs are fixed by Sky Press
 			newsImagesFetcher1.execute(mainNewsImageURL.replace("/posts/", "/uploads/posts/"));
 		}
+		Log.d("test","test");
 	}
 
 	public void playYouTubeVideo (View v) {

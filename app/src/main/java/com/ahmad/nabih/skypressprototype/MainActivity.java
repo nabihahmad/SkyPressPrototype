@@ -202,15 +202,19 @@ public class MainActivity extends AppCompatActivity
 
 	private void resetCarouselImages() {
 		ImageView imageView0 = (ImageView) this.findViewById(R.id.latest_news_ImageView_0);
-		imageView0.setImageResource(R.drawable.default_logo_image);
+		imageView0.setImageResource(R.drawable.camera_icon);
+		imageView0.setScaleType(ImageView.ScaleType.CENTER);
 
 		ImageView imageView1 = (ImageView) this.findViewById(R.id.latest_news_ImageView_1);
-		imageView1.setImageResource(R.drawable.default_logo_image);
+		imageView1.setImageResource(R.drawable.camera_icon);
+		imageView1.setScaleType(ImageView.ScaleType.CENTER);
 
 		ImageView imageView2 = (ImageView) this.findViewById(R.id.latest_news_ImageView_2);
-		imageView2.setImageResource(R.drawable.default_logo_image);
+		imageView2.setImageResource(R.drawable.camera_icon);
+		imageView2.setScaleType(ImageView.ScaleType.CENTER);
 
 		ImageView imageView3 = (ImageView) this.findViewById(R.id.latest_news_ImageView_3);
-		imageView3.setImageResource(R.drawable.default_logo_image);
+		imageView3.setImageResource(R.drawable.camera_icon);
+		imageView3.setScaleType(ImageView.ScaleType.CENTER);
 	}
 }
