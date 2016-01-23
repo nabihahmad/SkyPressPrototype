@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity
 		resetCarouselImages();
 		NewsListingPopulator newsListingPopulator = new NewsListingPopulator(this, strURL, strLabel);
 		newsListingPopulator.execute();
+		findViewById(R.id.main_scroll_view).scrollTo(0, 0);
 	}
 
 	private void resetCarouselImages() {

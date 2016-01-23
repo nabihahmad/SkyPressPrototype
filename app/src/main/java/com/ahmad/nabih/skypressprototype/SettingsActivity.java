@@ -63,10 +63,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		if (actionBar != null) {
 			// Show the Up button in the action bar.
 			actionBar.setDisplayHomeAsUpEnabled(true);
+			SpannableString spannableString = new SpannableString(getResources().getString(R.string.title_activity_settings));
+			spannableString.setSpan(new CustomTypefaceSpan("", boldFont), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			actionBar.setTitle(spannableString);
 		}
-		SpannableString spannableString = new SpannableString(actionBar.getTitle());
-		spannableString.setSpan(new CustomTypefaceSpan("", boldFont), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		actionBar.setTitle(spannableString);
 	}
 
 	@Override

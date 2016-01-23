@@ -29,7 +29,6 @@ import java.util.List;
 public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMap<String, String>>> {
 	private String strURL = "http://skypressiq.net/localnews.xml";
 	private String strLabel = null;
-	private List<String> latestNewsImgURLs = new ArrayList<String>();
 	Activity activity;
 	private ProgressDialog progressDialog;
 	private static final Spannable.Factory spannableFactory = Spannable.Factory.getInstance();
@@ -38,10 +37,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		this.activity = activity;
 		this.strURL = strURL;
 		this.strLabel = strLabel;
-	}
-
-	public List<String> getLatestNewsImgURLs() {
-		return latestNewsImgURLs;
 	}
 
 	protected void onPreExecute() {
@@ -59,7 +54,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 
 	protected void onPostExecute(final List<HashMap<String, String>> result) {
 		super.onPostExecute(result);
-		progressDialog.dismiss();
 		TextView newsTitle = (TextView) activity.findViewById(R.id.news_title);
 		newsTitle.setText(strLabel);
 
@@ -242,10 +236,12 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				}
 			});
 
-			newsTickerTextView.setVisibility(View.VISIBLE);
+
+			activity.findViewById(R.id.news_ticker_layout).setVisibility(View.VISIBLE);
 			newsTitle.setVisibility(View.VISIBLE);
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
 			viewFlipper.setVisibility(View.VISIBLE);
+			progressDialog.dismiss();
 		} else {
 			List<String> tmpList = new ArrayList<String>();
 			tmpList.add(MainActivity.GENERAL_EXCEPTION);
@@ -258,6 +254,8 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				}
 			});
 
+
+			progressDialog.dismiss();
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.setMessage(MainActivity.GENERAL_EXCEPTION);
 			builder.setCancelable(true);
