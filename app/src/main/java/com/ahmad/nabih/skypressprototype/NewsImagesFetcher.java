@@ -44,8 +44,13 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 		super.onPostExecute(result);
 //		progressDialog.dismiss();
 		imageView.setImageBitmap(result);
-//		imageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
-//				RelativeLayout.LayoutParams.MATCH_PARENT));
-//		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+		if (FrameLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
+			imageView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+					FrameLayout.LayoutParams.MATCH_PARENT));
+		} else if (RelativeLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
+			imageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+					RelativeLayout.LayoutParams.MATCH_PARENT));
+		}
+		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 	}
 }
