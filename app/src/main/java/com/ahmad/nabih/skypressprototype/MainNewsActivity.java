@@ -122,7 +122,7 @@ public class MainNewsActivity extends AppCompatActivity
 		if (mainNewsFull != null) {
 			TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
 			mainNewsFullTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mainNewsFull.length())});
-			mainNewsFullTextView.setText(mainNewsFull);
+			mainNewsFullTextView.setText(mainNewsFull.trim());
 			mainNewsFullTextView.setTextSize(TypedValue.COMPLEX_UNIT_PT, Float.parseFloat(sharedPref.getString("pref_news_full_text_size", "10")));
 		} else {
 			TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);

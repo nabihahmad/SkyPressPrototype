@@ -17,7 +17,8 @@
 		android:id="@+id/main_news_title"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/title_activity_main_news"/>
+		android:text="@string/title_activity_main_news"
+		android:background="@color/colorAccent"/>
 
 	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 				android:layout_width="wrap_content"
@@ -35,20 +36,24 @@
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 				android:id="@+id/main_news_date"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"/>
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"/>
 
 			<ImageView
 				android:id="@+id/main_news_image"
 				android:layout_below="@+id/main_news_date"
 				android:src="@drawable/default_logo_image"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"/>
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"/>
 
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 				android:id="@+id/main_news_full"
 				android:layout_below="@+id/main_news_image"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"/>
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="60dp"/>
 
 			<ImageView
 				android:id="@+id/video_thumbnail"
