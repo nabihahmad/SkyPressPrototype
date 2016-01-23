@@ -14,21 +14,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 public class CustomAdapter extends BaseAdapter {
 	List<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
 	Context context;
-//	ArrayList<Bitmap> imageId = new ArrayList();
 	private static LayoutInflater inflater = null;
 
-//	public CustomAdapter(Activity mainActivity, ArrayList<String> prgmNameList, ArrayList<Bitmap> prgmImages) {
 	public CustomAdapter(Activity mainActivity, List<HashMap<String, String>> prgmNameList) {
 		result = prgmNameList;
 		context = mainActivity;
-//		imageId = prgmImages;
-		inflater = (LayoutInflater) context.
-				getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
@@ -47,8 +44,9 @@ public class CustomAdapter extends BaseAdapter {
 	}
 
 	public class Holder {
-		TextView tv;
-//		ImageView img;
+		TextViewWithCustomFont newsTextView;
+		TextViewWithCustomFont timeTextView;
+		TextViewWithCustomFont dateTextView;
 	}
 
 	@Override
@@ -56,10 +54,9 @@ public class CustomAdapter extends BaseAdapter {
 		Holder holder = new Holder();
 		View rowView;
 		rowView = inflater.inflate(R.layout.custom_news_list_view, null);
-		holder.tv = (TextView) rowView.findViewById(R.id.custom_view_text);
-//		holder.img = (ImageView) rowView.findViewById(R.id.Image);
+		holder.newsTextView = (TextViewWithCustomFont) rowView.findViewById(R.id.custom_view_text);
 		HashMap<String, String> tmpMap = result.get(position);
-		holder.tv.setText(tmpMap.get("title"));
+		holder.newsTextView.setText(tmpMap.get("title"));
 
 		String strPubDate = tmpMap.get("pubDate");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE', 'dd MMM yyyy HH:mm:ss '+0000'");
@@ -81,23 +78,15 @@ public class CustomAdapter extends BaseAdapter {
 		} catch (ParseException e) {
 		}
 		if (!strMainNewsDate.isEmpty()) {
-			holder.tv = (TextView) rowView.findViewById(R.id.custom_view_date);
-			holder.tv.setText(strMainNewsDate);
+			holder.dateTextView = (TextViewWithCustomFont) rowView.findViewById(R.id.custom_view_date);
+			holder.dateTextView.setText(strMainNewsDate);
+		} else {
+			holder.dateTextView = (TextViewWithCustomFont) rowView.findViewById(R.id.custom_view_date);
+			holder.dateTextView.setVisibility(View.GONE);
 		}
+		holder.timeTextView = (TextViewWithCustomFont) rowView.findViewById(R.id.custom_view_time);
+		holder.timeTextView.setText(strMainNewsTime);
 
-		holder.tv = (TextView) rowView.findViewById(R.id.custom_view_time);
-		holder.tv.setText(strMainNewsTime);
-
-//		if (imageId.get(position) != null)
-//			holder.img.setImageBitmap(imageId.get(position));
-		// holder.img.setImageBitmap(imageId.get(position));
-		 /*
-         rowView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "You Clicked "+result.get(position), Toast.LENGTH_LONG).show();
-            }
-        });*/
 		return rowView;
 	}
 }

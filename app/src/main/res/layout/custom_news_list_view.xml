@@ -1,58 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 				android:layoutDirection="rtl"
-				android:layout_width="fill_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:background="@color/colorPrimaryLight"
-				android:padding="8dp">
+				android:padding="8sp">
 
-	<GridLayout
-		android:id="@+id/custom_view_grid_layout"
-		android:rowCount="2"
-		android:columnCount="12"
-		android:orientation="vertical"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
+	<!--GridLayout android:id="@+id/custom_view_grid_layout"
+				android:rowCount="2"
+				android:columnCount="3"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
 
 		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 			android:id="@+id/custom_view_date"
-			android:layout_width="wrap_content"
-			android:textSize="7pt"
-			android:layout_column="0"
-			android:layout_row="0"
-			android:text="test"
-			android:textColor="@color/colorSecondaryDark"
-			android:layout_height="wrap_content"/>
+			android:textSize="5pt"
+			android:text="22/01"
+			android:textColor="@color/colorSecondaryDark"/>
 
 		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 			android:id="@+id/custom_view_time"
-			android:layout_width="wrap_content"
-			android:layout_column="0"
-			android:layout_row="1"
+			android:textSize="5pt"
+			android:text="23:59"
+			android:textColor="@color/colorSecondaryDark"/>
+
+		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			android:id="@+id/custom_view_text"
 			android:textSize="7pt"
-			android:text="nnn"
-			android:textColor="@color/colorSecondaryDark"
-			android:layout_height="wrap_content"/>
+			android:text="This is a news that needs to be displayed in the news page"
+			android:layout_rowSpan="2"
+			android:textColor="@color/colorPrimaryDark"/>
+
+		<ImageView
+			android:id="@+id/custom_view_logo"
+			android:layout_rowSpan="2"
+			android:src="@drawable/logo_news_ticker"/>
+	</GridLayout-->
+
+	<RelativeLayout
+		android:layout_centerVertical="true"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
+	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+		android:id="@+id/custom_view_date"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:textSize="@dimen/text_size_x_small"
+		android:textColor="@color/colorSecondaryDark"/>
+
+	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+		android:id="@+id/custom_view_time"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_below="@+id/custom_view_date"
+		android:textSize="@dimen/text_size_x_small"
+		android:textColor="@color/colorSecondaryDark"/>
+
+	</RelativeLayout>
+
+	<LinearLayout
+		android:id="@+id/custom_list_linear_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="32sp"
+		android:layout_marginStart="45sp">
 
 		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 			android:id="@+id/custom_view_text"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textSize="10pt"
-			android:layout_column="1"
-			android:layout_row="0"
-			android:layout_columnSpan="10"
-			android:layout_rowSpan="2"
-			android:text="test"
+			android:textSize="@dimen/text_size_small"
 			android:textColor="@color/colorPrimaryDark"/>
+	</LinearLayout>
 
-		<ImageView
-			android:id="@+id/custom_view_logo"
-			android:layout_column="11"
-			android:layout_row="0"
-			android:layout_rowSpan="2"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/logo_news_ticker"/>
-	</GridLayout>
+	<ImageView
+		android:id="@+id/custom_view_logo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:src="@drawable/logo_news_ticker"/>
 </RelativeLayout>

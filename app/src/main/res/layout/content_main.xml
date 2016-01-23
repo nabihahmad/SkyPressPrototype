@@ -27,7 +27,7 @@
 		android:scrollHorizontally="true"
 		android:singleLine="true"
 		android:textColor="@android:color/white"
-		android:textSize="20dp"
+		android:textSize="@dimen/text_size_medium"
 		android:visibility="gone"/>
 
 	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -37,7 +37,7 @@
 				android:fadingEdgeLength="0dp"
 				android:fillViewport="true"
 				android:overScrollMode="never"
-				android:layout_marginTop="5pt"
+				android:layout_marginTop="8sp"
 				android:scrollbars="none">
 
 		<RelativeLayout
@@ -48,7 +48,7 @@
 				android:id="@+id/latest_news_view_flipper"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/activity_vertical_margin"
+				android:layout_marginTop="8sp"
 				android:visibility="gone">
 
 				<FrameLayout
@@ -63,7 +63,8 @@
 						android:layout_height="fill_parent"
 						android:adjustViewBounds="true"
 						android:src="@drawable/default_logo_image"
-						android:scaleType="fitXY"/>
+						android:scaleType="fitXY"
+						android:maxHeight="@dimen/max_carousel_image_height"/>
 
 					<com.ahmad.nabih.skypressprototype.TextViewWithImages
 						android:id="@+id/latest_news_TextView_0"
@@ -72,7 +73,7 @@
 						android:layout_gravity="bottom"
 						android:background="@color/blackOpacity"
 						android:textColor="@android:color/white"
-						android:textSize="20dp"/>
+						android:textSize="@dimen/text_size_medium"/>
 				</FrameLayout>
 
 				<FrameLayout
@@ -87,7 +88,8 @@
 						android:layout_height="fill_parent"
 						android:adjustViewBounds="true"
 						android:src="@drawable/default_logo_image"
-						android:scaleType="fitXY"/>
+						android:scaleType="fitXY"
+						android:maxHeight="@dimen/max_carousel_image_height"/>
 
 					<com.ahmad.nabih.skypressprototype.TextViewWithImages
 						android:id="@+id/latest_news_TextView_1"
@@ -96,7 +98,7 @@
 						android:layout_gravity="bottom"
 						android:background="@color/blackOpacity"
 						android:textColor="@android:color/white"
-						android:textSize="20dp"/>
+						android:textSize="@dimen/text_size_medium"/>
 				</FrameLayout>
 
 				<FrameLayout
@@ -111,7 +113,8 @@
 						android:layout_height="fill_parent"
 						android:adjustViewBounds="true"
 						android:src="@drawable/default_logo_image"
-						android:scaleType="fitXY"/>
+						android:scaleType="fitXY"
+						android:maxHeight="@dimen/max_carousel_image_height"/>
 
 					<com.ahmad.nabih.skypressprototype.TextViewWithImages
 						android:id="@+id/latest_news_TextView_2"
@@ -120,7 +123,7 @@
 						android:layout_gravity="bottom"
 						android:background="@color/blackOpacity"
 						android:textColor="@android:color/white"
-						android:textSize="20dp"/>
+						android:textSize="@dimen/text_size_medium"/>
 				</FrameLayout>
 
 				<FrameLayout
@@ -135,7 +138,8 @@
 						android:layout_height="fill_parent"
 						android:adjustViewBounds="true"
 						android:src="@drawable/default_logo_image"
-						android:scaleType="fitXY"/>
+						android:scaleType="fitXY"
+						android:maxHeight="@dimen/max_carousel_image_height"/>
 
 					<com.ahmad.nabih.skypressprototype.TextViewWithImages
 						android:id="@+id/latest_news_TextView_3"
@@ -144,7 +148,7 @@
 						android:layout_gravity="bottom"
 						android:background="@color/blackOpacity"
 						android:textColor="@android:color/white"
-						android:textSize="20dp"/>
+						android:textSize="@dimen/text_size_medium"/>
 				</FrameLayout>
 			</ViewFlipper>
 
@@ -154,15 +158,15 @@
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/latest_news_view_flipper"
 				android:text="@string/news_title"
-				android:textSize="10pt"
+				android:textSize="@dimen/text_size_big"
 				android:visibility="gone"/>
 
 			<com.ahmad.nabih.skypressprototype.NonScrollableListView
 				android:id="@+id/news_listing"
-				android:layout_width="wrap_content"
+				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/news_title"
-				android:layout_marginTop="5pt">
+				android:layout_marginTop="8sp">
 			</com.ahmad.nabih.skypressprototype.NonScrollableListView>
 		</RelativeLayout>
 	</ScrollView>
