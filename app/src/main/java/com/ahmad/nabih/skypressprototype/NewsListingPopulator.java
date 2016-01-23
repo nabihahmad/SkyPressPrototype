@@ -363,6 +363,9 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		String mainNewsImageURL = map.get("imgURL");
 		if (mainNewsImageURL != null)
 			intent.putExtra("mainNewsImageURL", mainNewsImageURL);
+		String mainNewsLink = map.get("link");
+		if (mainNewsLink != null)
+			intent.putExtra("mainNewsLink", mainNewsLink);
 		return intent;
 	}
 }
