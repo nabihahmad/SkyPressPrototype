@@ -11,6 +11,7 @@
 	<string name="navigation_drawer_close">إغلاق</string>
 	<string name="loading">الرجاء الانتظار...</string>
 	<string name="general_exception">لقد حصل خطأ ومدير التطبيق قد أنذر. الرجاء المحاولة مرة أخرى.</string>
+	<string name="no_connectivity">يبدو أنك غير متصل بشبكة الإنترنت حالياً. الرجاء التأكد من الاتصال بالشبكة والمحاولة مرة أخرى.</string>
 	<string name="no_data">المعلومات المطلوبة غير متوفرة حالياً. الرجاء المحاولة مرة أخرى.</string>
 
 	<string name="latest_label">آخر الأخبار</string>

@@ -48,7 +48,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 
 	@Override
 	protected List<HashMap<String, String>> doInBackground(String... params) {
-		Log.e("URL", strURL);
+		Log.d("URL", strURL);
 		return runRSSThread(strURL);
 	}
 
@@ -244,7 +244,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			progressDialog.dismiss();
 		} else {
 			List<String> tmpList = new ArrayList<String>();
-			tmpList.add(MainActivity.GENERAL_EXCEPTION);
+			tmpList.add(MainActivity.NO_CONNECTIVITY);
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
 			list.setAdapter(new ArrayAdapter(activity, android.R.layout.simple_list_item_1, tmpList));
 
@@ -256,6 +256,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 
 
 			progressDialog.dismiss();
+			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.VISIBLE);
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.setMessage(MainActivity.GENERAL_EXCEPTION);
 			builder.setCancelable(true);

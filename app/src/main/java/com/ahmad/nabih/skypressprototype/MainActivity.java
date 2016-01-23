@@ -31,12 +31,14 @@ public class MainActivity extends AppCompatActivity
 	public static String GENERAL_EXCEPTION = null;
 	public static String LOADING = null;
 	public static String NO_DATA = null;
+	public static String NO_CONNECTIVITY = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		LOADING = getResources().getString(R.string.loading);
 		GENERAL_EXCEPTION = getResources().getString(R.string.general_exception);
 		NO_DATA = getResources().getString(R.string.no_data);
+		NO_CONNECTIVITY = getResources().getString(R.string.no_connectivity);
 		Typeface boldFont = Typeface.createFromAsset(getAssets(), AppConfig.BOLD_FONT);
 		Typeface regularFont = Typeface.createFromAsset(getAssets(), AppConfig.REGULAR_FONT);
 
