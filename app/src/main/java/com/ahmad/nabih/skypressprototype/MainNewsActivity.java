@@ -14,7 +14,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.Spannable;
@@ -26,8 +25,6 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -74,7 +71,7 @@ public class MainNewsActivity extends AppCompatActivity
 				Intent share = new Intent(Intent.ACTION_SEND);
 				share.setType("text/plain");
 				share.putExtra(Intent.EXTRA_SUBJECT, view.getResources().getString(R.string.app_name_abbr) + " " + view.getResources().getString(R.string.share_on_social_media_subject));
-				share.putExtra(Intent.EXTRA_TEXT, view.getResources().getString(R.string.app_name_abbr) + " " + view.getResources().getString(R.string.share_on_social_media_body) + " " + getIntent().getStringExtra("mainNewsTitle"));
+				share.putExtra(Intent.EXTRA_TEXT, view.getResources().getString(R.string.app_name_abbr) + " " + view.getResources().getString(R.string.share_on_social_media_body) + " " + getIntent().getStringExtra("mainNewsTitle") + "\n" + getIntent().getStringExtra("mainNewsLink"));
 				startActivity(Intent.createChooser(share, view.getResources().getString(R.string.share_on_social_media_label)));
 			}
 		});
