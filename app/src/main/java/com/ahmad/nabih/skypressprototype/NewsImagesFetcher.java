@@ -45,19 +45,21 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 	protected void onPostExecute(final Bitmap result) {
 		super.onPostExecute(result);
 //		progressDialog.dismiss();
-		imageView.setImageBitmap(result);
-		if (FrameLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
-			imageView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-					FrameLayout.LayoutParams.MATCH_PARENT));
-		} else if (RelativeLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
-			imageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
-					RelativeLayout.LayoutParams.MATCH_PARENT));
-		}
-		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-		if(isMainNewsActivity){
-			RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
-			layoutParams.addRule(RelativeLayout.BELOW, R.id.main_news_date);
-			imageView.setLayoutParams(layoutParams);
+		if(result != null) {
+			imageView.setImageBitmap(result);
+			if (FrameLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
+				imageView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+						FrameLayout.LayoutParams.MATCH_PARENT));
+			} else if (RelativeLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
+				imageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+						RelativeLayout.LayoutParams.MATCH_PARENT));
+			}
+			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+			if (isMainNewsActivity) {
+				RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+				layoutParams.addRule(RelativeLayout.BELOW, R.id.main_news_date);
+				imageView.setLayoutParams(layoutParams);
+			}
 		}
 	}
 }
