@@ -17,6 +17,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -32,6 +33,7 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -52,6 +54,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setupActionBar();
+		super.getListView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 	}
 
 	/**
@@ -197,6 +200,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class NotificationPreferenceFragment extends PreferenceFragment {
+		@Override
+		public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+								 @Nullable Bundle savedInstanceState) {
+			View view = super.onCreateView(inflater, container, savedInstanceState);
+			Log.e("DEBUG", String.valueOf(view.getId()));
+			view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+			return view;
+		}
+
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
