@@ -253,6 +253,14 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				}
 			});
 
+			if(activity.findViewById(R.id.news_ticker_layout) != null)
+				activity.findViewById(R.id.news_ticker_layout).setVisibility(View.GONE);
+			if(newsTitle != null)
+				newsTitle.setVisibility(View.GONE);
+			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
+			if(viewFlipper != null)
+				viewFlipper.setVisibility(View.GONE);
+
 			progressDialog.dismiss();
 			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.VISIBLE);
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
