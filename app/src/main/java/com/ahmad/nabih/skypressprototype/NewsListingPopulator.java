@@ -236,7 +236,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				}
 			});
 
-
 			activity.findViewById(R.id.news_ticker_layout).setVisibility(View.VISIBLE);
 			newsTitle.setVisibility(View.VISIBLE);
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
