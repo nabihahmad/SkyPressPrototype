@@ -189,22 +189,22 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			});
 
 			ImageView imageView = (ImageView) activity.findViewById(R.id.latest_news_ImageView_0);
-			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView);
+			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, false);
 			// TODO: check if the replace is required after the URLs are fixed by Sky Press
 			newsImagesFetcher.execute(result.get(0).get("imgURL").replace("/posts/", "/uploads/posts/"));
 
 			ImageView imageView1 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_1);
-			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(imageView1);
+			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(imageView1, false);
 			// TODO: check if the replace is required after the URLs are fixed by Sky Press
 			newsImagesFetcher1.execute(result.get(1).get("imgURL").replace("/posts/","/uploads/posts/"));
 
 			ImageView imageView2 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_2);
-			NewsImagesFetcher newsImagesFetcher2 = new NewsImagesFetcher(imageView2);
+			NewsImagesFetcher newsImagesFetcher2 = new NewsImagesFetcher(imageView2, false);
 			// TODO: check if the replace is required after the URLs are fixed by Sky Press
 			newsImagesFetcher2.execute(result.get(2).get("imgURL").replace("/posts/","/uploads/posts/"));
 
 			ImageView imageView3 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_3);
-			NewsImagesFetcher newsImagesFetcher3 = new NewsImagesFetcher(imageView3);
+			NewsImagesFetcher newsImagesFetcher3 = new NewsImagesFetcher(imageView3, false);
 			// TODO: check if the replace is required after the URLs are fixed by Sky Press
 			newsImagesFetcher3.execute(result.get(3).get("imgURL").replace("/posts/","/uploads/posts/"));
 

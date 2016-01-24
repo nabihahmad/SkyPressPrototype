@@ -14,10 +14,12 @@ import java.io.InputStream;
 
 public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 	ImageView imageView;
+	boolean isMainNewsActivity;
 	private ProgressDialog progressDialog;
 
-	public NewsImagesFetcher (ImageView imageView){
+	public NewsImagesFetcher (ImageView imageView, boolean isMainNewsActivity){
 		this.imageView = imageView;
+		this.isMainNewsActivity = isMainNewsActivity;
 	}
 
 	protected void onPreExecute() {
@@ -52,5 +54,10 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 					RelativeLayout.LayoutParams.MATCH_PARENT));
 		}
 		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+		if(isMainNewsActivity){
+			RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+			layoutParams.addRule(RelativeLayout.BELOW, R.id.main_news_date);
+			imageView.setLayoutParams(layoutParams);
+		}
 	}
 }

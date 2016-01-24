@@ -138,7 +138,7 @@ public class MainNewsActivity extends AppCompatActivity
 		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL");
 		if (mainNewsImageURL != null) {
 			ImageView mainNewsImage = (ImageView) findViewById(R.id.main_news_image);
-			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage);
+			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage, true);
 			// TODO: check if the replace is required after the URLs are fixed by Sky Press
 			newsImagesFetcher1.execute(mainNewsImageURL.replace("/posts/", "/uploads/posts/"));
 		}
