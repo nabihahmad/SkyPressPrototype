@@ -240,6 +240,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			newsTitle.setVisibility(View.VISIBLE);
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
 			viewFlipper.setVisibility(View.VISIBLE);
+			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.GONE);
 			progressDialog.dismiss();
 		} else {
 			List<String> tmpList = new ArrayList<String>();

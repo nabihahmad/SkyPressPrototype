@@ -160,6 +160,10 @@ public class MainActivity extends AppCompatActivity
 			startActivity(intent);
 		}
 
+		if(id == R.id.action_refresh){
+			refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label));
+		}
+
 		return super.onOptionsItemSelected(item);
 	}
 

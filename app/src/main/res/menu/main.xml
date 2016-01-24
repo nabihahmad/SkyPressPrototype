@@ -7,7 +7,7 @@
 		  android:orderInCategory="100"
 		  app:showAsAction="never"/>
 	<item android:id="@+id/action_refresh"
-		  android:icon="@drawable/refresh_icon"
+		  android:icon="@drawable/refresh24_icon"
 		  android:title="@string/action_refresh"
 		  app:showAsAction="ifRoom"/>
 </menu>
