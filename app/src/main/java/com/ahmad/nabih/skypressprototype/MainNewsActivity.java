@@ -104,7 +104,7 @@ public class MainNewsActivity extends AppCompatActivity
 			TextView mainNewsTitleTextView = (TextView) findViewById(R.id.main_news_title);
 			mainNewsTitleTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mainNewsTitle.length())});
 			mainNewsTitleTextView.setText(mainNewsTitle);
-			mainNewsTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PT, Float.parseFloat(sharedPref.getString("pref_news_title_text_size", "12")));
+			mainNewsTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, Float.parseFloat(sharedPref.getString("pref_news_title_text_size", "12")));
 		}
 		String mainNewsDate = getIntent().getStringExtra("mainNewsDate");
 		if (mainNewsDate != null) {
@@ -124,7 +124,7 @@ public class MainNewsActivity extends AppCompatActivity
 			TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
 			mainNewsFullTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mainNewsFull.length())});
 			mainNewsFullTextView.setText(mainNewsFull.trim());
-			mainNewsFullTextView.setTextSize(TypedValue.COMPLEX_UNIT_PT, Float.parseFloat(sharedPref.getString("pref_news_full_text_size", "10")));
+			mainNewsFullTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, Float.parseFloat(sharedPref.getString("pref_news_full_text_size", "8")));
 		} else {
 			TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
 			mainNewsFullTextView.setVisibility(View.GONE);
