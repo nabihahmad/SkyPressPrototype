@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity
 				this.startActivity(intent);
 			} catch (JSONException e) {
 				Log.e("Parse Data JSON Exc", e.toString());
-				//refreshNews(URL_LOCAL, getResources().getString(R.string.local_label));
 			}
 		}else{
 			Bundle b = getIntent().getExtras();

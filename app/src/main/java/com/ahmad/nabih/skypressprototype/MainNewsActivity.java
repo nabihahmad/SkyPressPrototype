@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +27,7 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -135,14 +138,29 @@ public class MainNewsActivity extends AppCompatActivity
 			youTubeThumbnailImageView.setVisibility(View.VISIBLE);
 			youTubeThumbnailImageView.setImageResource(R.drawable.youtube_icon);
 		}
-		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL");
+		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL1");
 		if (mainNewsImageURL != null) {
 			ImageView mainNewsImage = (ImageView) findViewById(R.id.main_news_image);
 			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage, true);
-			// TODO: check if the replace is required after the URLs are fixed by Sky Press
-			newsImagesFetcher1.execute(mainNewsImageURL.replace("/posts/", "/uploads/posts/"));
+			newsImagesFetcher1.execute(mainNewsImageURL);
 		}
-		Log.d("test","test");
+		String tmpMainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL2");
+		for (int i = 3; tmpMainNewsImageURL != null && !tmpMainNewsImageURL.isEmpty(); i++) {
+			RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.content_main_news_relative_layout);
+			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+					RelativeLayout.LayoutParams.WRAP_CONTENT,
+					RelativeLayout.LayoutParams.WRAP_CONTENT);
+			lp.addRule(RelativeLayout.BELOW, R.id.main_news_full);
+			lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+			lp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+			ImageView imageView = new ImageView(this);
+			imageView.setLayoutParams(lp);
+			imageView.setImageResource(R.drawable.camera_icon);
+			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, true);
+			newsImagesFetcher.execute(tmpMainNewsImageURL);
+			relativeLayout.addView(imageView, lp);
+			tmpMainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL" + i);
+		}
 	}
 
 	public void playYouTubeVideo (View v) {

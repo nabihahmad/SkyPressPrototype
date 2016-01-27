@@ -18,11 +18,11 @@ import android.widget.TextClock;
 import android.widget.TextView;
 
 public class CustomAdapter extends BaseAdapter {
-	List<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
+	List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
 	Context context;
 	private static LayoutInflater inflater = null;
 
-	public CustomAdapter(Activity mainActivity, List<HashMap<String, String>> prgmNameList) {
+	public CustomAdapter(Activity mainActivity, List<HashMap<String, Object>> prgmNameList) {
 		result = prgmNameList;
 		context = mainActivity;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,10 +55,10 @@ public class CustomAdapter extends BaseAdapter {
 		View rowView;
 		rowView = inflater.inflate(R.layout.custom_news_list_view, null);
 		holder.newsTextView = (TextViewWithCustomFont) rowView.findViewById(R.id.custom_view_text);
-		HashMap<String, String> tmpMap = result.get(position);
-		holder.newsTextView.setText(tmpMap.get("title"));
+		HashMap<String, Object> tmpMap = result.get(position);
+		holder.newsTextView.setText((String) tmpMap.get("title"));
 
-		String strPubDate = tmpMap.get("pubDate");
+		String strPubDate = (String) tmpMap.get("pubDate");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE', 'dd MMM yyyy HH:mm:ss '+0000'");
 		String strMainNewsDate = "";
 		String strMainNewsTime = "";

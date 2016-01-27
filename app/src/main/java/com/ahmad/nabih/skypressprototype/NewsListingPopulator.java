@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Looper;
 import android.text.Spannable;
 import android.util.Log;
 import android.view.View;
@@ -24,9 +25,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
-public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMap<String, String>>> {
+public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMap<String, Object>>> {
 	private String strURL = "http://skypressiq.net/localnews.xml";
 	private String strLabel = null;
 	Activity activity;
@@ -47,29 +49,24 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 	}
 
 	@Override
-	protected List<HashMap<String, String>> doInBackground(String... params) {
+	protected List<HashMap<String, Object>> doInBackground(String... params) {
 		Log.d("URL", strURL);
 		return runRSSThread(strURL);
 	}
 
-	protected void onPostExecute(final List<HashMap<String, String>> result) {
+	protected void onPostExecute(final List<HashMap<String, Object>> result) {
 		super.onPostExecute(result);
 		TextView newsTitle = (TextView) activity.findViewById(R.id.news_title);
 		newsTitle.setText(strLabel);
 
 		if (result != null && result.size() > 0) {
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
-//			ArrayList<String> listOfTitles = new ArrayList<String>();
-//			List<String> listOfImgURLs = new ArrayList<String>();
 			String strNewsTicker = " [img src=logo_news_ticker/]  ";
 			for (int i = 0; result != null && i < result.size(); i++) {
-				HashMap<String, String> tmpMap = result.get(i);
+				HashMap<String, Object> tmpMap = result.get(i);
 				if (tmpMap.containsKey("title") && tmpMap.get("title") != null) {
-//					listOfTitles.add(tmpMap.get("title"));
 					strNewsTicker += tmpMap.get("title") + "  [img src=logo_news_ticker/]  ";
 				}
-//				if (tmpMap.containsKey("imgURL") && tmpMap.get("imgURL") != null)
-//					listOfImgURLs.add(tmpMap.get("imgURL"));
 			}
 			@SuppressLint("WrongViewCast")
 			TextViewWithImages newsTickerTextView = (TextViewWithImages) activity.findViewById(R.id.news_ticker);
@@ -83,22 +80,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, String> tmpMap = result.get(0);
-//					String mainNewsTitle = tmpMap.get("title");
-//					if (mainNewsTitle != null)
-//						intent.putExtra("mainNewsTitle", mainNewsTitle);
-//					String mainNewsDate = tmpMap.get("pubDate");
-//					if (mainNewsDate != null)
-//						intent.putExtra("mainNewsDate", mainNewsDate);
-//					String mainNewsFull = tmpMap.get("full");
-//					if (mainNewsFull != null)
-//						intent.putExtra("mainNewsFull", mainNewsFull);
-//					String mainNewsVideo = tmpMap.get("video");
-//					if (mainNewsVideo != null)
-//						intent.putExtra("mainNewsVideo", mainNewsVideo);
-//					String mainNewsCategory = tmpMap.get("category");
-//					if (mainNewsCategory != null)
-//						intent.putExtra("mainNewsCategory", mainNewsCategory);
+					HashMap<String, Object> tmpMap = result.get(0);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -111,22 +93,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, String> tmpMap = result.get(1);
-//					String mainNewsTitle = tmpMap.get("title");
-//					if (mainNewsTitle != null)
-//						intent.putExtra("mainNewsTitle", mainNewsTitle);
-//					String mainNewsDate = tmpMap.get("pubDate");
-//					if (mainNewsDate != null)
-//						intent.putExtra("mainNewsDate", mainNewsDate);
-//					String mainNewsFull = tmpMap.get("full");
-//					if (mainNewsFull != null)
-//						intent.putExtra("mainNewsFull", mainNewsFull);
-//					String mainNewsVideo = tmpMap.get("video");
-//					if (mainNewsVideo != null)
-//						intent.putExtra("mainNewsVideo", mainNewsVideo);
-//					String mainNewsCategory = tmpMap.get("category");
-//					if (mainNewsCategory != null)
-//						intent.putExtra("mainNewsCategory", mainNewsCategory);
+					HashMap<String, Object> tmpMap = result.get(1);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -139,22 +106,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, String> tmpMap = result.get(2);
-//					String mainNewsTitle = tmpMap.get("title");
-//					if (mainNewsTitle != null)
-//						intent.putExtra("mainNewsTitle", mainNewsTitle);
-//					String mainNewsDate = tmpMap.get("pubDate");
-//					if (mainNewsDate != null)
-//						intent.putExtra("mainNewsDate", mainNewsDate);
-//					String mainNewsFull = tmpMap.get("full");
-//					if (mainNewsFull != null)
-//						intent.putExtra("mainNewsFull", mainNewsFull);
-//					String mainNewsVideo = tmpMap.get("video");
-//					if (mainNewsVideo != null)
-//						intent.putExtra("mainNewsVideo", mainNewsVideo);
-//					String mainNewsCategory = tmpMap.get("category");
-//					if (mainNewsCategory != null)
-//						intent.putExtra("mainNewsCategory", mainNewsCategory);
+					HashMap<String, Object> tmpMap = result.get(2);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -167,22 +119,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, String> tmpMap = result.get(3);
-//					String mainNewsTitle = tmpMap.get("title");
-//					if (mainNewsTitle != null)
-//						intent.putExtra("mainNewsTitle", mainNewsTitle);
-//					String mainNewsDate = tmpMap.get("pubDate");
-//					if (mainNewsDate != null)
-//						intent.putExtra("mainNewsDate", mainNewsDate);
-//					String mainNewsFull = tmpMap.get("full");
-//					if (mainNewsFull != null)
-//						intent.putExtra("mainNewsFull", mainNewsFull);
-//					String mainNewsVideo = tmpMap.get("video");
-//					if (mainNewsVideo != null)
-//						intent.putExtra("mainNewsVideo", mainNewsVideo);
-//					String mainNewsCategory = tmpMap.get("category");
-//					if (mainNewsCategory != null)
-//						intent.putExtra("mainNewsCategory", mainNewsCategory);
+					HashMap<String, Object> tmpMap = result.get(3);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -190,23 +127,19 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 
 			ImageView imageView = (ImageView) activity.findViewById(R.id.latest_news_ImageView_0);
 			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, false);
-			// TODO: check if the replace is required after the URLs are fixed by Sky Press
-			newsImagesFetcher.execute(result.get(0).get("imgURL").replace("/posts/", "/uploads/posts/"));
+			newsImagesFetcher.execute(((ArrayList<String>) result.get(0).get("listImgURLs")).get(0));
 
 			ImageView imageView1 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_1);
 			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(imageView1, false);
-			// TODO: check if the replace is required after the URLs are fixed by Sky Press
-			newsImagesFetcher1.execute(result.get(1).get("imgURL").replace("/posts/","/uploads/posts/"));
+			newsImagesFetcher1.execute(((ArrayList<String>) result.get(1).get("listImgURLs")).get(0));
 
 			ImageView imageView2 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_2);
 			NewsImagesFetcher newsImagesFetcher2 = new NewsImagesFetcher(imageView2, false);
-			// TODO: check if the replace is required after the URLs are fixed by Sky Press
-			newsImagesFetcher2.execute(result.get(2).get("imgURL").replace("/posts/","/uploads/posts/"));
+			newsImagesFetcher2.execute(((ArrayList<String>) result.get(2).get("listImgURLs")).get(0));
 
 			ImageView imageView3 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_3);
 			NewsImagesFetcher newsImagesFetcher3 = new NewsImagesFetcher(imageView3, false);
-			// TODO: check if the replace is required after the URLs are fixed by Sky Press
-			newsImagesFetcher3.execute(result.get(3).get("imgURL").replace("/posts/","/uploads/posts/"));
+			newsImagesFetcher3.execute(((ArrayList<String>) result.get(3).get("listImgURLs")).get(0));
 
 			CustomAdapter customAdapter = new CustomAdapter(activity, result);
 			list.setAdapter(customAdapter);
@@ -215,22 +148,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onItemClick(AdapterView<?> parent, View titleClicked, int position, long id) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, String> tmpMap = result.get(position);
-//					String mainNewsTitle = tmpMap.get("title");
-//					if (mainNewsTitle != null)
-//						intent.putExtra("mainNewsTitle", mainNewsTitle);
-//					String mainNewsDate = tmpMap.get("pubDate");
-//					if (mainNewsDate != null)
-//						intent.putExtra("mainNewsDate", mainNewsDate);
-//					String mainNewsFull = tmpMap.get("full");
-//					if (mainNewsFull != null)
-//						intent.putExtra("mainNewsFull", mainNewsFull);
-//					String mainNewsVideo = tmpMap.get("video");
-//					if (mainNewsVideo != null)
-//						intent.putExtra("mainNewsVideo", mainNewsVideo);
-//					String mainNewsCategory = tmpMap.get("category");
-//					if (mainNewsCategory != null)
-//						intent.putExtra("mainNewsCategory", mainNewsCategory);
+					HashMap<String, Object> tmpMap = result.get(position);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -271,8 +189,8 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		}
 	}
 
-	private List<HashMap<String, String>> runRSSThread(String urlString) {
-		List<HashMap<String, String>> response = null;
+	private List<HashMap<String, Object>> runRSSThread(String urlString) {
+		List<HashMap<String, Object>> response = null;
 		HttpURLConnection conn = null;
 		try {
 			URL url = new URL(urlString);
@@ -303,22 +221,24 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		return response;
 	}
 
-	public ArrayList<HashMap<String, String>> parseXMLAndStoreIt(XmlPullParser myParser) {
+	public ArrayList<HashMap<String, Object>> parseXMLAndStoreIt(XmlPullParser myParser) {
 		int event;
-		ArrayList<HashMap<String, String>> listOfNews = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, Object>> listOfNews = new ArrayList<HashMap<String, Object>>();
 		try {
 			event = myParser.getEventType();
-			HashMap<String, String> tmpMap = new HashMap<String, String>();
+			HashMap<String, Object> tmpMap = new HashMap<String, Object>();
+			ArrayList<String> listImgURLs = new ArrayList<String>();
 			String text = null;
 			while (event != XmlPullParser.END_DOCUMENT) {
 				String name = myParser.getName();
 				switch (event) {
 					case XmlPullParser.START_TAG:
-						if (name.equalsIgnoreCase("enclosure")) {
+						if (name.equals("enclosure") || name.startsWith("enclosure")) {
 							for (int i = 0 ; i < myParser.getAttributeCount(); i++) {
 								String tmpAttrName = myParser.getAttributeName(i);
 								if (tmpAttrName != null && tmpAttrName.equalsIgnoreCase("url")) {
-									tmpMap.put("imgURL", myParser.getAttributeValue(i));
+//									tmpMap.put("imgURL", myParser.getAttributeValue(i));
+									listImgURLs.add(myParser.getAttributeValue(i));
 								}
 							}
 						}
@@ -334,8 +254,10 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 							text = text.replaceAll("&nbsp;", "");
 							tmpMap.put(name, text);
 						} else if (name.equalsIgnoreCase("item")) {
+							tmpMap.put("listImgURLs", listImgURLs);
 							listOfNews.add(tmpMap);
-							tmpMap = new HashMap<String, String>();
+							tmpMap = new HashMap<String, Object>();
+							listImgURLs = new ArrayList<String>();
 							text = null;
 						} else {
 							tmpMap.put(name, text);
@@ -351,26 +273,30 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		return listOfNews;
 	}
 
-	private Intent setIntentStringsFromMap (Intent intent, HashMap<String, String> map) {
-		String mainNewsTitle = map.get("title");
+	private Intent setIntentStringsFromMap (Intent intent, HashMap<String, Object> map) {
+		String mainNewsTitle = (String) map.get("title");
 		if (mainNewsTitle != null)
 			intent.putExtra("mainNewsTitle", mainNewsTitle);
-		String mainNewsDate = map.get("pubDate");
+		String mainNewsDate = (String) map.get("pubDate");
 		if (mainNewsDate != null)
 			intent.putExtra("mainNewsDate", mainNewsDate);
-		String mainNewsFull = map.get("full");
+		String mainNewsFull = (String) map.get("full");
 		if (mainNewsFull != null)
 			intent.putExtra("mainNewsFull", mainNewsFull);
-		String mainNewsVideo = map.get("video");
+		String mainNewsVideo = (String) map.get("video");
 		if (mainNewsVideo != null)
 			intent.putExtra("mainNewsVideo", mainNewsVideo);
-		String mainNewsCategory = map.get("category");
+		String mainNewsCategory = (String) map.get("category");
 		if (mainNewsCategory != null)
 			intent.putExtra("mainNewsCategory", mainNewsCategory);
-		String mainNewsImageURL = map.get("imgURL");
-		if (mainNewsImageURL != null)
-			intent.putExtra("mainNewsImageURL", mainNewsImageURL);
-		String mainNewsLink = map.get("link");
+		ArrayList<String> listImgURLs = (ArrayList<String>) map.get("listImgURLs");
+		Iterator<String> imgURLsIterator = listImgURLs.iterator();
+		int i = 1;
+		while (imgURLsIterator.hasNext()) {
+//		for (int i = 1; imgURLsIterator.hasNext(); i++) {
+			intent.putExtra("mainNewsImageURL" + i++, imgURLsIterator.next());
+		}
+		String mainNewsLink = (String) map.get("link");
 		if (mainNewsLink != null)
 			intent.putExtra("mainNewsLink", mainNewsLink);
 		return intent;
