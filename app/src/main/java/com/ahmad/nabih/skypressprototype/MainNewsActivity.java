@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
+import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
@@ -122,16 +123,17 @@ public class MainNewsActivity extends AppCompatActivity
 			TextView mainNewsDateTextView = (TextView) findViewById(R.id.main_news_date);
 			mainNewsDateTextView.setText(strMainNewsDate);
 		}
+
 		String mainNewsFull = getIntent().getStringExtra("mainNewsFull");
+		TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
 		if (mainNewsFull != null) {
-			TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
 			mainNewsFullTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mainNewsFull.length())});
 			mainNewsFullTextView.setText(mainNewsFull.trim());
 			mainNewsFullTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, Float.parseFloat(sharedPref.getString("pref_news_full_text_size", "8")));
 		} else {
-			TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
 			mainNewsFullTextView.setVisibility(View.GONE);
 		}
+
 		String mainNewsVideo = getIntent().getStringExtra("mainNewsVideo");
 		if (mainNewsVideo != null) {
 			ImageView youTubeThumbnailImageView = (ImageView) findViewById(R.id.video_thumbnail);
@@ -141,25 +143,34 @@ public class MainNewsActivity extends AppCompatActivity
 		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL1");
 		if (mainNewsImageURL != null) {
 			ImageView mainNewsImage = (ImageView) findViewById(R.id.main_news_image);
-			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage, true);
+			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage, true, R.id.main_news_image, R.id.main_news_date);
 			newsImagesFetcher1.execute(mainNewsImageURL);
 		}
 		String tmpMainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL2");
+		int putItBelowId = R.id.main_news_image;
 		for (int i = 3; tmpMainNewsImageURL != null && !tmpMainNewsImageURL.isEmpty(); i++) {
 			RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.content_main_news_relative_layout);
-			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-					RelativeLayout.LayoutParams.WRAP_CONTENT,
-					RelativeLayout.LayoutParams.WRAP_CONTENT);
-			lp.addRule(RelativeLayout.BELOW, R.id.main_news_full);
-			lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-			lp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 			ImageView imageView = new ImageView(this);
-			imageView.setLayoutParams(lp);
+			imageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+					RelativeLayout.LayoutParams.WRAP_CONTENT));
+			RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+			layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+			layoutParams.addRule(RelativeLayout.BELOW, putItBelowId);
+			layoutParams.setMargins(0, 20, 0, 0);
+			imageView.setLayoutParams(layoutParams);
 			imageView.setImageResource(R.drawable.camera_icon);
-			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, true);
+			int imageID = View.generateViewId();
+			imageView.setId(imageID);
+
+			RelativeLayout.LayoutParams textViewLayoutParams = (RelativeLayout.LayoutParams) mainNewsFullTextView.getLayoutParams();
+			textViewLayoutParams.addRule(RelativeLayout.BELOW, imageID);
+			mainNewsFullTextView.setLayoutParams(textViewLayoutParams);
+
+			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, true, imageID, putItBelowId);
 			newsImagesFetcher.execute(tmpMainNewsImageURL);
-			relativeLayout.addView(imageView, lp);
+			relativeLayout.addView(imageView);
 			tmpMainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL" + i);
+			putItBelowId = imageID;
 		}
 	}
 

@@ -9,17 +9,22 @@ import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.io.InputStream;
 
 public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 	ImageView imageView;
 	boolean isMainNewsActivity;
+	int imageViewID;
+	int imageID;
 	private ProgressDialog progressDialog;
 
-	public NewsImagesFetcher (ImageView imageView, boolean isMainNewsActivity){
+	public NewsImagesFetcher (ImageView imageView, boolean isMainNewsActivity, int imageID, int imageViewID){
 		this.imageView = imageView;
 		this.isMainNewsActivity = isMainNewsActivity;
+		this.imageViewID = imageViewID;
+		this.imageID = imageID;
 	}
 
 	protected void onPreExecute() {
@@ -57,7 +62,8 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 			if (isMainNewsActivity) {
 				RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
-				layoutParams.addRule(RelativeLayout.BELOW, R.id.main_news_date);
+				layoutParams.addRule(RelativeLayout.BELOW, this.imageViewID);
+				layoutParams.setMargins(0, 20, 0, 0);
 				imageView.setLayoutParams(layoutParams);
 			}
 		}

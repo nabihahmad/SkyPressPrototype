@@ -126,19 +126,19 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			});
 
 			ImageView imageView = (ImageView) activity.findViewById(R.id.latest_news_ImageView_0);
-			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, false);
+			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, false, 0, 0);
 			newsImagesFetcher.execute(((ArrayList<String>) result.get(0).get("listImgURLs")).get(0));
 
 			ImageView imageView1 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_1);
-			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(imageView1, false);
+			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(imageView1, false, 0, 0);
 			newsImagesFetcher1.execute(((ArrayList<String>) result.get(1).get("listImgURLs")).get(0));
 
 			ImageView imageView2 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_2);
-			NewsImagesFetcher newsImagesFetcher2 = new NewsImagesFetcher(imageView2, false);
+			NewsImagesFetcher newsImagesFetcher2 = new NewsImagesFetcher(imageView2, false, 0, 0);
 			newsImagesFetcher2.execute(((ArrayList<String>) result.get(2).get("listImgURLs")).get(0));
 
 			ImageView imageView3 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_3);
-			NewsImagesFetcher newsImagesFetcher3 = new NewsImagesFetcher(imageView3, false);
+			NewsImagesFetcher newsImagesFetcher3 = new NewsImagesFetcher(imageView3, false, 0, 0);
 			newsImagesFetcher3.execute(((ArrayList<String>) result.get(3).get("listImgURLs")).get(0));
 
 			CustomAdapter customAdapter = new CustomAdapter(activity, result);
