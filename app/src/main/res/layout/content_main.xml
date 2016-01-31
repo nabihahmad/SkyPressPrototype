@@ -196,6 +196,16 @@
 				android:src="@drawable/alert_icon"
 				android:visibility="gone"/>
 
+			<ImageView
+				android:layout_below="@+id/news_listing"
+				android:id="@+id/exception_image"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
+				android:src="@drawable/alert_icon_1"
+				android:visibility="gone"/>
+
 		</RelativeLayout>
 	</ScrollView>
 </RelativeLayout>

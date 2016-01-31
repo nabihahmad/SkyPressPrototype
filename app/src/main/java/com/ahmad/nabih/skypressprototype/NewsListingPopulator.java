@@ -31,6 +31,8 @@ import java.util.List;
 public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMap<String, Object>>> {
 	private String strURL = "http://skypressiq.net/localnews.xml";
 	private String strLabel = null;
+	private boolean isNoInternetConnection = false;
+	private boolean isXMLParserException = false;
 	Activity activity;
 	private ProgressDialog progressDialog;
 	private static final Spannable.Factory spannableFactory = Spannable.Factory.getInstance();
@@ -161,16 +163,18 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.GONE);
 			progressDialog.dismiss();
 		} else {
-			List<String> tmpList = new ArrayList<String>();
-			tmpList.add(MainActivity.NO_CONNECTIVITY);
-			ListView list = (ListView) activity.findViewById(R.id.news_listing);
-			list.setAdapter(new ArrayAdapter(activity, android.R.layout.simple_list_item_1, tmpList));
+			if(isNoInternetConnection) {
+				List<String> tmpList = new ArrayList<String>();
+				tmpList.add(MainActivity.NO_CONNECTIVITY);
+				ListView list = (ListView) activity.findViewById(R.id.news_listing);
+				list.setAdapter(new ArrayAdapter(activity, android.R.layout.simple_list_item_1, tmpList));
 
-			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> parent, View titleClicked, int position, long id) {
-				}
-			});
+				list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View titleClicked, int position, long id) {
+					}
+				});
+			}
 
 			if(activity.findViewById(R.id.news_ticker_layout) != null)
 				activity.findViewById(R.id.news_ticker_layout).setVisibility(View.GONE);
@@ -181,7 +185,11 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				viewFlipper.setVisibility(View.GONE);
 
 			progressDialog.dismiss();
-			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.VISIBLE);
+			if(isNoInternetConnection)
+				activity.findViewById(R.id.no_connectivity_image).setVisibility(View.VISIBLE);
+			else
+				activity.findViewById(R.id.exception_image).setVisibility(View.VISIBLE);
+
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.setMessage(MainActivity.GENERAL_EXCEPTION);
 			builder.setCancelable(true);
@@ -215,6 +223,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			response = parseXMLAndStoreIt(myParser);
 			stream.close();
 		} catch (Exception e) {
+			isNoInternetConnection = true;
 			System.out.println(e.getMessage());
 		} finally {
 			conn.disconnect();
@@ -268,6 +277,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				event = myParser.next();
 			}
 		} catch (Exception e) {
+			isXMLParserException = true;
 			e.printStackTrace();
 		}
 		Log.d(this.getClass().getName(), "parseXMLAndStoreIt() returned: " + listOfNews);
