@@ -7,7 +7,7 @@
 	android:layout_height="match_parent"
 	android:fitsSystemWindows="true"
 	android:layoutDirection="rtl"
-	tools:context="com.ahmad.nabih.skypressprototype.ContactUsActivity">
+	tools:context="com.ahmad.nabih.skypressprototype.AboutUsActivity">
 
 	<android.support.design.widget.AppBarLayout
 		android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
 
 	</android.support.design.widget.AppBarLayout>
 
-	<include layout="@layout/content_contact_us"
+	<include layout="@layout/content_about_us"
 			 android:layoutDirection="rtl"/>
 
 </android.support.design.widget.CoordinatorLayout>

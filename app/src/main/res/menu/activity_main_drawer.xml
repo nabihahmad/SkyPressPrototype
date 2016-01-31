@@ -39,9 +39,13 @@
 				android:icon="@android:drawable/ic_menu_share"
 				android:title="Share"/-->
 			<item
-				android:id="@+id/nav_contactUs"
+			android:id="@+id/nav_contactUs"
+			android:icon="@android:drawable/ic_dialog_email"
+			android:title="@string/contactUs_label"/>
+			<item
+				android:id="@+id/nav_aboutUs"
 				android:icon="@android:drawable/ic_dialog_email"
-				android:title="@string/contactUs_label"/>
+				android:title="@string/aboutUs_label"/>
 		</menu>
 	</item>
 

@@ -243,6 +243,10 @@ public class MainNewsActivity extends AppCompatActivity
 			Intent contactUsIntent = new Intent(this, ContactUsActivity.class);
 			startActivity(contactUsIntent);
 			return true;
+		}else if (id == R.id.nav_aboutUs) {
+			Intent aboutUsIntent = new Intent(this, AboutUsActivity.class);
+			startActivity(aboutUsIntent);
+			return true;
 		}
 		mainActivity.putExtras(parameters);
 		startActivity(mainActivity);

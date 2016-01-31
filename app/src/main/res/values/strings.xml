@@ -25,6 +25,7 @@
 	<string name="videosite_label">مكتبة الفيديو</string>
 	<string name="communicate_label">للتواصل</string>
 	<string name="contactUs_label">اتصل بنا</string>
+	<string name="aboutUs_label">من نحن</string>
 	<string name="share_on_social_media_label">شارك على وسائل التواصل الاجتماعي</string>
 	<string name="share_on_social_media_subject"></string>
 	<string name="share_on_social_media_body"></string>
@@ -57,7 +58,9 @@
 	<string name="contact_us_first_name">الاسم الأول</string>
 	<string name="contact_us_last_name">اسم العائلة</string>
 	<string name="contact_us_email">البريد الإلكتروني</string>
+	<string name="contact_us_email_address">عنوان البريد الإلكتروني</string>
 	<string name="contact_us_address">العنوان</string>
+	<string name="contact_us_address_hint">العنوان السكني</string>
 	<string name="contact_us_subject">سبب الإرسال</string>
 	<string name="contact_us_subject_praise">مديح</string>
 	<string name="contact_us_subject_suggestion">اقتراح</string>
@@ -66,4 +69,16 @@
 	<string name="contact_us_subject_others">أخرى</string>
 	<string name="contact_us_body">النص</string>
 	<string name="contact_us_send_button">إرسال</string>
+
+	<!-- About us labels -->
+	<string name="about_us_desc">مواصفات</string>
+	<string name="about_us_listed_lbl">الوكالة</string>
+	<string name="about_us_site_lbl">الموقع الإلكتروني</string>
+	<string name="about_us_mail_lbl">البريد الإلكتروني</string>
+	<string name="about_us_mobile_lbl">الهاتف الثاني</string>
+	<string name="about_us_mobile2_lbl">الهاتف الأول</string>
+	<string name="about_us_address_lbl">العنوان</string>
+	<string name="about_us_facebook_lbl">موقع الفايسبوك</string>
+	<string name="about_us_twitter_lbl">موقع تويتر</string>
+	<string name="about_us_tube_lbl">موقع يوتيوب</string>
 </resources>
