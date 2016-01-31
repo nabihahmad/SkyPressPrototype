@@ -147,7 +147,6 @@ public class AboutUsInfoPopulator extends AsyncTask <String, Double, List<HashMa
 			ArrayList<String> listImgURLs = new ArrayList<String>();
 			String text = null;
 			while (event != XmlPullParser.END_DOCUMENT) {
-				myParser = null;
 				String name = myParser.getName();
 				switch (event) {
 					case XmlPullParser.START_TAG:
