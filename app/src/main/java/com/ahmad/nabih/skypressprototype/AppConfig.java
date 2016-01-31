@@ -8,6 +8,7 @@ public final class AppConfig {
     public static final String PARSE_APPLICATION_ID = "dR9ZMHdD1xl5tESyUPeJOfSlfssyqKzxq5DDy2ga";
     public static final String PARSE_CLIENT_KEY = "XBzGE8EgzoKsgi3p6m1bn8hrQWK6bqpCK9ZLomhl";
     public static final int NOTIFICATION_ID = 100;
+    public static final String[] CONTACT_US_EMAIL_RECIPIENTS = {"nabih77@gmail.com"};
 
     public static final String URL_LOCAL = "http://skypressiq.net/localnews.xml";
     public static final String URL_ARAB_INTERNATIONAL = "http://skypressiq.net/arnews.xml";

@@ -2,7 +2,6 @@ package com.ahmad.nabih.skypressprototype;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Spannable;

@@ -48,4 +48,22 @@
 
 	<string name="pref_title_ringtone">نغمة الإشعار</string>
 	<string name="pref_ringtone_silent">صامت</string>
+
+	<!-- Contact Us Form -->
+	<string name="mandatory_field_validation_message">الخانة مطلوبة</string>
+	<string name="email_field_validation_message">البريد الإلكتروني الذي أدخلته غير صحيح</string>
+	<string name="contact_us_email_subject">اتصل بنا من: </string>
+	<string name="contact_us_name">الاسم</string>
+	<string name="contact_us_first_name">الاسم الأول</string>
+	<string name="contact_us_last_name">اسم العائلة</string>
+	<string name="contact_us_email">البريد الإلكتروني</string>
+	<string name="contact_us_address">العنوان</string>
+	<string name="contact_us_subject">سبب الإرسال</string>
+	<string name="contact_us_subject_praise">مديح</string>
+	<string name="contact_us_subject_suggestion">اقتراح</string>
+	<string name="contact_us_subject_complaint">شكوى</string>
+	<string name="contact_us_subject_bug">خطأ في التطبيق</string>
+	<string name="contact_us_subject_others">أخرى</string>
+	<string name="contact_us_body">النص</string>
+	<string name="contact_us_send_button">إرسال</string>
 </resources>

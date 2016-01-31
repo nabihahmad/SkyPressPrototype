@@ -18,4 +18,11 @@
 		<item>@string/large</item>
 		<item>@string/xlarge</item>
 	</string-array>
+	<string-array name="contact_us_subject_array">
+		<item>@string/contact_us_subject_suggestion</item>
+		<item>@string/contact_us_subject_praise</item>
+		<item>@string/contact_us_subject_complaint</item>
+		<item>@string/contact_us_subject_bug</item>
+		<item>@string/contact_us_subject_others</item>
+	</string-array>
 </resources>

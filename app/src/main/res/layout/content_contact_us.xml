@@ -11,7 +11,7 @@
 	android:paddingBottom="@dimen/activity_vertical_margin"
 	app:layout_behavior="@string/appbar_scrolling_view_behavior"
 	tools:showIn="@layout/app_bar_contact_us"
-	tools:context="com.ahmad.nabih.skypressprototype.ContactUsActivity">
+	tools:context="com.ahmad.nabih.skypressprototype.ContactUsIFrameActivity">
 
 	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 		android:id="@+id/contactUs_title"
@@ -20,10 +20,99 @@
 		android:layout_height="wrap_content"
 		android:text="@string/contactUs_label"/>
 
-	<WebView
+	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+				android:id="@+id/contactUs_scroll_view"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_below="@+id/contactUs_title"
+				android:fadingEdgeLength="0dp"
+				android:fillViewport="true"
+				android:overScrollMode="never"
+				android:layout_marginTop="8sp"
+				android:scrollbars="none">
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical">
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/contact_us_name"
+				android:textSize="@dimen/text_size_large"
+				android:background="@color/colorPrimaryLight"/>
+			<EditText
+				android:id="@+id/contact_us_edit_first_name"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textPersonName"
+				android:hint="@string/contact_us_first_name"/>
+			<EditText
+				android:id="@+id/contact_us_edit_last_name"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textPersonName"
+				android:hint="@string/contact_us_last_name"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/contact_us_email"
+				android:textSize="@dimen/text_size_large"
+				android:background="@color/colorPrimaryLight"/>
+			<EditText
+				android:id="@+id/contact_us_edit_email"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textEmailAddress"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/contact_us_address"
+				android:textSize="@dimen/text_size_large"
+				android:background="@color/colorPrimaryLight"/>
+			<EditText
+				android:id="@+id/contact_us_edit_address"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textNoSuggestions"/>
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/contact_us_subject"
+				android:textSize="@dimen/text_size_large"
+				android:background="@color/colorPrimaryLight"/>
+			<Spinner
+				android:id="@+id/contact_us_subject"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:prompt="@string/contact_us_subject"
+				android:entries="@array/contact_us_subject_array">
+			</Spinner>
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/contact_us_body"
+				android:textSize="@dimen/text_size_large"
+				android:background="@color/colorPrimaryLight"/>
+			<EditText
+				android:id="@+id/contact_us_edit_body"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textMultiLine"
+				android:lines="5"/>
+			<Button
+				android:id="@+id/contact_us_edit_button"
+				android:layout_height="wrap_content"
+				android:text="@string/contact_us_send_button"
+				android:onClick="submitContactUsForm"
+				android:layout_width="fill_parent">
+			</Button>
+		</LinearLayout>
+	</ScrollView>
+
+	<!--WebView
 		android:id="@+id/contactUs_WebView"
 		android:layout_below="@+id/contactUs_title"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" />
+		android:layout_height="fill_parent" /-->
 
 </RelativeLayout>
