@@ -4,8 +4,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -21,8 +23,9 @@ public class GMail {
 	final String starttls = "true";
 	final String emailHost = "smtp.gmail.com";
 
+	String fromName;
 	String fromEmail = "sana3aapp@gmail.com";
-	String fromPassword = "TI8@@9IQ";
+	String fromPassword = "";
 	List toEmailList;
 	String emailSubject;
 	String emailBody;
@@ -32,13 +35,10 @@ public class GMail {
 	MimeMessage emailMessage;
 
 	public GMail() {
-
 	}
 
-	public GMail(String fromEmail, String fromPassword,
-				 List toEmailList, String emailSubject, String emailBody) {
-//		this.fromEmail = fromEmail;
-//		this.fromPassword = fromPassword;
+	public GMail(String fromName, List toEmailList, String emailSubject, String emailBody) {
+		this.fromName = fromName;
 		this.toEmailList = toEmailList;
 		this.emailSubject = emailSubject;
 		this.emailBody = emailBody;
@@ -52,8 +52,11 @@ public class GMail {
 
 	public MimeMessage createEmailMessage() throws AddressException,
 			MessagingException, UnsupportedEncodingException {
-
-		mailSession = Session.getDefaultInstance(emailProperties, null);
+		try {
+			mailSession = Session.getDefaultInstance(emailProperties);
+		} catch (Exception e) {
+			Log.e("err", e.toString());
+		}
 		emailMessage = new MimeMessage(mailSession);
 
 		emailMessage.setFrom(new InternetAddress(fromEmail, fromEmail));
@@ -64,8 +67,7 @@ public class GMail {
 		}
 
 		emailMessage.setSubject(emailSubject);
-		emailMessage.setContent(emailBody, "text/html");// for a html email
-		// emailMessage.setText(emailBody);// for a text email
+		emailMessage.setContent(emailBody, "text/html"); // for a html email
 		Log.i("GMail", "Email Message created.");
 		return emailMessage;
 	}
@@ -78,5 +80,4 @@ public class GMail {
 		transport.close();
 		Log.i("GMail", "Email sent successfully.");
 	}
-
 }
