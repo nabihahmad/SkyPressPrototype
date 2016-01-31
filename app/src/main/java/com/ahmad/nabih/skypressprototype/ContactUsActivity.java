@@ -31,6 +31,7 @@ public class ContactUsActivity extends AppCompatActivity
 	private static String MANDATORY_VALIDATION_MESSAGE;
 	private static String EMAIL_VALIDATION_MESSAGE;
 	private static String CONTACT_US_EMAIL_SUBJECT;
+	private static String CONTACT_US_SENDER_NAME;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class ContactUsActivity extends AppCompatActivity
 		MANDATORY_VALIDATION_MESSAGE = getResources().getString(R.string.mandatory_field_validation_message);
 		EMAIL_VALIDATION_MESSAGE = getResources().getString(R.string.email_field_validation_message);
 		CONTACT_US_EMAIL_SUBJECT = getResources().getString(R.string.contact_us_email_subject);
+		CONTACT_US_SENDER_NAME = getResources().getString(R.string.contactUs_label);
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_contact_us);
@@ -133,15 +135,13 @@ public class ContactUsActivity extends AppCompatActivity
 		if (validationsPassed) {
 			String strBody = getEmailBody(contactUsFirstName, contactUsLastName, contactUsEmail,
 					contactUsAddress, contactUsSubject, contactUsBody);
-			sendContactUsEmail(contactUsEmail, strBody);
-//			Toast.makeText(ContactUsActivity.this,
-//					"Thank you.", Toast.LENGTH_SHORT).show();
+			sendContactUsEmail(strBody);
 		}
 	}
 
-	protected void sendContactUsEmail(String fromEmail, String emailBody) {
-		new SendMailTask(ContactUsActivity.this).execute(fromEmail,
-				"", Arrays.asList(AppConfig.CONTACT_US_EMAIL_RECIPIENTS), CONTACT_US_EMAIL_SUBJECT, emailBody);
+	protected void sendContactUsEmail(String emailBody) {
+		new SendMailTask(ContactUsActivity.this).execute(CONTACT_US_SENDER_NAME,
+				Arrays.asList(AppConfig.CONTACT_US_EMAIL_RECIPIENTS), CONTACT_US_EMAIL_SUBJECT, emailBody);
 	}
 
 	@Override

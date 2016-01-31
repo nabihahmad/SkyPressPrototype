@@ -14,7 +14,7 @@
 	tools:context=".MainActivity"
 	tools:showIn="@layout/app_bar_main">
 
-	<RelativeLayout
+	<!--RelativeLayout
 		android:id="@+id/news_ticker_layout"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -28,9 +28,11 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_centerVertical="true"
-			android:typeface="monospace"/>
+			android:typeface="monospace"/-->
 
 		<com.ahmad.nabih.skypressprototype.TextViewWithImages
+			android:visibility="gone"
+			android:background="@color/colorPrimaryDark"
 			android:id="@+id/news_ticker"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -42,16 +44,15 @@
 			android:scrollHorizontally="true"
 			android:singleLine="true"
 			android:textColor="@android:color/white"
-			android:textSize="@dimen/text_size_medium"
-			android:layout_marginStart="60sp"/>
+			android:textSize="@dimen/text_size_medium"/>
 
-	</RelativeLayout>
+	<!--/RelativeLayout-->
 
 	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 				android:id="@+id/main_scroll_view"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:layout_below="@+id/news_ticker_layout"
+				android:layout_below="@+id/news_ticker"
 				android:fadingEdgeLength="0dp"
 				android:fillViewport="true"
 				android:overScrollMode="never"

@@ -156,7 +156,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				}
 			});
 
-			activity.findViewById(R.id.news_ticker_layout).setVisibility(View.VISIBLE);
+			activity.findViewById(R.id.news_ticker).setVisibility(View.VISIBLE);
 			newsTitle.setVisibility(View.VISIBLE);
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
 			viewFlipper.setVisibility(View.VISIBLE);
@@ -176,8 +176,8 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				});
 			}
 
-			if(activity.findViewById(R.id.news_ticker_layout) != null)
-				activity.findViewById(R.id.news_ticker_layout).setVisibility(View.GONE);
+			if(activity.findViewById(R.id.news_ticker) != null)
+				activity.findViewById(R.id.news_ticker).setVisibility(View.GONE);
 			if(newsTitle != null)
 				newsTitle.setVisibility(View.GONE);
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
@@ -261,7 +261,8 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 								|| name.equalsIgnoreCase("pubDate") || name.equalsIgnoreCase("video")) {
 							tmpMap.put(name, text);
 						} else if (name.equalsIgnoreCase("full") || name.equalsIgnoreCase("description")) {
-							text = text.replaceAll("&nbsp;", "");
+							text = text.replaceAll("&nbsp;", "").replaceAll("&raquo;","").replaceAll("&laquo;","")
+									.replaceAll("&rdquo;","").replaceAll("&ldquo;","");
 							tmpMap.put(name, text);
 						} else if (name.equalsIgnoreCase("item")) {
 							tmpMap.put("listImgURLs", listImgURLs);
