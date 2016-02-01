@@ -75,8 +75,8 @@
 	<string name="about_us_listed_lbl">الوكالة</string>
 	<string name="about_us_site_lbl">الموقع الإلكتروني</string>
 	<string name="about_us_mail_lbl">البريد الإلكتروني</string>
-	<string name="about_us_mobile_lbl">الهاتف الثاني</string>
-	<string name="about_us_mobile2_lbl">الهاتف الأول</string>
+	<string name="about_us_mobile_lbl">الهاتف الأول</string>
+	<string name="about_us_mobile2_lbl">الهاتف الثاني</string>
 	<string name="about_us_address_lbl">العنوان</string>
 	<string name="about_us_facebook_lbl">موقع الفايسبوك</string>
 	<string name="about_us_twitter_lbl">موقع تويتر</string>

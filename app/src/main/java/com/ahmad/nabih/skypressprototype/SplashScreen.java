@@ -20,6 +20,7 @@ public class SplashScreen extends Activity {
 				} finally {
 					Intent intent = new Intent(SplashScreen.this, MainActivity.class);
 					startActivity(intent);
+					overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 				}
 			}
 		};

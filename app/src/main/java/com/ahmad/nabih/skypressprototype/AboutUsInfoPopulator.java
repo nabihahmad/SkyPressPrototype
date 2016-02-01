@@ -64,7 +64,7 @@ public class AboutUsInfoPopulator extends AsyncTask <String, Double, List<HashMa
 		TextView aboutUsAddressTextView = (TextView) activity.findViewById(R.id.about_us_address);
 		TextView aboutUsFacebookTextView = (TextView) activity.findViewById(R.id.about_us_facebook);
 		TextView aboutUsTwitterTextView = (TextView) activity.findViewById(R.id.about_us_twitter);
-		TextView aboutUsTubeTextView = (TextView) activity.findViewById(R.id.about_us_tube);
+//		TextView aboutUsTubeTextView = (TextView) activity.findViewById(R.id.about_us_tube);
 
 		if(result != null && result.size() > 0){
 			HashMap<String, Object> resultMap = result.get(0);
@@ -72,12 +72,18 @@ public class AboutUsInfoPopulator extends AsyncTask <String, Double, List<HashMa
 			aboutUsTextView.setText((String) resultMap.get("about"));
 			aboutUsListedTextView.setText((String) resultMap.get("listed"));
 			aboutUsMailTextView.setText((String) resultMap.get("mail"));
-			aboutUsMobileTextView.setText((String) resultMap.get("mobile"));
-			aboutUsMobile2TextView.setText((String) resultMap.get("mobile2"));
+			String mobile = (String) resultMap.get("mobile");
+			if (mobile != null && mobile.startsWith("00"))
+				mobile = mobile.replaceFirst("00", "+");
+			aboutUsMobileTextView.setText(mobile);
+			String mobile2 = (String) resultMap.get("mobile2");
+			if (mobile2 != null && mobile2.startsWith("00"))
+				mobile2 = mobile2.replaceFirst("00", "+");
+			aboutUsMobile2TextView.setText(mobile2);
 			aboutUsAddressTextView.setText((String) resultMap.get("address"));
-			aboutUsFacebookTextView.setText((String) resultMap.get("facebook"));
-			aboutUsTwitterTextView.setText((String) resultMap.get("twitter"));
-			aboutUsTubeTextView.setText((String) resultMap.get("tube"));
+			aboutUsFacebookTextView.setText("http://facebook.com/" + (String) resultMap.get("facebook"));
+			aboutUsTwitterTextView.setText("http://twitter.com/" + (String) resultMap.get("twitter"));
+//			aboutUsTubeTextView.setText("http://youtube.com/" + (String) resultMap.get("tube"));
 
 			progressDialog.dismiss();
 		}else{

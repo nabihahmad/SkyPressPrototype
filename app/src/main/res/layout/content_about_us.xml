@@ -68,6 +68,9 @@
 				android:id="@+id/about_us_mail"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:clickable="true"
+				android:textColorLink="@color/colorPrimaryDark"
+				android:autoLink="email"
 				android:layout_marginTop="10dp"/>
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 				android:layout_width="fill_parent"
@@ -80,18 +83,24 @@
 				android:id="@+id/about_us_mobile"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:clickable="true"
+				android:textColorLink="@color/colorPrimaryDark"
+				android:autoLink="phone"
 				android:layout_marginTop="10dp"/>
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/about_us_mobile2_lbl"
-			android:textSize="@dimen/text_size_large"
-			android:background="@color/colorPrimaryLight"
-			android:layout_marginTop="20dp"/>
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/about_us_mobile2_lbl"
+				android:textSize="@dimen/text_size_large"
+				android:background="@color/colorPrimaryLight"
+				android:layout_marginTop="20dp"/>
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 				android:id="@+id/about_us_mobile2"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:clickable="true"
+				android:textColorLink="@color/colorPrimaryDark"
+				android:autoLink="phone"
 				android:layout_marginTop="10dp"/>
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 				android:layout_width="fill_parent"
@@ -116,6 +125,9 @@
 				android:id="@+id/about_us_facebook"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:clickable="true"
+				android:textColorLink="@color/colorPrimaryDark"
+				android:autoLink="web"
 				android:layout_marginTop="10dp"/>
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 				android:layout_width="fill_parent"
@@ -128,8 +140,11 @@
 				android:id="@+id/about_us_twitter"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
+				android:clickable="true"
+				android:textColorLink="@color/colorPrimaryDark"
+				android:autoLink="web"
 				android:layout_marginTop="10dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<!--com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_tube_lbl"
@@ -140,7 +155,10 @@
 				android:id="@+id/about_us_tube"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"/>
+				android:clickable="true"
+				android:textColorLink="@color/colorPrimaryDark"
+				android:autoLink="web"
+				android:layout_marginTop="10dp"/-->
 		</LinearLayout>
 	</ScrollView>
 	<LinearLayout
