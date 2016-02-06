@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.Looper;
 import android.text.Spannable;
 import android.util.Log;
@@ -161,7 +162,13 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
 			viewFlipper.setVisibility(View.VISIBLE);
 			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.GONE);
-			progressDialog.dismiss();
+			//progressDialog.dismiss();
+			Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
+				public void run() {
+					progressDialog.dismiss();
+				}
+			}, 3000);
 		} else {
 			if(isNoInternetConnection) {
 				List<String> tmpList = new ArrayList<String>();

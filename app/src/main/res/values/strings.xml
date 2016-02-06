@@ -71,7 +71,6 @@
 	<string name="contact_us_send_button">إرسال</string>
 
 	<!-- About us labels -->
-	<string name="about_us_desc">مواصفات</string>
 	<string name="about_us_listed_lbl">الوكالة</string>
 	<string name="about_us_site_lbl">الموقع الإلكتروني</string>
 	<string name="about_us_mail_lbl">البريد الإلكتروني</string>
@@ -81,4 +80,5 @@
 	<string name="about_us_facebook_lbl">موقع الفايسبوك</string>
 	<string name="about_us_twitter_lbl">موقع تويتر</string>
 	<string name="about_us_tube_lbl">موقع يوتيوب</string>
+	<string name="about_us_desc">من نحن</string>
 </resources>
