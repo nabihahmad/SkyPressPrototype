@@ -21,6 +21,7 @@ public class SendMailTask extends AsyncTask {
 		statusDialog.setMessage("Getting ready...");
 		statusDialog.setIndeterminate(false);
 		statusDialog.setCancelable(false);
+		statusDialog.setCanceledOnTouchOutside(false);
 		statusDialog.show();
 	}
 

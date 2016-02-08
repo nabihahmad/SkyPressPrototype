@@ -48,6 +48,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		super.onPreExecute();
 		progressDialog = new ProgressDialog(this.activity);
 		progressDialog.setMessage(MainActivity.LOADING);
+		progressDialog.setCanceledOnTouchOutside(false);
 		progressDialog.show();
 	}
 
@@ -162,7 +163,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
 			viewFlipper.setVisibility(View.VISIBLE);
 			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.GONE);
-			//progressDialog.dismiss();
 			Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 				public void run() {

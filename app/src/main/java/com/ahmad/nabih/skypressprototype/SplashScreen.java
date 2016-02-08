@@ -18,7 +18,10 @@ public class SplashScreen extends Activity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
+					String parseDataStr = getIntent().getStringExtra("com.parse.Data");
 					Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+					if(parseDataStr != null && !parseDataStr.equals(""))
+						intent.putExtra("com.parse.Data", parseDataStr);
 					startActivity(intent);
 					overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 				}

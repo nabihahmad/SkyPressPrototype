@@ -9,9 +9,6 @@ import com.parse.ParsePushBroadcastReceiver;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by Leila Nizam on 12/27/2015.
- */
 public class CustomPushReceiver extends ParsePushBroadcastReceiver {
     private final String TAG = CustomPushReceiver.class.getSimpleName();
 
@@ -63,20 +60,14 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
     private void parsePushJson(Context context, JSONObject json) {
         try {
             Log.e(TAG, json.toString());
-            boolean isBackground = json.has("is_background") ? json.getBoolean("is_background") : true;
-           // JSONObject data = json.getJSONObject("data");
             String title = json.getString("title");
             String message = json.getString("message");
-            if (!isBackground) {
-                Intent resultIntent = new Intent(context, MainActivity.class);
-                showNotificationMessage(context, title, message, resultIntent);
-            }
-
+            Intent resultIntent = new Intent(context, MainActivity.class);
+            showNotificationMessage(context, title, message, resultIntent);
         } catch (JSONException e) {
             Log.e(TAG, "Push message json exception: " + e.getMessage());
         }
     }
-
 
     /**
      * Shows the notification message in the notification bar
@@ -88,13 +79,7 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
      * @param intent
      */
     private void showNotificationMessage(Context context, String title, String message, Intent intent) {
-
         notificationUtils = new NotificationUtils(context);
-
-        intent.putExtras(parseIntent.getExtras());
-
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
         notificationUtils.showNotificationMessage(title, message, intent);
     }
 }

@@ -24,7 +24,19 @@ import android.widget.Toast;
 
 import com.google.api.client.util.StringUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ContactUsActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +44,7 @@ public class ContactUsActivity extends AppCompatActivity
 	private static String EMAIL_VALIDATION_MESSAGE;
 	private static String CONTACT_US_EMAIL_SUBJECT;
 	private static String CONTACT_US_SENDER_NAME;
+	private String CONTACT_US_POST_URL = "http://skypressiq.net/contactUs.php";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +153,57 @@ public class ContactUsActivity extends AppCompatActivity
 	}
 
 	protected void sendContactUsEmail(String emailBody) {
+//		InputStream is = null;
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		params.put("senderName", CONTACT_US_SENDER_NAME);
+//		params.put("emailSubject", CONTACT_US_EMAIL_SUBJECT);
+//		params.put("emailBody", emailBody);
+//		HttpURLConnection conn;
+//		String json = null;
+//		JSONObject jObj;
+//		try{
+//			URL url = new URL(CONTACT_US_POST_URL);
+//			conn = (HttpURLConnection)url.openConnection();
+//			StringBuilder postData = new StringBuilder();
+//			for (Map.Entry<String,Object> param : params.entrySet()) {
+//				if (postData.length() != 0) postData.append('&');
+//				postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+//				postData.append('=');
+//				postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+//			}
+//			byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+//
+//			conn.setRequestMethod("POST");
+//			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+//			conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+//			conn.setDoOutput(true);
+//			OutputStream dos = conn.getOutputStream();
+//			dos.write(postDataBytes);
+//			dos.flush();
+//			dos.close();
+//			is = conn.getInputStream();
+//		}catch(Exception e){
+//			Log.e("URL Connection", e.toString());
+//		}
+//		try {
+//			BufferedReader reader = new BufferedReader(new InputStreamReader(
+//					is, "iso-8859-1"), 8);
+//			StringBuilder sb = new StringBuilder();
+//			String line = null;
+//			while ((line = reader.readLine()) != null) {
+//				sb.append(line + "\n");
+//			}
+//			is.close();
+//			json = sb.toString();
+//		} catch (Exception e) {
+//			Log.e("Buffer Error", "Error converting result " + e.toString());
+//		}
+//		// try parse the string to a JSON object
+//		try {
+//			jObj = new JSONObject(json);
+//		} catch (JSONException e) {
+//			Log.e("JSON Parser", "Error parsing data " + e.toString());
+//		}
 		new SendMailTask(ContactUsActivity.this).execute(CONTACT_US_SENDER_NAME,
 				Arrays.asList(AppConfig.CONTACT_US_EMAIL_RECIPIENTS), CONTACT_US_EMAIL_SUBJECT, emailBody);
 	}

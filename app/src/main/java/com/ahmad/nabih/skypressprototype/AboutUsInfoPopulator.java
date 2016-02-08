@@ -45,6 +45,7 @@ public class AboutUsInfoPopulator extends AsyncTask <String, Double, List<HashMa
 		super.onPreExecute();
 		progressDialog = new ProgressDialog(this.activity);
 		progressDialog.setMessage(MainActivity.LOADING);
+		progressDialog.setCanceledOnTouchOutside(false);
 		progressDialog.show();
 	}
 

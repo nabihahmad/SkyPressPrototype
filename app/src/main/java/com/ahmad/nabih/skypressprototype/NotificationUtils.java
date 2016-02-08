@@ -12,12 +12,11 @@ import android.media.RingtoneManager;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import java.util.List;
 
-/**
- * Created by Leila Nizam on 12/27/2015.
- */
 public class NotificationUtils {
     private String TAG = NotificationUtils.class.getSimpleName();
 
@@ -31,46 +30,10 @@ public class NotificationUtils {
     }
 
     public void showNotificationMessage(String title, String message, Intent intent) {
-
-        // Check for empty push message
-        if (TextUtils.isEmpty(message))
-            return;
-
-        if (isAppIsInBackground(mContext)) {
-            // notification icon
-            int icon = R.mipmap.ic_launcher;
-
-            int mNotificationId = AppConfig.NOTIFICATION_ID;
-
-            PendingIntent resultPendingIntent =
-                    PendingIntent.getActivity(
-                            mContext,
-                            0,
-                            intent,
-                            PendingIntent.FLAG_CANCEL_CURRENT
-                    );
-
-            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-                    mContext);
-            Notification notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(0)
-                    .setAutoCancel(true)
-                    .setContentTitle(title)
-                    .setStyle(inboxStyle)
-                    .setContentIntent(resultPendingIntent)
-                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                    .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
-                    .setContentText(message)
-                    .build();
-
-            NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(mNotificationId, notification);
-        } else {
-            intent.putExtra("title", title);
-            intent.putExtra("message", message);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            mContext.startActivity(intent);
+        if (!isAppIsInBackground(mContext)) {
+            Toast toast = Toast.makeText(this.mContext, title, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.BOTTOM | Gravity.FILL_HORIZONTAL, 0, 0);
+            toast.show();
         }
     }
 
@@ -101,7 +64,6 @@ public class NotificationUtils {
                 isInBackground = false;
             }
         }
-
         return isInBackground;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
@@ -110,9 +111,12 @@ public class MainActivity extends AppCompatActivity
 				String mainNewsDate = parseDataJSON.has("pubDate") ? parseDataJSON.getString("pubDate") : "";
 				if (mainNewsDate != null)
 					intent.putExtra("mainNewsDate", mainNewsDate);
-				String mainNewsDescription = parseDataJSON.has("description") ? parseDataJSON.getString("description") : "";
-				if (mainNewsDescription != null)
-					intent.putExtra("mainNewsDescription", mainNewsDescription);
+				String mainNewsFull = parseDataJSON.has("body") ? parseDataJSON.getString("body") : "";
+				if (mainNewsFull != null){
+					mainNewsFull = Html.fromHtml(mainNewsFull).toString();
+					mainNewsFull = mainNewsFull.replaceAll("\\\\\"", "\"");
+					intent.putExtra("mainNewsFull", mainNewsFull);
+				}
 				this.startActivity(intent);
 			} catch (JSONException e) {
 				Log.e("Parse Data JSON Exc", e.toString());
