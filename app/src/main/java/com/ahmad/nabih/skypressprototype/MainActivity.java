@@ -26,12 +26,16 @@ import android.widget.ViewFlipper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 	public static String GENERAL_EXCEPTION = null;
 	public static String LOADING = null;
 	public static String NO_DATA = null;
 	public static String NO_CONNECTIVITY = null;
+	public static Map<String, Object> categoriesMap = new HashMap<String, Object>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity
 		NO_CONNECTIVITY = getResources().getString(R.string.no_connectivity);
 		Typeface boldFont = Typeface.createFromAsset(getAssets(), AppConfig.BOLD_FONT);
 		Typeface regularFont = Typeface.createFromAsset(getAssets(), AppConfig.REGULAR_FONT);
+		buildCategoriesMap();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -101,23 +106,16 @@ public class MainActivity extends AppCompatActivity
 		String parseDataStr = getIntent().getStringExtra("com.parse.Data");
 		if(parseDataStr != null && !parseDataStr.equals("")){
 			try {
-				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label));
-				Intent intent = new Intent(this, MainNewsActivity.class);
-				// TODO: fix the params to read full, video, images, category, as well as imageURL
 				JSONObject parseDataJSON = new JSONObject(parseDataStr);
-				String mainNewsTitle = parseDataJSON.has("title") ? parseDataJSON.getString("title") : "";
-				if (mainNewsTitle != null)
-					intent.putExtra("mainNewsTitle", mainNewsTitle);
-				String mainNewsDate = parseDataJSON.has("pubDate") ? parseDataJSON.getString("pubDate") : "";
-				if (mainNewsDate != null)
-					intent.putExtra("mainNewsDate", mainNewsDate);
-				String mainNewsFull = parseDataJSON.has("body") ? parseDataJSON.getString("body") : "";
-				if (mainNewsFull != null){
-					mainNewsFull = Html.fromHtml(mainNewsFull).toString();
-					mainNewsFull = mainNewsFull.replaceAll("\\\\\"", "\"");
-					intent.putExtra("mainNewsFull", mainNewsFull);
+				String category = parseDataJSON.has("category") ? parseDataJSON.getString("category") : "";
+				String id = parseDataJSON.has("id") ? parseDataJSON.getString("id") : "";
+
+				if(!category.equals("")) {
+					JSONObject categoryObj = (JSONObject) categoriesMap.get(category);
+					String url = categoryObj.getString("url");
+					String label = categoryObj.getString("label");
+					refreshNews(url, label, id);
 				}
-				this.startActivity(intent);
 			} catch (JSONException e) {
 				Log.e("Parse Data JSON Exc", e.toString());
 			}
@@ -126,9 +124,9 @@ public class MainActivity extends AppCompatActivity
 			if(b != null){
 				String navLbl = b.getString("navLbl");
 				String url = b.getString("URL");
-				refreshNews(url, navLbl);
+				refreshNews(url, navLbl, null);
 			}else
-				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label));
+				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), null);
 		}
 	}
 
@@ -163,7 +161,7 @@ public class MainActivity extends AppCompatActivity
 		}
 
 		if(id == R.id.action_refresh){
-			refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label));
+			refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), null);
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -175,21 +173,21 @@ public class MainActivity extends AppCompatActivity
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 		if (id == R.id.nav_local) {
-			refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label));
+			refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), null);
 		} else if (id == R.id.nav_international) {
-			refreshNews(AppConfig.URL_ARAB_INTERNATIONAL, getResources().getString(R.string.arab_international_label));
+			refreshNews(AppConfig.URL_ARAB_INTERNATIONAL, getResources().getString(R.string.arab_international_label), null);
 		} else if (id == R.id.nav_economic) {
-			refreshNews(AppConfig.URL_ECONOMIC, getResources().getString(R.string.economic_label));
+			refreshNews(AppConfig.URL_ECONOMIC, getResources().getString(R.string.economic_label), null);
 		} else if (id == R.id.nav_analytic) {
-			refreshNews(AppConfig.URL_ANALYTIC, getResources().getString(R.string.analytic_label));
+			refreshNews(AppConfig.URL_ANALYTIC, getResources().getString(R.string.analytic_label), null);
 		} else if (id == R.id.nav_sport) {
-			refreshNews(AppConfig.URL_SPORT, getResources().getString(R.string.sport_label));
+			refreshNews(AppConfig.URL_SPORT, getResources().getString(R.string.sport_label), null);
 		} else if (id == R.id.nav_art) {
-			refreshNews(AppConfig.URL_ART, getResources().getString(R.string.art_label));
+			refreshNews(AppConfig.URL_ART, getResources().getString(R.string.art_label), null);
 		} else if (id == R.id.nav_varied) {
-			refreshNews(AppConfig.URL_VARIED, getResources().getString(R.string.varied_label));
+			refreshNews(AppConfig.URL_VARIED, getResources().getString(R.string.varied_label), null);
 		} else if (id == R.id.nav_videosite) {
-			refreshNews(AppConfig.URL_VIDEOSITE, getResources().getString(R.string.videosite_label));
+			refreshNews(AppConfig.URL_VIDEOSITE, getResources().getString(R.string.videosite_label), null);
 		} else if (id == R.id.nav_contactUs) {
 			Intent contactUsIntent = new Intent(this, ContactUsActivity.class);
 			startActivity(contactUsIntent);
@@ -202,9 +200,9 @@ public class MainActivity extends AppCompatActivity
 		return true;
 	}
 
-	private void refreshNews(String strURL, String strLabel) {
+	private void refreshNews(String strURL, String strLabel, String id) {
 		resetCarouselImages();
-		NewsListingPopulator newsListingPopulator = new NewsListingPopulator(this, strURL, strLabel);
+		NewsListingPopulator newsListingPopulator = new NewsListingPopulator(this, strURL, strLabel, id);
 		newsListingPopulator.execute();
 		findViewById(R.id.main_scroll_view).scrollTo(0, 0);
 	}
@@ -225,5 +223,62 @@ public class MainActivity extends AppCompatActivity
 		ImageView imageView3 = (ImageView) this.findViewById(R.id.latest_news_ImageView_3);
 		imageView3.setImageResource(R.drawable.camera_icon);
 		imageView3.setScaleType(ImageView.ScaleType.CENTER);
+	}
+
+	private void buildCategoriesMap(){
+		JSONObject tmp = new JSONObject();
+		try {
+			tmp.put("url", AppConfig.URL_LOCAL);
+			tmp.put("label", getResources().getString(R.string.local_label));
+			categoriesMap.put("7", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_LOCAL);
+			tmp.put("label", getResources().getString(R.string.local_label));
+			categoriesMap.put("8", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_LOCAL);
+			tmp.put("label", getResources().getString(R.string.local_label));
+			categoriesMap.put("6", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_ARAB_INTERNATIONAL);
+			tmp.put("label", getResources().getString(R.string.arab_international_label));
+			categoriesMap.put("20", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_ECONOMIC);
+			tmp.put("label", getResources().getString(R.string.economic_label));
+			categoriesMap.put("10", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_ANALYTIC);
+			tmp.put("label", getResources().getString(R.string.analytic_label));
+			categoriesMap.put("53", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_ANALYTIC);
+			tmp.put("label", getResources().getString(R.string.analytic_label));
+			categoriesMap.put("47", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_SPORT);
+			tmp.put("label", getResources().getString(R.string.sport_label));
+			categoriesMap.put("9", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_ART);
+			tmp.put("label", getResources().getString(R.string.art_label));
+			categoriesMap.put("13", tmp);
+
+			tmp = new JSONObject();
+			tmp.put("url", AppConfig.URL_VARIED);
+			tmp.put("label", getResources().getString(R.string.varied_label));
+			categoriesMap.put("49", tmp);
+
+		}catch(JSONException e){
+			Log.e("JSON Exception", "Error while building categories map: " + e);
+		}
 	}
 }

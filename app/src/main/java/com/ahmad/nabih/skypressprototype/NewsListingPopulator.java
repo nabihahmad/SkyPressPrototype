@@ -32,16 +32,18 @@ import java.util.List;
 public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMap<String, Object>>> {
 	private String strURL = "http://skypressiq.net/localnews.xml";
 	private String strLabel = null;
+	private String id = null;
 	private boolean isNoInternetConnection = false;
 	private boolean isXMLParserException = false;
 	Activity activity;
 	private ProgressDialog progressDialog;
 	private static final Spannable.Factory spannableFactory = Spannable.Factory.getInstance();
 
-	public NewsListingPopulator (Activity activity, String strURL, String strLabel){
+	public NewsListingPopulator (Activity activity, String strURL, String strLabel, String id){
 		this.activity = activity;
 		this.strURL = strURL;
 		this.strLabel = strLabel;
+		this.id = id;
 	}
 
 	protected void onPreExecute() {
@@ -62,6 +64,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		super.onPostExecute(result);
 		TextView newsTitle = (TextView) activity.findViewById(R.id.news_title);
 		newsTitle.setText(strLabel);
+		HashMap<String, Object> mainNewsTmpMap = new HashMap<String, Object>();
 
 		if (result != null && result.size() > 0) {
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
@@ -70,6 +73,9 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				HashMap<String, Object> tmpMap = result.get(i);
 				if (tmpMap.containsKey("title") && tmpMap.get("title") != null) {
 					strNewsTicker += tmpMap.get("title") + "  [img src=logo_news_ticker/]  ";
+				}
+				if(id != null && tmpMap.containsKey("id") && tmpMap.get("id") != null && tmpMap.get("id").equals(id)){
+					mainNewsTmpMap = tmpMap;
 				}
 			}
 			@SuppressLint("WrongViewCast")
@@ -165,10 +171,15 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.GONE);
 			Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
-				public void run() {
-					progressDialog.dismiss();
-				}
-			}, 3000);
+			public void run() {
+				progressDialog.dismiss();
+			}
+		}, 3000);
+			if(mainNewsTmpMap.size() != 0){
+				Intent intent = new Intent(activity, MainNewsActivity.class);
+				intent = setIntentStringsFromMap(intent, mainNewsTmpMap);
+				activity.startActivity(intent);
+			}
 		} else {
 			if(isNoInternetConnection) {
 				List<String> tmpList = new ArrayList<String>();
@@ -273,6 +284,14 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 							tmpMap.put(name, text);
 						} else if (name.equalsIgnoreCase("item")) {
 							tmpMap.put("listImgURLs", listImgURLs);
+							if(tmpMap.containsKey("link")){
+								String mainNewsLink = (String) tmpMap.get("link");
+								if(mainNewsLink != null && !mainNewsLink.equals("")){
+									String mainNewsId = mainNewsLink.split("/")[3];
+									mainNewsId = mainNewsId.split("-")[0];
+									tmpMap.put("id", mainNewsId);
+								}
+							}
 							listOfNews.add(tmpMap);
 							tmpMap = new HashMap<String, Object>();
 							listImgURLs = new ArrayList<String>();
@@ -318,6 +337,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 		String mainNewsLink = (String) map.get("link");
 		if (mainNewsLink != null)
 			intent.putExtra("mainNewsLink", mainNewsLink);
+
 		return intent;
 	}
 }
