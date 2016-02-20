@@ -16,21 +16,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.rogerlemmonapps.captcha.Captcha;
+import com.rogerlemmonapps.captcha.MathCaptcha;
+import com.rogerlemmonapps.captcha.TextCaptcha;
 
 public class ContactUsActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 	private static String MANDATORY_VALIDATION_MESSAGE;
+	private static String CONTACT_US_CAPTCHA_VALIDATION_MESSAGE;
 	private static String EMAIL_VALIDATION_MESSAGE;
 	public static String CONTACT_US_SUCCESS_MESSAGE;
 	private static String CONTACT_US_EMAIL_SUBJECT;
 	private static String CONTACT_US_SENDER_NAME;
+	public Captcha captcha;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Typeface font = Typeface.createFromAsset(getAssets(), "fonts/DroidKufi_Regular.ttf");
 		MANDATORY_VALIDATION_MESSAGE = getResources().getString(R.string.mandatory_field_validation_message);
+		CONTACT_US_CAPTCHA_VALIDATION_MESSAGE = getResources().getString(R.string.contact_us_captcha_validation_message);
 		EMAIL_VALIDATION_MESSAGE = getResources().getString(R.string.email_field_validation_message);
 		CONTACT_US_SUCCESS_MESSAGE = getResources().getString(R.string.contact_us_success_message);
 		CONTACT_US_EMAIL_SUBJECT = getResources().getString(R.string.contact_us_email_subject);
@@ -71,6 +82,22 @@ public class ContactUsActivity extends AppCompatActivity
 			mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 			menuItem.setTitle(mNewTitle);
 		}
+
+		ImageView refreshButton = (ImageView) findViewById(R.id.contact_us_refresh);
+		refreshButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				initializeCaptcha();
+			}
+		});
+		initializeCaptcha();
+	}
+
+	private void initializeCaptcha() {
+		captcha = new TextCaptcha(300, 100, 5, TextCaptcha.TextOptions.NUMBERS_ONLY);
+		ImageView captchaImageView = (ImageView) findViewById(R.id.contact_us_captcha_image);
+		captchaImageView.setImageBitmap(captcha.getImage());
+		captchaImageView.setLayoutParams(new LinearLayout.LayoutParams(captcha.width * 2, captcha.height * 2));
 	}
 
 	private boolean validateEmailEditTextField(EditText editText) {
@@ -129,14 +156,22 @@ public class ContactUsActivity extends AppCompatActivity
 		validationsPassed = validationsPassed && validateEditTextField(contactUsBodyEditText);
 
 		if (validationsPassed) {
-			contactUsFirstNameEditText.setText("");
-			contactUsLastNameEditText.setText("");
-			contactUsEmailEditText.setText("");
-			contactUsAddressEditText.setText("");
-			contactUsBodyEditText.setText("");
-			String strBody = getEmailBody(contactUsFirstName, contactUsLastName, contactUsEmail,
-					contactUsAddress, contactUsSubject, contactUsBody);
-			sendContactUsEmail(contactUsEmail, contactUsSubject, strBody);
+			TextView captchaTextView = (TextView) findViewById(R.id.contact_us_captcha_text);
+			boolean captchaValidationSuccessful = captcha.checkAnswer(captchaTextView.getText().toString());
+			if (captchaValidationSuccessful) {
+				contactUsFirstNameEditText.setText("");
+				contactUsLastNameEditText.setText("");
+				contactUsEmailEditText.setText("");
+				contactUsAddressEditText.setText("");
+				contactUsBodyEditText.setText("");
+				captchaTextView.setText("");
+				initializeCaptcha();
+				String strBody = getEmailBody(contactUsFirstName, contactUsLastName, contactUsEmail,
+						contactUsAddress, contactUsSubject, contactUsBody);
+				sendContactUsEmail(contactUsEmail, contactUsSubject, strBody);
+			} else {
+				captchaTextView.setError(CONTACT_US_CAPTCHA_VALIDATION_MESSAGE);
+			}
 		}
 	}
 

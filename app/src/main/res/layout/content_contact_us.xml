@@ -111,6 +111,20 @@
 				android:inputType="textMultiLine"
 				android:maxLines="5"
 				android:layout_marginTop="10dp"/>
+			<ImageView
+				android:id="@+id/contact_us_captcha_image"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
+			<ImageView
+				android:id="@+id/contact_us_refresh"
+				android:src="@drawable/refresh24_icon"
+				android:background="@color/colorPrimaryDark"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
+			<EditText
+				android:id="@+id/contact_us_captcha_text"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"/>
 			<Button
 				android:id="@+id/contact_us_edit_button"
 				android:layout_height="wrap_content"
