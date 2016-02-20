@@ -61,9 +61,8 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
         try {
             Log.e(TAG, json.toString());
             String title = json.getString("title");
-            String message = json.getString("message");
             Intent resultIntent = new Intent(context, MainActivity.class);
-            showNotificationMessage(context, title, message, resultIntent);
+            showNotificationMessage(context, title, resultIntent);
         } catch (JSONException e) {
             Log.e(TAG, "Push message json exception: " + e.getMessage());
         }
@@ -75,11 +74,10 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
      *
      * @param context
      * @param title
-     * @param message
      * @param intent
      */
-    private void showNotificationMessage(Context context, String title, String message, Intent intent) {
+    private void showNotificationMessage(Context context, String title, Intent intent) {
         notificationUtils = new NotificationUtils(context);
-        notificationUtils.showNotificationMessage(title, message, intent);
+        notificationUtils.showNotificationMessage(title, intent);
     }
 }

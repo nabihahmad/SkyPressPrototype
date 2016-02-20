@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity
 		NO_CONNECTIVITY = getResources().getString(R.string.no_connectivity);
 		Typeface boldFont = Typeface.createFromAsset(getAssets(), AppConfig.BOLD_FONT);
 		Typeface regularFont = Typeface.createFromAsset(getAssets(), AppConfig.REGULAR_FONT);
-		buildCategoriesMap();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -109,13 +108,7 @@ public class MainActivity extends AppCompatActivity
 				JSONObject parseDataJSON = new JSONObject(parseDataStr);
 				String category = parseDataJSON.has("category") ? parseDataJSON.getString("category") : "";
 				String id = parseDataJSON.has("id") ? parseDataJSON.getString("id") : "";
-
-				if(!category.equals("")) {
-					JSONObject categoryObj = (JSONObject) categoriesMap.get(category);
-					String url = categoryObj.getString("url");
-					String label = categoryObj.getString("label");
-					refreshNews(url, label, id);
-				}
+				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), id);
 			} catch (JSONException e) {
 				Log.e("Parse Data JSON Exc", e.toString());
 			}
@@ -223,62 +216,5 @@ public class MainActivity extends AppCompatActivity
 		ImageView imageView3 = (ImageView) this.findViewById(R.id.latest_news_ImageView_3);
 		imageView3.setImageResource(R.drawable.camera_icon);
 		imageView3.setScaleType(ImageView.ScaleType.CENTER);
-	}
-
-	private void buildCategoriesMap(){
-		JSONObject tmp = new JSONObject();
-		try {
-			tmp.put("url", AppConfig.URL_LOCAL);
-			tmp.put("label", getResources().getString(R.string.local_label));
-			categoriesMap.put("7", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_LOCAL);
-			tmp.put("label", getResources().getString(R.string.local_label));
-			categoriesMap.put("8", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_LOCAL);
-			tmp.put("label", getResources().getString(R.string.local_label));
-			categoriesMap.put("6", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_ARAB_INTERNATIONAL);
-			tmp.put("label", getResources().getString(R.string.arab_international_label));
-			categoriesMap.put("20", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_ECONOMIC);
-			tmp.put("label", getResources().getString(R.string.economic_label));
-			categoriesMap.put("10", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_ANALYTIC);
-			tmp.put("label", getResources().getString(R.string.analytic_label));
-			categoriesMap.put("53", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_ANALYTIC);
-			tmp.put("label", getResources().getString(R.string.analytic_label));
-			categoriesMap.put("47", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_SPORT);
-			tmp.put("label", getResources().getString(R.string.sport_label));
-			categoriesMap.put("9", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_ART);
-			tmp.put("label", getResources().getString(R.string.art_label));
-			categoriesMap.put("13", tmp);
-
-			tmp = new JSONObject();
-			tmp.put("url", AppConfig.URL_VARIED);
-			tmp.put("label", getResources().getString(R.string.varied_label));
-			categoriesMap.put("49", tmp);
-
-		}catch(JSONException e){
-			Log.e("JSON Exception", "Error while building categories map: " + e);
-		}
 	}
 }

@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -29,7 +31,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMap<String, Object>>> {
+public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject> {
 	private String strURL = "http://skypressiq.net/localnews.xml";
 	private String strLabel = null;
 	private String id = null;
@@ -55,17 +57,45 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 	}
 
 	@Override
-	protected List<HashMap<String, Object>> doInBackground(String... params) {
+	protected JSONObject doInBackground(String... params) {
 		Log.d("URL", strURL);
-		return runRSSThread(strURL);
+		JSONObject result = new JSONObject();
+		List<HashMap<String, Object>> allNewsListResult = runRSSThread(strURL);
+		try {
+			result.put("allNewsList", allNewsListResult);
+		} catch (JSONException e) {
+			Log.e("JSON Exception", "Error retrieving all news list result");
+		}
+		if(this.id != null){
+			List<HashMap<String, Object>> mainNewsListResult = runRSSThread("http://skypressiq.net/" + this.id + "-rss.xml");
+			try {
+				result.put("mainNewsList", mainNewsListResult);
+			} catch (JSONException e) {
+				Log.e("JSON Exception", "Error retrieving main news list result");
+			}
+		}
+		return result;
 	}
 
-	protected void onPostExecute(final List<HashMap<String, Object>> result) {
-		super.onPostExecute(result);
+	protected void onPostExecute(final JSONObject resultLists) {
+		super.onPostExecute(resultLists);
 		TextView newsTitle = (TextView) activity.findViewById(R.id.news_title);
 		newsTitle.setText(strLabel);
-		HashMap<String, Object> mainNewsTmpMap = new HashMap<String, Object>();
+		List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
+		List<HashMap<String, Object>> mainNewsResult = new ArrayList<HashMap<String, Object>>();
 
+		if(resultLists.has("allNewsList"))
+			try {
+				result = (List<HashMap<String, Object>>)resultLists.get("allNewsList");
+			} catch (JSONException e) {
+				Log.e("JSON Exception", "Error parsing all news list result from JSONObject");
+			}
+		if(resultLists.has("mainNewsList"))
+			try {
+				mainNewsResult = (List<HashMap<String, Object>>)resultLists.get("mainNewsList");
+			} catch (JSONException e) {
+				Log.e("JSON Exception", "Error parsing main news list result from JSONObject");
+			}
 		if (result != null && result.size() > 0) {
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
 			String strNewsTicker = " [img src=logo_news_ticker/]  ";
@@ -74,15 +104,13 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				if (tmpMap.containsKey("title") && tmpMap.get("title") != null) {
 					strNewsTicker += tmpMap.get("title") + "  [img src=logo_news_ticker/]  ";
 				}
-				if(id != null && tmpMap.containsKey("id") && tmpMap.get("id") != null && tmpMap.get("id").equals(id)){
-					mainNewsTmpMap = tmpMap;
-				}
 			}
 			@SuppressLint("WrongViewCast")
 			TextViewWithImages newsTickerTextView = (TextViewWithImages) activity.findViewById(R.id.news_ticker);
 			newsTickerTextView.setSelected(true);
 			newsTickerTextView.setText(strNewsTicker, TextView.BufferType.SPANNABLE);
 
+			final List<HashMap<String, Object>> finalResult = result;
 			@SuppressLint("WrongViewCast")
 			TextViewWithImages latestNewsTextView = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_0);
 			latestNewsTextView.setText("[img src=logo_news_ticker/] " + result.get(0).get("title"));
@@ -90,7 +118,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, Object> tmpMap = result.get(0);
+					HashMap<String, Object> tmpMap = finalResult.get(0);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -103,7 +131,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, Object> tmpMap = result.get(1);
+					HashMap<String, Object> tmpMap = finalResult.get(1);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -116,7 +144,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, Object> tmpMap = result.get(2);
+					HashMap<String, Object> tmpMap = finalResult.get(2);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -129,7 +157,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, Object> tmpMap = result.get(3);
+					HashMap<String, Object> tmpMap = finalResult.get(3);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -154,11 +182,12 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 			CustomAdapter customAdapter = new CustomAdapter(activity, result);
 			list.setAdapter(customAdapter);
 
+			final List<HashMap<String, Object>> finalResult4 = result;
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View titleClicked, int position, long id) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, Object> tmpMap = result.get(position);
+					HashMap<String, Object> tmpMap = finalResult4.get(position);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
 				}
@@ -175,9 +204,11 @@ public class NewsListingPopulator extends AsyncTask <String, Double, List<HashMa
 				progressDialog.dismiss();
 			}
 		}, 3000);
-			if(mainNewsTmpMap.size() != 0){
+
+			if(this.id != null && mainNewsResult.size() != 0){
+				HashMap<String, Object> tmpMap = mainNewsResult.get(0);
 				Intent intent = new Intent(activity, MainNewsActivity.class);
-				intent = setIntentStringsFromMap(intent, mainNewsTmpMap);
+				intent = setIntentStringsFromMap(intent, tmpMap);
 				activity.startActivity(intent);
 			}
 		} else {

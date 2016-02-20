@@ -29,7 +29,7 @@ public class NotificationUtils {
         this.mContext = mContext;
     }
 
-    public void showNotificationMessage(String title, String message, Intent intent) {
+    public void showNotificationMessage(String title, Intent intent) {
         if (!isAppIsInBackground(mContext)) {
             Toast toast = Toast.makeText(this.mContext, title, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.BOTTOM | Gravity.FILL_HORIZONTAL, 0, 0);
