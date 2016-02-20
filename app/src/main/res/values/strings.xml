@@ -69,6 +69,7 @@
 	<string name="contact_us_subject_others">أخرى</string>
 	<string name="contact_us_body">النص</string>
 	<string name="contact_us_send_button">إرسال</string>
+	<string name="contact_us_success_message">لقد تم إرسال طلبكم. سوف نقوم بالتواصل معكم قريباً</string>
 
 	<!-- About us labels -->
 	<string name="about_us_listed_lbl">الوكالة</string>

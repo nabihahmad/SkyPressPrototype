@@ -2,7 +2,6 @@ package com.ahmad.nabih.skypressprototype;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,35 +12,18 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
-import com.google.api.client.util.StringUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ContactUsActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 	private static String MANDATORY_VALIDATION_MESSAGE;
 	private static String EMAIL_VALIDATION_MESSAGE;
+	public static String CONTACT_US_SUCCESS_MESSAGE;
 	private static String CONTACT_US_EMAIL_SUBJECT;
 	private static String CONTACT_US_SENDER_NAME;
 
@@ -50,6 +32,7 @@ public class ContactUsActivity extends AppCompatActivity
 		Typeface font = Typeface.createFromAsset(getAssets(), "fonts/DroidKufi_Regular.ttf");
 		MANDATORY_VALIDATION_MESSAGE = getResources().getString(R.string.mandatory_field_validation_message);
 		EMAIL_VALIDATION_MESSAGE = getResources().getString(R.string.email_field_validation_message);
+		CONTACT_US_SUCCESS_MESSAGE = getResources().getString(R.string.contact_us_success_message);
 		CONTACT_US_EMAIL_SUBJECT = getResources().getString(R.string.contact_us_email_subject);
 		CONTACT_US_SENDER_NAME = getResources().getString(R.string.contactUs_label);
 
@@ -115,36 +98,42 @@ public class ContactUsActivity extends AppCompatActivity
 
 	private String getEmailBody(String firstName, String lastName, String fromEmail, String address,
 								String subject, String body) {
-		String strBody = body;
+		String strBreak = "\n";
+		String strBody = firstName + " " + lastName + strBreak + address + strBreak + strBreak + body;
 		return strBody;
 	}
 
 	public void submitContactUsForm(View button) {
 		boolean validationsPassed = true;
-		final EditText contactUsFirstNameEditText = (EditText) findViewById(R.id.contact_us_edit_first_name);
+		EditText contactUsFirstNameEditText = (EditText) findViewById(R.id.contact_us_edit_first_name);
 		String contactUsFirstName = contactUsFirstNameEditText.getText().toString();
 		validationsPassed = validationsPassed && validateEditTextField(contactUsFirstNameEditText);
 
-		final EditText contactUsLastNameEditText = (EditText) findViewById(R.id.contact_us_edit_last_name);
+		EditText contactUsLastNameEditText = (EditText) findViewById(R.id.contact_us_edit_last_name);
 		String contactUsLastName = contactUsLastNameEditText.getText().toString();
 		validationsPassed = validationsPassed && validateEditTextField(contactUsLastNameEditText);
 
-		final EditText contactUsEmailEditText = (EditText) findViewById(R.id.contact_us_edit_email);
+		EditText contactUsEmailEditText = (EditText) findViewById(R.id.contact_us_edit_email);
 		String contactUsEmail = contactUsEmailEditText.getText().toString();
 		validationsPassed = validationsPassed && validateEmailEditTextField(contactUsEmailEditText);
 
-		final EditText contactUsAddressEditText = (EditText) findViewById(R.id.contact_us_edit_address);
+		EditText contactUsAddressEditText = (EditText) findViewById(R.id.contact_us_edit_address);
 		String contactUsAddress = contactUsAddressEditText.getText().toString();
 		validationsPassed = validationsPassed && validateEditTextField(contactUsAddressEditText);
 
-		final Spinner contactUsSubjectSpinner = (Spinner) findViewById(R.id.contact_us_subject);
+		Spinner contactUsSubjectSpinner = (Spinner) findViewById(R.id.contact_us_subject);
 		String contactUsSubject = contactUsSubjectSpinner.getSelectedItem().toString();
 
-		final EditText contactUsBodyEditText = (EditText) findViewById(R.id.contact_us_edit_body);
+		EditText contactUsBodyEditText = (EditText) findViewById(R.id.contact_us_edit_body);
 		String contactUsBody = contactUsBodyEditText.getText().toString();
 		validationsPassed = validationsPassed && validateEditTextField(contactUsBodyEditText);
 
 		if (validationsPassed) {
+			contactUsFirstNameEditText.setText("");
+			contactUsLastNameEditText.setText("");
+			contactUsEmailEditText.setText("");
+			contactUsAddressEditText.setText("");
+			contactUsBodyEditText.setText("");
 			String strBody = getEmailBody(contactUsFirstName, contactUsLastName, contactUsEmail,
 					contactUsAddress, contactUsSubject, contactUsBody);
 			sendContactUsEmail(contactUsEmail, contactUsSubject, strBody);

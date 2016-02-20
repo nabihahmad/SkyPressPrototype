@@ -15,6 +15,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,15 +25,16 @@ public class SendMailTask extends AsyncTask {
 
 	private ProgressDialog statusDialog;
 	private Activity sendMailActivity;
-	private String CONTACT_US_POST_URL = "http://192.168.0.104:1234/docapp/test.php";
+	private String CONTACT_US_POST_URL = "http://skypressiq.net/sendmail.php";
 
 	public SendMailTask(Activity activity) {
 		sendMailActivity = activity;
 	}
 
 	protected void onPreExecute() {
+		super.onPreExecute();
 		statusDialog = new ProgressDialog(sendMailActivity);
-		statusDialog.setMessage("Getting ready...");
+		statusDialog.setMessage(MainActivity.LOADING);
 		statusDialog.setIndeterminate(false);
 		statusDialog.setCancelable(false);
 		statusDialog.setCanceledOnTouchOutside(false);
@@ -67,7 +70,7 @@ public class SendMailTask extends AsyncTask {
 		JSONObject jObj;
 		try{
 			URL url = new URL(CONTACT_US_POST_URL);
-			conn = (HttpURLConnection)url.openConnection();
+			conn = (HttpURLConnection) url.openConnection();
 			StringBuilder postData = new StringBuilder();
 			for (Map.Entry<String,Object> param : params.entrySet()) {
 				if (postData.length() != 0) postData.append('&');
@@ -113,5 +116,8 @@ public class SendMailTask extends AsyncTask {
 	@Override
 	public void onPostExecute(Object result) {
 		statusDialog.dismiss();
+		Toast toast = Toast.makeText(sendMailActivity, ContactUsActivity.CONTACT_US_SUCCESS_MESSAGE, Toast.LENGTH_LONG);
+		toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
+		toast.show();
 	}
 }
