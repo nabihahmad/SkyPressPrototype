@@ -1,8 +1,10 @@
 package com.ahmad.nabih.skypressprototype;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -31,6 +33,7 @@ import java.util.Date;
 public class MainNewsActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Typeface boldFont = Typeface.createFromAsset(getAssets(), AppConfig.BOLD_FONT);
@@ -117,6 +120,17 @@ public class MainNewsActivity extends AppCompatActivity
 			mainNewsDateTextView.setText(strMainNewsDate);
 		}
 
+		String mainNewsRead = getIntent().getStringExtra("mainNewsRead");
+		if(mainNewsRead != null){
+			TextView mainNewsReadTextView = (TextView) findViewById(R.id.main_news_read);
+			mainNewsReadTextView.setText(mainNewsRead);
+			mainNewsReadTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, Float.parseFloat(sharedPref.getString("pref_news_title_text_size", "8")));
+		}else{
+			TextView mainNewsReadTextView = (TextView) findViewById(R.id.main_news_read);
+			mainNewsReadTextView.setText("0");
+			mainNewsReadTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, Float.parseFloat(sharedPref.getString("pref_news_title_text_size", "8")));
+		}
+
 		String mainNewsFull = getIntent().getStringExtra("mainNewsFull");
 		TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
 		if (mainNewsFull != null) {
@@ -136,7 +150,7 @@ public class MainNewsActivity extends AppCompatActivity
 		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL1");
 		if (mainNewsImageURL != null) {
 			ImageView mainNewsImage = (ImageView) findViewById(R.id.main_news_image);
-			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage, true, R.id.main_news_image, R.id.main_news_date);
+			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage, true, R.id.main_news_image, R.id.main_news_date, false);
 			newsImagesFetcher1.execute(mainNewsImageURL);
 		}
 		String tmpMainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL2");
@@ -159,12 +173,14 @@ public class MainNewsActivity extends AppCompatActivity
 			textViewLayoutParams.addRule(RelativeLayout.BELOW, imageID);
 			mainNewsFullTextView.setLayoutParams(textViewLayoutParams);
 
-			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, true, imageID, putItBelowId);
+			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, true, imageID, putItBelowId, false);
 			newsImagesFetcher.execute(tmpMainNewsImageURL);
 			relativeLayout.addView(imageView);
 			tmpMainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL" + i);
 			putItBelowId = imageID;
 		}
+
+
 	}
 
 	public void playYouTubeVideo (View v) {

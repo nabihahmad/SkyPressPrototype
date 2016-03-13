@@ -29,6 +29,7 @@
 	<string name="share_on_social_media_label">شارك على وسائل التواصل الاجتماعي</string>
 	<string name="share_on_social_media_subject"></string>
 	<string name="share_on_social_media_body"></string>
+	<string name="main_news_read_label">عدد القرّاء</string>
 
     <!-- Strings related to Settings -->
 

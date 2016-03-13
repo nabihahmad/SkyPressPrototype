@@ -35,10 +35,30 @@
 			android:id="@+id/content_main_news_relative_layout">
 
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-				android:id="@+id/main_news_date"
+				android:id="@+id/main_news_read_label"
+				android:text="@string/main_news_read_label"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="10dp"/>
+
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:id="@+id/main_news_read"
+				android:textColor="@color/colorPrimary"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginRight="10dp"
+				android:background="@drawable/bg_blue"
+				android:gravity="center"
+				android:layout_toEndOf="@id/main_news_read_label"
+				android:layout_toRightOf="@id/main_news_read_label"/>
+
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:id="@+id/main_news_date"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="12sp"
+				android:layout_marginTop="40dp"/>
 
 			<ImageView
 				android:layout_alignParentTop="true"
@@ -49,7 +69,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:adjustViewBounds="true"
-				android:layout_marginTop="20dp"/>
+				android:layout_marginTop="60dp"/>
 
 			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 				android:id="@+id/main_news_full"

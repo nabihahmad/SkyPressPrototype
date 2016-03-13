@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.os.Looper;
 import android.text.Spannable;
 import android.util.Log;
 import android.view.View;
@@ -164,32 +163,33 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			});
 
 			ImageView imageView = (ImageView) activity.findViewById(R.id.latest_news_ImageView_0);
-			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, false, 0, 0);
+			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, false, 0, 0, false);
 			newsImagesFetcher.execute(((ArrayList<String>) result.get(0).get("listImgURLs")).get(0));
 
 			ImageView imageView1 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_1);
-			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(imageView1, false, 0, 0);
+			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(imageView1, false, 0, 0, false);
 			newsImagesFetcher1.execute(((ArrayList<String>) result.get(1).get("listImgURLs")).get(0));
 
 			ImageView imageView2 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_2);
-			NewsImagesFetcher newsImagesFetcher2 = new NewsImagesFetcher(imageView2, false, 0, 0);
+			NewsImagesFetcher newsImagesFetcher2 = new NewsImagesFetcher(imageView2, false, 0, 0, false);
 			newsImagesFetcher2.execute(((ArrayList<String>) result.get(2).get("listImgURLs")).get(0));
 
 			ImageView imageView3 = (ImageView) activity.findViewById(R.id.latest_news_ImageView_3);
-			NewsImagesFetcher newsImagesFetcher3 = new NewsImagesFetcher(imageView3, false, 0, 0);
+			NewsImagesFetcher newsImagesFetcher3 = new NewsImagesFetcher(imageView3, false, 0, 0, false);
 			newsImagesFetcher3.execute(((ArrayList<String>) result.get(3).get("listImgURLs")).get(0));
 
 			CustomAdapter customAdapter = new CustomAdapter(activity, result);
 			list.setAdapter(customAdapter);
 
-			final List<HashMap<String, Object>> finalResult4 = result;
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View titleClicked, int position, long id) {
 					Intent intent = new Intent(activity, MainNewsActivity.class);
-					HashMap<String, Object> tmpMap = finalResult4.get(position);
+					HashMap<String, Object> tmpMap = finalResult.get(position);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
+					IncrementNewsReaders incrementNewsReaders = new IncrementNewsReaders();
+					incrementNewsReaders.execute((String) tmpMap.get("id"));
 				}
 			});
 
@@ -198,6 +198,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
 			viewFlipper.setVisibility(View.VISIBLE);
 			activity.findViewById(R.id.no_connectivity_image).setVisibility(View.GONE);
+			activity.findViewById(R.id.exception_image).setVisibility(View.GONE);
 			Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 			public void run() {
@@ -368,6 +369,10 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 		String mainNewsLink = (String) map.get("link");
 		if (mainNewsLink != null)
 			intent.putExtra("mainNewsLink", mainNewsLink);
+
+		String mainNewsRead = (String) map.get("news_read");
+		if(mainNewsRead != null)
+			intent.putExtra("mainNewsRead", mainNewsRead);
 
 		return intent;
 	}

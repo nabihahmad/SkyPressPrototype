@@ -19,12 +19,14 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 	int imageViewID;
 	int imageID;
 	private ProgressDialog progressDialog;
+	boolean isListAdapter = false;
 
-	public NewsImagesFetcher (ImageView imageView, boolean isMainNewsActivity, int imageID, int imageViewID){
+	public NewsImagesFetcher(ImageView imageView, boolean isMainNewsActivity, int imageID, int imageViewID, boolean isListAdapter){
 		this.imageView = imageView;
 		this.isMainNewsActivity = isMainNewsActivity;
 		this.imageViewID = imageViewID;
 		this.imageID = imageID;
+		this.isListAdapter = isListAdapter;
 	}
 
 	protected void onPreExecute() {
@@ -37,10 +39,14 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 	@Override
 	protected Bitmap doInBackground(String... params) {
 		String urldisplay = params[0];
+		if(MainActivity.mMemoryCache.get(urldisplay) != null)
+			return MainActivity.mMemoryCache.get(urldisplay);
 		Bitmap bitmap = null;
 		try {
 			InputStream in = new java.net.URL(urldisplay).openStream();
+			Log.i("image url", urldisplay);
 			bitmap = BitmapFactory.decodeStream(in);
+			MainActivity.mMemoryCache.put(urldisplay, bitmap);
 		} catch (Exception e) {
 			Log.e("Error", e.getMessage());
 		}
@@ -49,23 +55,25 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 
 	protected void onPostExecute(final Bitmap result) {
 		super.onPostExecute(result);
-//		progressDialog.dismiss();
 		if(result != null) {
 			imageView.setImageBitmap(result);
-			if (FrameLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
-				imageView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-						FrameLayout.LayoutParams.MATCH_PARENT));
-			} else if (RelativeLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
-				imageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
-						RelativeLayout.LayoutParams.MATCH_PARENT));
-			}
-			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-			if (isMainNewsActivity) {
-				RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
-				layoutParams.addRule(RelativeLayout.BELOW, this.imageViewID);
-				layoutParams.setMargins(0, 20, 0, 0);
-				imageView.setLayoutParams(layoutParams);
-			}
+			if(!isListAdapter) {
+				if (FrameLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
+					imageView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+							FrameLayout.LayoutParams.MATCH_PARENT));
+				} else if (RelativeLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
+					imageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+							RelativeLayout.LayoutParams.MATCH_PARENT));
+				}
+				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+				if (isMainNewsActivity) {
+					RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+					layoutParams.addRule(RelativeLayout.BELOW, this.imageViewID);
+					layoutParams.setMargins(0, 20, 0, 0);
+					imageView.setLayoutParams(layoutParams);
+				}
+			}else
+				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 		}
 	}
 }

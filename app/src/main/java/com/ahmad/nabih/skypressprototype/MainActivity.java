@@ -1,6 +1,7 @@
 package com.ahmad.nabih.skypressprototype;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,7 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
+import android.util.LruCache;
 import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity
 	public static String NO_DATA = null;
 	public static String NO_CONNECTIVITY = null;
 	public static Map<String, Object> categoriesMap = new HashMap<String, Object>();
+	static final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+	static final int cacheSize = maxMemory / 8;
+	public static LruCache<String, Bitmap> mMemoryCache = new LruCache<String, Bitmap>(cacheSize);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

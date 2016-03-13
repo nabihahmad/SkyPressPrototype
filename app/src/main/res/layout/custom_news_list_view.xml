@@ -65,20 +65,23 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginEnd="32sp"
+		android:layout_marginLeft="32sp"
+		android:layout_marginRight="32sp"
 		android:layout_marginStart="45sp">
 
 		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 			android:id="@+id/custom_view_text"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginLeft="32dp"
 			android:textSize="@dimen/text_size_small"
 			android:textColor="@color/colorPrimaryDark"/>
 	</LinearLayout>
 
 	<ImageView
 		android:id="@+id/custom_view_logo"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
 		android:layout_alignParentLeft="true"
 		android:src="@drawable/logo_news_ticker"/>
 </RelativeLayout>

@@ -73,7 +73,7 @@
 				<FrameLayout
 					android:id="@+id/latest_news_layout_0"
 					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
+					android:layout_height="fill_parent"
 					android:layoutDirection="rtl">
 
 					<ImageView
@@ -98,7 +98,7 @@
 				<FrameLayout
 					android:id="@+id/latest_news_layout_1"
 					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
+					android:layout_height="fill_parent"
 					android:layoutDirection="rtl">
 
 					<ImageView
@@ -123,7 +123,7 @@
 				<FrameLayout
 					android:id="@+id/latest_news_layout_2"
 					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
+					android:layout_height="fill_parent"
 					android:layoutDirection="rtl">
 
 					<ImageView
@@ -148,7 +148,7 @@
 				<FrameLayout
 					android:id="@+id/latest_news_layout_3"
 					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
+					android:layout_height="fill_parent"
 					android:layoutDirection="rtl">
 
 					<ImageView
@@ -185,7 +185,10 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/news_title"
-				android:layout_marginTop="8sp"/>
+				android:layout_marginTop="8sp"
+				android:fastScrollEnabled="true"
+				android:persistentDrawingCache="scrolling"
+				android:scrollingCache="false"/>
 
 			<ImageView
 				android:layout_below="@+id/news_listing"
