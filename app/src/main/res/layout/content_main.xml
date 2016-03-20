@@ -30,7 +30,7 @@
 			android:layout_centerVertical="true"
 			android:typeface="monospace"/-->
 
-		<com.ahmad.nabih.skypressprototype.TextViewWithImages
+		<!--com.ahmad.nabih.skypressprototype.TextViewWithImages
 			android:visibility="gone"
 			android:background="@color/colorPrimaryDark"
 			android:id="@+id/news_ticker"
@@ -44,7 +44,7 @@
 			android:scrollHorizontally="true"
 			android:singleLine="true"
 			android:textColor="@android:color/white"
-			android:textSize="@dimen/text_size_medium"/>
+			android:textSize="@dimen/text_size_medium"/-->
 
 	<!--/RelativeLayout-->
 
@@ -52,11 +52,10 @@
 				android:id="@+id/main_scroll_view"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:layout_below="@+id/news_ticker"
 				android:fadingEdgeLength="0dp"
 				android:fillViewport="true"
 				android:overScrollMode="never"
-				android:layout_marginTop="8sp"
+				android:layout_marginTop="0sp"
 				android:scrollbars="none">
 
 		<RelativeLayout
@@ -85,7 +84,7 @@
 						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
-					<com.ahmad.nabih.skypressprototype.TextViewWithImages
+					<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 						android:id="@+id/latest_news_TextView_0"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
@@ -110,7 +109,7 @@
 						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
-					<com.ahmad.nabih.skypressprototype.TextViewWithImages
+					<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 						android:id="@+id/latest_news_TextView_1"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
@@ -135,7 +134,7 @@
 						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
-					<com.ahmad.nabih.skypressprototype.TextViewWithImages
+					<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 						android:id="@+id/latest_news_TextView_2"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
@@ -160,7 +159,7 @@
 						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
-					<com.ahmad.nabih.skypressprototype.TextViewWithImages
+					<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 						android:id="@+id/latest_news_TextView_3"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"

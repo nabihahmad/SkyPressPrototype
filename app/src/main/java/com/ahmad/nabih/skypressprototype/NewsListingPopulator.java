@@ -97,22 +97,23 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			}
 		if (result != null && result.size() > 0) {
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
-			String strNewsTicker = " [img src=logo_news_ticker/]  ";
-			for (int i = 0; result != null && i < result.size(); i++) {
-				HashMap<String, Object> tmpMap = result.get(i);
-				if (tmpMap.containsKey("title") && tmpMap.get("title") != null) {
-					strNewsTicker += tmpMap.get("title") + "  [img src=logo_news_ticker/]  ";
-				}
-			}
-			@SuppressLint("WrongViewCast")
-			TextViewWithImages newsTickerTextView = (TextViewWithImages) activity.findViewById(R.id.news_ticker);
-			newsTickerTextView.setSelected(true);
-			newsTickerTextView.setText(strNewsTicker, TextView.BufferType.SPANNABLE);
+//			String strNewsTicker = " [img src=logo_news_ticker/]  ";
+//			for (int i = 0; result != null && i < result.size(); i++) {
+//				HashMap<String, Object> tmpMap = result.get(i);
+//				if (tmpMap.containsKey("title") && tmpMap.get("title") != null) {
+//					strNewsTicker += tmpMap.get("title") + "  [img src=logo_news_ticker/]  ";
+//				}
+//			}
+//			@SuppressLint("WrongViewCast")
+//			TextViewWithImages newsTickerTextView = (TextViewWithImages) activity.findViewById(R.id.news_ticker);
+//			newsTickerTextView.setSelected(true);
+//			newsTickerTextView.setText(strNewsTicker, TextView.BufferType.SPANNABLE);
 
 			final List<HashMap<String, Object>> finalResult = result;
 			@SuppressLint("WrongViewCast")
-			TextViewWithImages latestNewsTextView = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_0);
-			latestNewsTextView.setText("[img src=logo_news_ticker/] " + result.get(0).get("title"));
+			TextViewWithCustomFont latestNewsTextView = (TextViewWithCustomFont) activity.findViewById(R.id.latest_news_TextView_0);
+//			latestNewsTextView.setText("[img src=logo_news_ticker/] " + result.get(0).get("title"));
+			latestNewsTextView.setText((String) result.get(0).get("title"));
 			latestNewsTextView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -124,8 +125,9 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			});
 
 			@SuppressLint("WrongViewCast")
-			TextViewWithImages latestNewsTextView1 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_1);
-			latestNewsTextView1.setText("[img src=logo_news_ticker/] " + result.get(1).get("title"));
+			TextViewWithCustomFont latestNewsTextView1 = (TextViewWithCustomFont) activity.findViewById(R.id.latest_news_TextView_1);
+//			latestNewsTextView1.setText("[img src=logo_news_ticker/] " + result.get(1).get("title"));
+			latestNewsTextView1.setText((String) result.get(1).get("title"));
 			latestNewsTextView1.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -137,8 +139,9 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			});
 
 			@SuppressLint("WrongViewCast")
-			TextViewWithImages latestNewsTextView2 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_2);
-			latestNewsTextView2.setText("[img src=logo_news_ticker/] " + result.get(2).get("title"));
+			TextViewWithCustomFont latestNewsTextView2 = (TextViewWithCustomFont) activity.findViewById(R.id.latest_news_TextView_2);
+//			latestNewsTextView2.setText("[img src=logo_news_ticker/] " + result.get(2).get("title"));
+			latestNewsTextView2.setText((String) result.get(2).get("title"));
 			latestNewsTextView2.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -150,8 +153,9 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			});
 
 			@SuppressLint("WrongViewCast")
-			TextViewWithImages latestNewsTextView3 = (TextViewWithImages) activity.findViewById(R.id.latest_news_TextView_3);
-			latestNewsTextView3.setText("[img src=logo_news_ticker/] " + result.get(3).get("title"));
+			TextViewWithCustomFont latestNewsTextView3 = (TextViewWithCustomFont) activity.findViewById(R.id.latest_news_TextView_3);
+//			latestNewsTextView3.setText("[img src=logo_news_ticker/] " + result.get(3).get("title"));
+			latestNewsTextView3.setText((String) result.get(3).get("title"));
 			latestNewsTextView3.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -193,7 +197,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 				}
 			});
 
-			activity.findViewById(R.id.news_ticker).setVisibility(View.VISIBLE);
+//			activity.findViewById(R.id.news_ticker).setVisibility(View.VISIBLE);
 			newsTitle.setVisibility(View.VISIBLE);
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
 			viewFlipper.setVisibility(View.VISIBLE);
@@ -226,8 +230,8 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 				});
 			}
 
-			if(activity.findViewById(R.id.news_ticker) != null)
-				activity.findViewById(R.id.news_ticker).setVisibility(View.GONE);
+//			if(activity.findViewById(R.id.news_ticker) != null)
+//				activity.findViewById(R.id.news_ticker).setVisibility(View.GONE);
 			if(newsTitle != null)
 				newsTitle.setVisibility(View.GONE);
 			ViewFlipper viewFlipper = (ViewFlipper) activity.findViewById(R.id.latest_news_view_flipper);
