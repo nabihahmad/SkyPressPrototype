@@ -19,7 +19,7 @@
     <application
         android:name=".SkyPressApp"
         android:allowBackup="true"
-        android:icon="@drawable/logo_square"
+        android:icon="@drawable/logo_square_blue_bg"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
