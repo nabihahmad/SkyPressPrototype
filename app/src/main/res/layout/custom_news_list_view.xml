@@ -6,82 +6,45 @@
 				android:background="@color/colorPrimaryLight"
 				android:padding="8sp">
 
-	<!--GridLayout android:id="@+id/custom_view_grid_layout"
-				android:rowCount="2"
-				android:columnCount="3"
-				android:orientation="vertical"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content">
-
-		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-			android:id="@+id/custom_view_date"
-			android:textSize="5pt"
-			android:text="22/01"
-			android:textColor="@color/colorSecondaryDark"/>
-
-		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-			android:id="@+id/custom_view_time"
-			android:textSize="5pt"
-			android:text="23:59"
-			android:textColor="@color/colorSecondaryDark"/>
-
-		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-			android:id="@+id/custom_view_text"
-			android:textSize="7pt"
-			android:text="This is a news that needs to be displayed in the news page"
-			android:layout_rowSpan="2"
-			android:textColor="@color/colorPrimaryDark"/>
-
-		<ImageView
-			android:id="@+id/custom_view_logo"
-			android:layout_rowSpan="2"
-			android:src="@drawable/logo_news_ticker"/>
-	</GridLayout-->
-
-	<RelativeLayout
-		android:layout_centerVertical="true"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content">
-
-	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-		android:id="@+id/custom_view_date"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:textSize="@dimen/text_size_x_small"
-		android:textColor="@color/colorSecondaryDark"/>
-
-	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
-		android:id="@+id/custom_view_time"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:layout_below="@+id/custom_view_date"
-		android:textSize="@dimen/text_size_x_small"
-		android:textColor="@color/colorSecondaryDark"/>
-
-	</RelativeLayout>
+	<ImageView
+		android:id="@+id/custom_view_logo"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
+		android:src="@drawable/logo_news_ticker"/>
 
 	<LinearLayout
 		android:id="@+id/custom_list_linear_layout"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginEnd="32sp"
-		android:layout_marginLeft="32sp"
-		android:layout_marginRight="32sp"
+		android:layout_marginLeft="45sp"
 		android:layout_marginStart="45sp">
+		<RelativeLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="15dp">
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:id="@+id/custom_view_date"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:textSize="@dimen/text_size_x_small"
+				android:textColor="@color/colorSecondaryDark"/>
+
+			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+				android:id="@+id/custom_view_time"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_below="@+id/custom_view_date"
+				android:textSize="@dimen/text_size_x_small"
+				android:textColor="@color/colorSecondaryDark"/>
+		</RelativeLayout>
 
 		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
 			android:id="@+id/custom_view_text"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginLeft="32dp"
+			android:layout_marginRight="10dp"
 			android:textSize="@dimen/text_size_small"
 			android:textColor="@color/colorPrimaryDark"/>
-	</LinearLayout>
 
-	<ImageView
-		android:id="@+id/custom_view_logo"
-		android:layout_width="48dp"
-		android:layout_height="48dp"
-		android:layout_alignParentLeft="true"
-		android:src="@drawable/logo_news_ticker"/>
+	</LinearLayout>
 </RelativeLayout>
