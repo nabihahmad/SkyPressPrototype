@@ -67,10 +67,12 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 				}
 				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 				if (isMainNewsActivity) {
-					RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
-					layoutParams.addRule(RelativeLayout.BELOW, this.imageViewID);
-					layoutParams.setMargins(0, 20, 0, 0);
-					imageView.setLayoutParams(layoutParams);
+					if (RelativeLayout.LayoutParams.class.isInstance(imageView.getLayoutParams())) {
+						RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+						layoutParams.addRule(RelativeLayout.BELOW, this.imageViewID);
+						layoutParams.setMargins(0, 20, 0, 0);
+						imageView.setLayoutParams(layoutParams);
+					}
 				}
 			}else
 				imageView.setScaleType(ImageView.ScaleType.FIT_XY);

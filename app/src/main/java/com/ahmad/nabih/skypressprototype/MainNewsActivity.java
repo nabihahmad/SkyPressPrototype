@@ -22,6 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -141,13 +143,51 @@ public class MainNewsActivity extends AppCompatActivity
 			mainNewsFullTextView.setVisibility(View.GONE);
 		}
 
+		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL1");
 		String mainNewsVideo = getIntent().getStringExtra("mainNewsVideo");
 		if (mainNewsVideo != null) {
-			ImageView youTubeThumbnailImageView = (ImageView) findViewById(R.id.video_thumbnail);
-			youTubeThumbnailImageView.setVisibility(View.VISIBLE);
-			youTubeThumbnailImageView.setImageResource(R.drawable.youtube_icon);
+//			ImageView youTubeThumbnailImageView = (ImageView) findViewById(R.id.video_thumbnail);
+//			youTubeThumbnailImageView.setVisibility(View.VISIBLE);
+//			youTubeThumbnailImageView.setImageResource(R.drawable.youtube_icon);
+
+			// In case of video, add image to the preview and add preview button in addition to existing main news image
+			if (mainNewsImageURL != null) {
+				ImageView mainNewsVideoImage = (ImageView) findViewById(R.id.main_news_video_image);
+				NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsVideoImage, true, R.id.main_news_image, R.id.main_news_date, false);
+				newsImagesFetcher1.execute(mainNewsImageURL);
+				FrameLayout frameLayout = (FrameLayout) findViewById(R.id.main_news_video_frame_layout);
+				frameLayout.setVisibility(View.VISIBLE);
+			}
+
+//			FrameLayout frameLayout = (FrameLayout) findViewById(R.id.main_news_video_frame_layout);
+//			ImageView imageView = new ImageView(this);
+			ImageView imageView = (ImageView) findViewById(R.id.video_thumbnail);
+			imageView.setVisibility(View.VISIBLE);
+//			imageView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
+//					FrameLayout.LayoutParams.WRAP_CONTENT));
+//			RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+//			layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+//			layoutParams.addRule(RelativeLayout.BELOW, putItBelowId);
+//			layoutParams.setMargins(0, 20, 0, 0);
+//			imageView.setLayoutParams(layoutParams);
+//			imageView.setImageResource(R.drawable.camera_icon);
+//			imageView.setImageResource(R.drawable.youtube_icon);
+//			imageView.setLayoutParams(layoutParams);
+//			int imageID = View.generateViewId();
+//			imageView.setId(imageID);
+//			frameLayout.addView(imageView);
+//			frameLayout.setVisibility(View.VISIBLE);
+
+//			RelativeLayout.LayoutParams textViewLayoutParams = (RelativeLayout.LayoutParams) mainNewsFullTextView.getLayoutParams();
+//			textViewLayoutParams.addRule(RelativeLayout.BELOW, imageID);
+//			mainNewsFullTextView.setLayoutParams(textViewLayoutParams);
+
+//			NewsImagesFetcher newsImagesFetcher = new NewsImagesFetcher(imageView, true, imageID, putItBelowId, false);
+//			newsImagesFetcher.execute(tmpMainNewsImageURL);
+//			relativeLayout.addView(imageView);
+//			tmpMainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL" + i);
+//			putItBelowId = imageID;
 		}
-		String mainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL1");
 		if (mainNewsImageURL != null) {
 			ImageView mainNewsImage = (ImageView) findViewById(R.id.main_news_image);
 			NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsImage, true, R.id.main_news_image, R.id.main_news_date, false);
@@ -179,8 +219,6 @@ public class MainNewsActivity extends AppCompatActivity
 			tmpMainNewsImageURL = getIntent().getStringExtra("mainNewsImageURL" + i);
 			putItBelowId = imageID;
 		}
-
-
 	}
 
 	public void playYouTubeVideo (View v) {

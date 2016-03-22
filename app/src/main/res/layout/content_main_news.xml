@@ -78,16 +78,30 @@
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="60dp"/>
 
-			<ImageView
-				android:id="@+id/video_thumbnail"
-				android:layout_below="@+id/main_news_full"
+			<FrameLayout
+				android:id="@+id/main_news_video_frame_layout"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:visibility="gone"
+				android:layout_below="@+id/main_news_full"
 				android:layout_centerHorizontal="true"
-				android:onClick="playYouTubeVideo"
-				android:layout_marginBottom="60dp"
-				android:src="@drawable/youtube_icon"/>
+				android:visibility="gone"
+				android:layout_marginBottom="60dp">
+				<ImageView
+					android:id="@+id/main_news_video_image"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:onClick="playYouTubeVideo"
+					android:adjustViewBounds="true"/>
+
+				<ImageView
+					android:id="@+id/video_thumbnail"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:onClick="playYouTubeVideo"
+					android:layout_gravity="center_horizontal"
+					android:visibility="gone"
+					android:src="@drawable/youtube_icon"/>
+			</FrameLayout>
 		</RelativeLayout>
 	</ScrollView>
 </RelativeLayout>
