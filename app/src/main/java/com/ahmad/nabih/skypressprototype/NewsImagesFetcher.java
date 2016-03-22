@@ -34,10 +34,13 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 //		progressDialog = new ProgressDialog(this.activity);
 //		progressDialog.setMessage(MainActivity.LOADING);
 //		progressDialog.show();
+		MainActivity.listOfRunningAsynkTasks.add(this);
 	}
 
 	@Override
 	protected Bitmap doInBackground(String... params) {
+        if(this.isCancelled())
+            return null;
 		String urldisplay = params[0];
 		if(MainActivity.mMemoryCache.get(urldisplay) != null)
 			return MainActivity.mMemoryCache.get(urldisplay);
@@ -75,5 +78,6 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 			}else
 				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 		}
+		MainActivity.listOfRunningAsynkTasks.remove(this);
 	}
 }

@@ -250,6 +250,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			AlertDialog alert = builder.create();
 			alert.show();
 		}
+		activity.findViewById(R.id.main_scroll_view).scrollTo(0, 0);
 	}
 
 	private List<HashMap<String, Object>> runRSSThread(String urlString) {
