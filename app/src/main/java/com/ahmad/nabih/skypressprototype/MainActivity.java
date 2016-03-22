@@ -3,6 +3,7 @@ package com.ahmad.nabih.skypressprototype;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
@@ -28,7 +29,9 @@ import android.widget.ViewFlipper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity
 	static final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 	static final int cacheSize = maxMemory / 8;
 	public static LruCache<String, Bitmap> mMemoryCache = new LruCache<String, Bitmap>(cacheSize);
+	public static List<AsyncTask<String, Double, Bitmap>> listOfRunningAsynkTasks = new ArrayList<AsyncTask<String, Double, Bitmap>>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +172,12 @@ public class MainActivity extends AppCompatActivity
 	@SuppressWarnings("StatementWithEmptyBody")
 	@Override
 	public boolean onNavigationItemSelected(MenuItem item) {
+		if(listOfRunningAsynkTasks.size() > 0) {
+			for (int i = 0; i < listOfRunningAsynkTasks.size(); i++) {
+				AsyncTask<String, Double, Bitmap> tmpAsynkTask = listOfRunningAsynkTasks.get(i);
+				tmpAsynkTask.cancel(true);
+			}
+		}
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 		if (id == R.id.nav_local) {
@@ -202,7 +212,7 @@ public class MainActivity extends AppCompatActivity
 		resetCarouselImages();
 		NewsListingPopulator newsListingPopulator = new NewsListingPopulator(this, strURL, strLabel, id);
 		newsListingPopulator.execute();
-		findViewById(R.id.main_scroll_view).scrollTo(0, 0);
+		//findViewById(R.id.main_scroll_view).scrollTo(0, 0);
 	}
 
 	private void resetCarouselImages() {

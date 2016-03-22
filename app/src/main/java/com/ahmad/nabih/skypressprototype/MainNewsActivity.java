@@ -3,7 +3,9 @@ package com.ahmad.nabih.skypressprototype;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -265,6 +267,12 @@ public class MainNewsActivity extends AppCompatActivity
 	@SuppressWarnings("StatementWithEmptyBody")
 	@Override
 	public boolean onNavigationItemSelected(MenuItem item) {
+        if(MainActivity.listOfRunningAsynkTasks.size() > 0) {
+            for (int i = 0; i < MainActivity.listOfRunningAsynkTasks.size(); i++) {
+                AsyncTask<String, Double, Bitmap> tmpAsynkTask = MainActivity.listOfRunningAsynkTasks.get(i);
+                tmpAsynkTask.cancel(true);
+            }
+        }
 		// Handle navigation view item clicks here.
 		Intent mainActivity = new Intent(MainNewsActivity.this, MainActivity.class);
 		Bundle parameters = new Bundle();
