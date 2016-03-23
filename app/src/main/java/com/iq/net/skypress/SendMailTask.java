@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -8,17 +8,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SendMailTask extends AsyncTask {
@@ -90,7 +87,6 @@ public class SendMailTask extends AsyncTask {
 			dos.close();
 			is = conn.getInputStream();
 		}catch(Exception e){
-			Log.e("URL Connection", e.toString());
 		}
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -103,7 +99,6 @@ public class SendMailTask extends AsyncTask {
 			is.close();
 			json = sb.toString();
 		} catch (Exception e) {
-			Log.e("Buffer Error", "Error converting result " + e.toString());
 		}
 		return null;
 	}

@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

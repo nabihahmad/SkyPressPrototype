@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 /**
  * Created by Leila Nizam on 12/27/2015.

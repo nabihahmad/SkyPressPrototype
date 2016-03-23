@@ -1,15 +1,9 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.preference.ListPreference;
-import android.support.v7.widget.AppCompatTextView;
-import android.text.Spannable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class CustomListPreference extends ListPreference {
 

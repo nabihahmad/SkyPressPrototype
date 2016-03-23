@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.text.Spannable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,20 +56,17 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 
 	@Override
 	protected JSONObject doInBackground(String... params) {
-		Log.d("URL", strURL);
 		JSONObject result = new JSONObject();
 		List<HashMap<String, Object>> allNewsListResult = runRSSThread(strURL);
 		try {
 			result.put("allNewsList", allNewsListResult);
 		} catch (JSONException e) {
-			Log.e("JSON Exception", "Error retrieving all news list result");
 		}
 		if(this.id != null){
 			List<HashMap<String, Object>> mainNewsListResult = runRSSThread("http://skypressiq.net/" + this.id + "-rss.xml");
 			try {
 				result.put("mainNewsList", mainNewsListResult);
 			} catch (JSONException e) {
-				Log.e("JSON Exception", "Error retrieving main news list result");
 			}
 		}
 		return result;
@@ -87,13 +83,11 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			try {
 				result = (List<HashMap<String, Object>>)resultLists.get("allNewsList");
 			} catch (JSONException e) {
-				Log.e("JSON Exception", "Error parsing all news list result from JSONObject");
 			}
 		if(resultLists.has("mainNewsList"))
 			try {
 				mainNewsResult = (List<HashMap<String, Object>>)resultLists.get("mainNewsList");
 			} catch (JSONException e) {
-				Log.e("JSON Exception", "Error parsing main news list result from JSONObject");
 			}
 		if (result != null && result.size() > 0) {
 			ListView list = (ListView) activity.findViewById(R.id.news_listing);
@@ -344,7 +338,6 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 			isXMLParserException = true;
 			e.printStackTrace();
 		}
-		Log.d(this.getClass().getName(), "parseXMLAndStoreIt() returned: " + listOfNews);
 		return listOfNews;
 	}
 

@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -24,8 +24,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -157,7 +155,7 @@ public class MainNewsActivity extends AppCompatActivity
 				ImageView mainNewsVideoImage = (ImageView) findViewById(R.id.main_news_video_image);
 				NewsImagesFetcher newsImagesFetcher1 = new NewsImagesFetcher(mainNewsVideoImage, true, R.id.main_news_image, R.id.main_news_date, false);
 				newsImagesFetcher1.execute(mainNewsImageURL);
-				FrameLayout frameLayout = (FrameLayout) findViewById(R.id.main_news_video_frame_layout);
+				RelativeLayout frameLayout = (RelativeLayout) findViewById(R.id.main_news_video_frame_layout);
 				frameLayout.setVisibility(View.VISIBLE);
 			}
 

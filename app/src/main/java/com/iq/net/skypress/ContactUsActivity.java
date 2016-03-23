@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +25,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.rogerlemmonapps.captcha.Captcha;
-import com.rogerlemmonapps.captcha.MathCaptcha;
 import com.rogerlemmonapps.captcha.TextCaptcha;
 
 public class ContactUsActivity extends AppCompatActivity

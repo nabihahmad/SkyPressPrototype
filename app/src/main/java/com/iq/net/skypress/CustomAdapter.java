@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,14 +10,11 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextClock;
-import android.widget.TextView;
 
 public class CustomAdapter extends BaseAdapter {
 	List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
@@ -100,7 +97,6 @@ public class CustomAdapter extends BaseAdapter {
 			resizeImageURL += (imageURL + "&w=100&h=100");
 
 			newsImagesFetcher1.execute(resizeImageURL);
-			Log.i("thumbnail", "thumbnail loaded");
 		}else{
 			holder = (Holder) convertView.getTag();
 		}

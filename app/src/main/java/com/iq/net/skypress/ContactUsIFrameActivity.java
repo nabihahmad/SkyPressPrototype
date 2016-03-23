@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -14,7 +14,6 @@ import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
-import android.webkit.WebView;
 
 public class ContactUsIFrameActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {

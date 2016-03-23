@@ -1,15 +1,12 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.io.InputStream;
 
@@ -47,11 +44,9 @@ public class NewsImagesFetcher extends AsyncTask<String, Double, Bitmap> {
 		Bitmap bitmap = null;
 		try {
 			InputStream in = new java.net.URL(urldisplay).openStream();
-			Log.i("image url", urldisplay);
 			bitmap = BitmapFactory.decodeStream(in);
 			MainActivity.mMemoryCache.put(urldisplay, bitmap);
 		} catch (Exception e) {
-			Log.e("Error", e.getMessage());
 		}
 		return bitmap;
 	}

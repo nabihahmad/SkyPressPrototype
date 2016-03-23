@@ -1,10 +1,9 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.Spannable;
 import android.text.style.ImageSpan;
 import android.util.AttributeSet;

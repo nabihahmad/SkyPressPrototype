@@ -84,7 +84,7 @@
 						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
-					<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+					<com.iq.net.skypress.TextViewWithCustomFont
 						android:id="@+id/latest_news_TextView_0"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
 						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
-					<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+					<com.iq.net.skypress.TextViewWithCustomFont
 						android:id="@+id/latest_news_TextView_1"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
 						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
-					<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+					<com.iq.net.skypress.TextViewWithCustomFont
 						android:id="@+id/latest_news_TextView_2"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
 						android:layout_centerHorizontal="true"
 						android:maxHeight="@dimen/max_carousel_image_height"/>
 
-					<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+					<com.iq.net.skypress.TextViewWithCustomFont
 						android:id="@+id/latest_news_TextView_3"
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
 				</FrameLayout>
 			</ViewFlipper>
 
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/news_title"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
 				android:textSize="@dimen/text_size_large"
 				android:visibility="gone"/>
 
-			<com.ahmad.nabih.skypressprototype.NonScrollableListView
+			<com.iq.net.skypress.NonScrollableListView
 				android:id="@+id/news_listing"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"

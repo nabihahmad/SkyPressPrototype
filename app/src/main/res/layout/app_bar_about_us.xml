@@ -7,7 +7,7 @@
 	android:layout_height="match_parent"
 	android:fitsSystemWindows="true"
 	android:layoutDirection="rtl"
-	tools:context="com.ahmad.nabih.skypressprototype.AboutUsActivity">
+	tools:context="com.iq.net.skypress.AboutUsActivity">
 
 	<android.support.design.widget.AppBarLayout
 		android:layout_height="wrap_content"

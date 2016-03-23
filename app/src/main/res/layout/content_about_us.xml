@@ -11,9 +11,9 @@
 	android:paddingBottom="@dimen/activity_vertical_margin"
 	app:layout_behavior="@string/appbar_scrolling_view_behavior"
 	tools:showIn="@layout/app_bar_about_us"
-	tools:context="com.ahmad.nabih.skypressprototype.AboutUsActivity">
+	tools:context="com.iq.net.skypress.AboutUsActivity">
 
-	<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+	<com.iq.net.skypress.TextViewWithCustomFont
 		android:id="@+id/aboutUs_title"
 		android:textSize="14pt"
 		android:layout_width="wrap_content"
@@ -34,37 +34,37 @@
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:orientation="vertical">
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_desc"
 				android:textSize="@dimen/text_size_large"
 				android:background="@color/colorPrimaryLight"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/about_us_description"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="10dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_listed_lbl"
 				android:textSize="@dimen/text_size_large"
 				android:background="@color/colorPrimaryLight"
 				android:layout_marginTop="20dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/about_us_listed"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="10dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_mail_lbl"
 				android:textSize="@dimen/text_size_large"
 				android:background="@color/colorPrimaryLight"
 				android:layout_marginTop="20dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/about_us_mail"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
@@ -72,14 +72,14 @@
 				android:textColorLink="@color/colorPrimaryDark"
 				android:autoLink="email"
 				android:layout_marginTop="10dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_mobile_lbl"
 				android:textSize="@dimen/text_size_large"
 				android:background="@color/colorPrimaryLight"
 				android:layout_marginTop="20dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/about_us_mobile"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
@@ -87,14 +87,14 @@
 				android:textColorLink="@color/colorPrimaryDark"
 				android:autoLink="phone"
 				android:layout_marginTop="10dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_mobile2_lbl"
 				android:textSize="@dimen/text_size_large"
 				android:background="@color/colorPrimaryLight"
 				android:layout_marginTop="20dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/about_us_mobile2"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
@@ -102,26 +102,26 @@
 				android:textColorLink="@color/colorPrimaryDark"
 				android:autoLink="phone"
 				android:layout_marginTop="10dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_address_lbl"
 				android:textSize="@dimen/text_size_large"
 				android:background="@color/colorPrimaryLight"
 				android:layout_marginTop="20dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/about_us_address"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="10dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_facebook_lbl"
 				android:textSize="@dimen/text_size_large"
 				android:background="@color/colorPrimaryLight"
 				android:layout_marginTop="20dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/about_us_facebook"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
@@ -129,14 +129,14 @@
 				android:textColorLink="@color/colorPrimaryDark"
 				android:autoLink="web"
 				android:layout_marginTop="10dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:text="@string/about_us_twitter_lbl"
 				android:textSize="@dimen/text_size_large"
 				android:background="@color/colorPrimaryLight"
 				android:layout_marginTop="20dp"/>
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/about_us_twitter"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
 		android:layout_height="fill_parent"
 		android:orientation="vertical"
 		android:visibility="gone">
-		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+		<com.iq.net.skypress.TextViewWithCustomFont
 			android:id="@+id/about_us_no_connection"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"

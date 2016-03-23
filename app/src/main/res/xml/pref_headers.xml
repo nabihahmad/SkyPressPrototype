@@ -3,12 +3,12 @@
 	<!-- These settings headers are only used on tablets. -->
 
 	<header
-		android:fragment="com.ahmad.nabih.skypressprototype.SettingsActivity$NotificationPreferenceFragment"
+		android:fragment="com.iq.net.skypress.SettingsActivity$NotificationPreferenceFragment"
 		android:title="@string/pref_header_notifications"
 		android:icon="@drawable/ic_notifications_black_24dp"/>
 
 	<header
-		android:fragment="com.ahmad.nabih.skypressprototype.SettingsActivity$DisplayPreferenceFragment"
+		android:fragment="com.iq.net.skypress.SettingsActivity$DisplayPreferenceFragment"
 		android:title="@string/pref_header_display"
 		android:icon="@drawable/text_24"/>
 

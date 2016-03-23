@@ -1,13 +1,11 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ViewFlipper;
-import android.widget.ViewSwitcher;
 
 /**
  * Detects left and right swipes across a view.

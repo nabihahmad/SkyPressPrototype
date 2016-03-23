@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ahmad.nabih.skypressprototype" >
+    package="com.iq.net.skypress" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,21 +10,21 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
-        android:name="com.ahmad.nabih.skypressprototype.permission.C2D_MESSAGE"
+        android:name="com.iq.net.skypress.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.ahmad.nabih.skypressprototype.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
-        android:name=".SkyPressApp"
+        android:name="com.iq.net.skypress.SkyPressApp"
         android:allowBackup="true"
         android:icon="@drawable/logo_square_blue_bg"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashScreen"
+            android:name="com.iq.net.skypress.SplashScreen"
             android:label="@string/app_name_abbr"
             android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar">
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.iq.net.skypress.MainActivity"
             android:label="@string/app_name_abbr"
             android:screenOrientation="unspecified"
 			android:theme="@style/AppTheme.NoActionBar">
@@ -43,59 +43,59 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainNewsActivity"
+            android:name="com.iq.net.skypress.MainNewsActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.iq.net.skypress.MainActivity"
             android:screenOrientation="unspecified"
 			android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ahmad.nabih.skypressprototype.MainActivity" />
+                android:value="com.iq.net.skypress.MainActivity" />
         </activity>
         <activity
-            android:name=".PlayerActivity"
+            android:name="com.iq.net.skypress.PlayerActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".PlayerActivity"
+            android:parentActivityName="com.iq.net.skypress.PlayerActivity"
             android:screenOrientation="landscape"
 			android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ahmad.nabih.skypressprototype.MainNewsActivity" />
+                android:value="com.iq.net.skypress.MainNewsActivity" />
         </activity>
         <activity
-            android:name=".ContactUsActivity"
+            android:name="com.iq.net.skypress.ContactUsActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.iq.net.skypress.MainActivity"
             android:screenOrientation="unspecified"
 			android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ahmad.nabih.skypressprototype.MainActivity" />
+                android:value="com.iq.net.skypress.MainActivity" />
         </activity>
         <activity
-            android:name="AboutUsActivity"
+            android:name="com.iq.net.skypress.AboutUsActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.iq.net.skypress.MainActivity"
             android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ahmad.nabih.skypressprototype.MainActivity" />
+                android:value="com.iq.net.skypress.MainActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.iq.net.skypress.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.iq.net.skypress.MainActivity"
             android:screenOrientation="unspecified">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ahmad.nabih.skypressprototype.MainActivity" />
+                android:value="com.iq.net.skypress.MainActivity" />
         </activity>
         <!-- Parse push notifications -->
         <service android:name="com.parse.PushService" />
 
         <receiver
-            android:name=".CustomPushReceiver"
+            android:name="com.iq.net.skypress.CustomPushReceiver"
             android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

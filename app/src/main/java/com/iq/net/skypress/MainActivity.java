@@ -1,4 +1,4 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -6,10 +6,8 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.util.Log;
 import android.util.LruCache;
 import android.view.SubMenu;
 import android.view.View;
@@ -119,7 +117,6 @@ public class MainActivity extends AppCompatActivity
 				String id = parseDataJSON.has("id") ? parseDataJSON.getString("id") : "";
 				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), id);
 			} catch (JSONException e) {
-				Log.e("Parse Data JSON Exc", e.toString());
 			}
 		}else{
 			Bundle b = getIntent().getExtras();

@@ -22,14 +22,14 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginRight="15dp">
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/custom_view_date"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:textSize="@dimen/text_size_x_small"
 				android:textColor="@color/colorSecondaryDark"/>
 
-			<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+			<com.iq.net.skypress.TextViewWithCustomFont
 				android:id="@+id/custom_view_time"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
 				android:textColor="@color/colorSecondaryDark"/>
 		</RelativeLayout>
 
-		<com.ahmad.nabih.skypressprototype.TextViewWithCustomFont
+		<com.iq.net.skypress.TextViewWithCustomFont
 			android:id="@+id/custom_view_text"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

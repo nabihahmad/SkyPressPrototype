@@ -1,8 +1,7 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.parse.ParsePushBroadcastReceiver;
 
@@ -29,15 +28,9 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
 
         try {
             JSONObject json = new JSONObject(intent.getExtras().getString("com.parse.Data"));
-
-            Log.e(TAG, "Push received: " + json);
-
             parseIntent = intent;
-
             parsePushJson(context, json);
-
         } catch (JSONException e) {
-            Log.e(TAG, "Push message json exception: " + e.getMessage());
         }
     }
 
@@ -59,12 +52,10 @@ public class CustomPushReceiver extends ParsePushBroadcastReceiver {
      */
     private void parsePushJson(Context context, JSONObject json) {
         try {
-            Log.e(TAG, json.toString());
             String title = json.getString("title");
             Intent resultIntent = new Intent(context, MainActivity.class);
             showNotificationMessage(context, title, resultIntent);
         } catch (JSONException e) {
-            Log.e(TAG, "Push message json exception: " + e.getMessage());
         }
     }
 

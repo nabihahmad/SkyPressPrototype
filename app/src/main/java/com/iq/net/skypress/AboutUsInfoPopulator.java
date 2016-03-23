@@ -1,22 +1,14 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.Spannable;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.ViewFlipper;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -26,7 +18,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 public class AboutUsInfoPopulator extends AsyncTask <String, Double, List<HashMap<String, Object>>> {
@@ -51,7 +42,6 @@ public class AboutUsInfoPopulator extends AsyncTask <String, Double, List<HashMa
 
 	@Override
 	protected List<HashMap<String, Object>> doInBackground(String... params) {
-		Log.d("URL", aboutUsURL);
 		return runRSSThread(aboutUsURL);
 	}
 
@@ -192,7 +182,6 @@ public class AboutUsInfoPopulator extends AsyncTask <String, Double, List<HashMa
 			isXMLParserException = true;
 			e.printStackTrace();
 		}
-		Log.d(this.getClass().getName(), "parseXMLAndStoreIt() returned: " + listOfNews);
 		return listOfNews;
 	}
 }

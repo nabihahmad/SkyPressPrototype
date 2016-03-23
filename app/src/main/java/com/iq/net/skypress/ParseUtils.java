@@ -1,15 +1,12 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
-import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
@@ -35,7 +32,6 @@ public class ParseUtils {
         ParsePush.subscribeInBackground(AppConfig.PARSE_CHANNEL, new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                Log.e(TAG, "Successfully subscribed to Parse!");
             }
         });
     }
@@ -48,7 +44,6 @@ public class ParseUtils {
         ParsePush.unsubscribeInBackground(AppConfig.PARSE_CHANNEL, new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                Log.e(TAG, "Successfully unsubscribed to Parse!");
             }
         });
     }

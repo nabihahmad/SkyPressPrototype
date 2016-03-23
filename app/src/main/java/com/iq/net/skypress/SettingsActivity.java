@@ -1,12 +1,10 @@
-package com.ahmad.nabih.skypressprototype;
+package com.iq.net.skypress;
 
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -22,19 +20,14 @@ import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
-import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
-import android.util.LayoutDirection;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -204,7 +197,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 		public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 								 @Nullable Bundle savedInstanceState) {
 			View view = super.onCreateView(inflater, container, savedInstanceState);
-			Log.e("DEBUG", String.valueOf(view.getId()));
 			view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 			return view;
 		}
