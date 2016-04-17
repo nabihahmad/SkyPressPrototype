@@ -4,10 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.Spannable;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -209,6 +213,35 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 				Intent intent = new Intent(activity, MainNewsActivity.class);
 				intent = setIntentStringsFromMap(intent, tmpMap);
 				activity.startActivity(intent);
+			}
+			final SharedPreferences getPrefs = PreferenceManager
+					.getDefaultSharedPreferences(activity.getBaseContext());
+			boolean isFirstStart = getPrefs.getBoolean("isFirstStart", true);
+			if(isFirstStart) {
+				SharedPreferences.Editor editor = getPrefs.edit();
+				editor.putBoolean("isFirstStart", false);
+				editor.commit();
+				TextView customTitle = new TextView(activity);
+				customTitle.setText(activity.getResources().getString(R.string.notifications_dialog_title));
+				customTitle.setGravity(Gravity.RIGHT);
+				customTitle.setPadding(10, 10, 10, 10);
+				customTitle.setTextSize(23);
+				new AlertDialog.Builder(activity).setCustomTitle(customTitle)
+						.setMessage(activity.getResources().getString(R.string.notifications_dialog_message))
+						.setNegativeButton(activity.getResources().getString(R.string.notifications_dialog_cancel), new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+							}
+						}).setPositiveButton(activity.getResources().getString(R.string.notifications_dialog_activate), new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						SharedPreferences.Editor editor = getPrefs.edit();
+						editor.putBoolean("notifications_new_message", true);
+						editor.commit();
+						ParseUtils.registerParse(activity.getBaseContext());
+					}
+				}).setCancelable(false).show();
 			}
 		} else {
 			if(isNoInternetConnection) {

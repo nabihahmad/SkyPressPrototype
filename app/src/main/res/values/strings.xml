@@ -31,7 +31,10 @@
 	<string name="share_on_social_media_body"></string>
 	<string name="main_news_read_label">عدد القرّاء</string>
 
-    <!-- Strings related to Settings -->
+    <string name="notifications_dialog_title">تفعيل إشعارات الخبر العاجل</string>
+	<string name="notifications_dialog_cancel">إلغاء</string>
+	<string name="notifications_dialog_activate">تفعيل</string>
+	<!-- Strings related to Settings -->
 
 	<!-- Settings for Text Size -->
 	<string name="pref_header_display">الأحجام والخطوط</string>
@@ -84,4 +87,5 @@
 	<string name="about_us_twitter_lbl">موقع تويتر</string>
 	<string name="about_us_tube_lbl">موقع يوتيوب</string>
 	<string name="about_us_desc">من نحن</string>
+	<string name="notifications_dialog_message">يمكنكم تفعيل خدمة إشعارات الخبر العاجل من خلال الضغط على زرّ التفعيل</string>
 </resources>

@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity
 				JSONObject parseDataJSON = new JSONObject(parseDataStr);
 				String category = parseDataJSON.has("category") ? parseDataJSON.getString("category") : "";
 				String id = parseDataJSON.has("id") ? parseDataJSON.getString("id") : "";
-				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), id);
+				refreshNews(AppConfig.URL_LATEST, getResources().getString(R.string.latest_label), id);
 			} catch (JSONException e) {
 			}
 		}else{
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
 				String url = b.getString("URL");
 				refreshNews(url, navLbl, null);
 			}else
-				refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), null);
+				refreshNews(AppConfig.URL_LATEST, getResources().getString(R.string.latest_label), null);
 		}
 	}
 
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
 		}
 
 		if(id == R.id.action_refresh){
-			refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), null);
+			refreshNews(AppConfig.URL_LATEST, getResources().getString(R.string.local_label), null);
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -177,7 +177,9 @@ public class MainActivity extends AppCompatActivity
 		}
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
-		if (id == R.id.nav_local) {
+		if (id == R.id.nav_latest) {
+			refreshNews(AppConfig.URL_LATEST, getResources().getString(R.string.latest_label), null);
+		} else if (id == R.id.nav_local) {
 			refreshNews(AppConfig.URL_LOCAL, getResources().getString(R.string.local_label), null);
 		} else if (id == R.id.nav_international) {
 			refreshNews(AppConfig.URL_ARAB_INTERNATIONAL, getResources().getString(R.string.arab_international_label), null);

@@ -10,6 +10,7 @@ public final class AppConfig {
     public static final int NOTIFICATION_ID = 100;
     public static final String[] CONTACT_US_EMAIL_RECIPIENTS = {"nabih77@gmail.com"};
 
+    public static final String URL_LATEST = "http://skypressiq.net/rsssite.xml";
     public static final String URL_LOCAL = "http://skypressiq.net/localnews.xml";
     public static final String URL_ARAB_INTERNATIONAL = "http://skypressiq.net/arnews.xml";
     public static final String URL_ECONOMIC = "http://skypressiq.net/economicnews.xml";

@@ -116,7 +116,10 @@ public class AboutUsActivity extends AppCompatActivity
 		Intent mainActivity = new Intent(AboutUsActivity.this, MainActivity.class);
 		Bundle parameters = new Bundle();
 		int id = item.getItemId();
-		if (id == R.id.nav_local) {
+		if (id == R.id.nav_latest) {
+			parameters.putString("navLbl", getResources().getString(R.string.latest_label));
+			parameters.putString("URL", AppConfig.URL_LATEST);
+		} else if (id == R.id.nav_local) {
 			parameters.putString("navLbl", getResources().getString(R.string.local_label));
 			parameters.putString("URL", AppConfig.URL_LOCAL);
 		} else if (id == R.id.nav_international) {

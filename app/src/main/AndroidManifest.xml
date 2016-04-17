@@ -13,7 +13,7 @@
         android:name="com.iq.net.skypress.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.ahmad.nabih.skypressprototype.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.iq.net.skypress.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
@@ -112,7 +112,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <category android:name="com.ahmad.nabih.skypressprototype" />
+                <category android:name="com.iq.net.skypress" />
             </intent-filter>
         </receiver>
 
