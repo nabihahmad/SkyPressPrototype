@@ -126,10 +126,11 @@ public class ContactUsIFrameActivity extends AppCompatActivity
 		} else if (id == R.id.nav_sport) {
 			parameters.putString("navLbl", getResources().getString(R.string.sport_label));
 			parameters.putString("URL", AppConfig.URL_SPORT);
-		} else if (id == R.id.nav_art) {
-			parameters.putString("navLbl", getResources().getString(R.string.art_label));
-			parameters.putString("URL", AppConfig.URL_ART);
-		} else if (id == R.id.nav_varied) {
+		} //else if (id == R.id.nav_art) {
+//			parameters.putString("navLbl", getResources().getString(R.string.art_label));
+//			parameters.putString("URL", AppConfig.URL_ART);
+		//}
+		else if (id == R.id.nav_varied) {
 			parameters.putString("navLbl", getResources().getString(R.string.varied_label));
 			parameters.putString("URL", AppConfig.URL_VARIED);
 		} else if (id == R.id.nav_videosite) {

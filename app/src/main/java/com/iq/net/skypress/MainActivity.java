@@ -189,9 +189,10 @@ public class MainActivity extends AppCompatActivity
 			refreshNews(AppConfig.URL_ANALYTIC, getResources().getString(R.string.analytic_label), null);
 		} else if (id == R.id.nav_sport) {
 			refreshNews(AppConfig.URL_SPORT, getResources().getString(R.string.sport_label), null);
-		} else if (id == R.id.nav_art) {
-			refreshNews(AppConfig.URL_ART, getResources().getString(R.string.art_label), null);
-		} else if (id == R.id.nav_varied) {
+		}// else if (id == R.id.nav_art) {
+			//refreshNews(AppConfig.URL_ART, getResources().getString(R.string.art_label), null);
+		//}
+		else if (id == R.id.nav_varied) {
 			refreshNews(AppConfig.URL_VARIED, getResources().getString(R.string.varied_label), null);
 		} else if (id == R.id.nav_videosite) {
 			refreshNews(AppConfig.URL_VIDEOSITE, getResources().getString(R.string.videosite_label), null);
