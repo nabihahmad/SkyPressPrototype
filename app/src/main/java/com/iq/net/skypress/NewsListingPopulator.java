@@ -190,8 +190,7 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 					HashMap<String, Object> tmpMap = finalResult.get(position);
 					intent = setIntentStringsFromMap(intent, tmpMap);
 					activity.startActivity(intent);
-					IncrementNewsReaders incrementNewsReaders = new IncrementNewsReaders();
-					incrementNewsReaders.execute((String) tmpMap.get("id"));
+
 				}
 			});
 
@@ -404,6 +403,10 @@ public class NewsListingPopulator extends AsyncTask <String, Double, JSONObject>
 		String mainNewsRead = (String) map.get("news_read");
 		if(mainNewsRead != null)
 			intent.putExtra("mainNewsRead", mainNewsRead);
+
+        String mainNewsId = (String) map.get("id");
+		if(mainNewsId != null)
+			intent.putExtra("mainNewsId", mainNewsId);
 
 		return intent;
 	}

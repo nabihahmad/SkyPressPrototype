@@ -122,16 +122,8 @@ public class MainNewsActivity extends AppCompatActivity
 			mainNewsDateTextView.setText(strMainNewsDate);
 		}
 
-		String mainNewsRead = getIntent().getStringExtra("mainNewsRead");
-		if(mainNewsRead != null){
-			TextView mainNewsReadTextView = (TextView) findViewById(R.id.main_news_read);
-			mainNewsReadTextView.setText(mainNewsRead);
-			mainNewsReadTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, Float.parseFloat(sharedPref.getString("pref_news_title_text_size", "8")));
-		}else{
-			TextView mainNewsReadTextView = (TextView) findViewById(R.id.main_news_read);
-			mainNewsReadTextView.setText("0");
-			mainNewsReadTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, Float.parseFloat(sharedPref.getString("pref_news_title_text_size", "8")));
-		}
+        IncrementNewsReaders incrementNewsReaders = new IncrementNewsReaders(this);
+        incrementNewsReaders.execute((String) getIntent().getStringExtra("mainNewsId"));
 
 		String mainNewsFull = getIntent().getStringExtra("mainNewsFull");
 		TextView mainNewsFullTextView = (TextView) findViewById(R.id.main_news_full);
